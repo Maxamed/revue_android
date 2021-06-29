@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Revue</string>
+    <string name="facebook_app_id">178863020871971</string>
+    <string name="fb_login_protocol_scheme">fb178863020871971</string>
+
+</resources>

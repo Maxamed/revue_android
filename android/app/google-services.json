@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "254181276855",
+    "project_id": "revue-f76a9",
+    "storage_bucket": "revue-f76a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254181276855:android:23356add4b244fbc25e132",
+        "android_client_info": {
+          "package_name": "com.geekso.revueapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254181276855-81a57479bu0bfoi1v1voj2neohcqk5a1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geekso.revueapp",
+            "certificate_hash": "a7fe2637540de525dafba5b65d2a2c7fa82f1488"
+          }
+        },
+        {
+          "client_id": "254181276855-i6cn3n1oc1bi9mhjp51bdm8s854hgcg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBuTRrZt8O2WkJnln9ROW-O9EIXpvsfp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254181276855-i6cn3n1oc1bi9mhjp51bdm8s854hgcg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
