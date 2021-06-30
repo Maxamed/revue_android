@@ -92,7 +92,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                   },
                   child: Icon(
                     CupertinoIcons.chevron_left,
-                    color: Colors.black,
+                    color: Colors.black,size: 20,
                   )),),
 
           CupertinoSliverRefreshControl(
@@ -116,11 +116,11 @@ class MessagingScreenState extends State<MessagingScreen>{
               // physics: AlwaysScrollableScrollPhysics(),
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.only(top: 10,left: 5,right: 5,bottom: 5),
                   child: Row(
                     children: [
                       Icon(CupertinoIcons.location_solid,size: 25,),
-
+                      SizedBox(width: 10,),
                       // Southwest apartments, Green community West,Green C
                       Flexible(
                         child: Text(

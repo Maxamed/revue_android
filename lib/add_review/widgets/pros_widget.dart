@@ -5,6 +5,10 @@ import 'package:revue_mobile/constant/GlobalKeys.dart';
 
 class ProsWidget extends StatefulWidget{
   TextEditingController prosTextController = new TextEditingController();
+  int index;
+
+  ProsWidget(this.index);
+
   @override
   State<StatefulWidget> createState() {
     return ProsWidgetState();
@@ -19,29 +23,41 @@ class ProsWidgetState extends State<ProsWidget>{
     return Container(
       child: Column(
         children: [
-          TextFormField(textInputAction: TextInputAction.done,
-            keyboardType: TextInputType.text,
-            controller: widget.prosTextController,
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 15),
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
+          Container(width:MediaQuery.of(context).size.width,
+            child: Row(
+              children: [
+                SizedBox(
+                  width:MediaQuery.of(context).size.width-100,
+                  child: TextFormField(textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.text,
+                    controller: widget.prosTextController,
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 15),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color:  ColorClass.greyColor,),
+                        ),
+                        fillColor: Colors.white,
+                    )),
                 ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color:  ColorClass.greyColor,),
-                ),
-                fillColor: Colors.white,
-            ),onEditingComplete: (){
-              globalKey.currentState.textfieldListPros.add(ProsWidget());
-              globalKey.currentState.setState(() {
+                widget.index>0? IconButton(onPressed: (){
+                  globalKey.currentState.textfieldListPros.remove(widget.index--);
+                  globalKey.currentState.setState(() {
 
-              });
-            },),
+                  });
+                },
+                    icon: Icon(Icons.remove_circle_outline,color: ColorClass.blackColor,size: 20,)):
+                    Container()
+              ],
+            ),
+          ),
           Align(
             alignment: Alignment.topRight,
             child: TextButton.icon(onPressed: (){
-              globalKey.currentState.textfieldListPros.add(ProsWidget());
+              globalKey.currentState.textfieldListPros.add(ProsWidget(widget.index++));
               globalKey.currentState.setState(() {
 
               });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
@@ -154,46 +155,82 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
           SizedBox(height: 200,),
 
           Align(alignment: Alignment.bottomRight,
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap:rentController.text.isNotEmpty
-                  &&floorPlanController.text.isNotEmpty
-                  &&descriptionController.text.isNotEmpty? () {
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
 
-                reviewModal.price = rentController.text;
-                reviewModal.floorplan = floorPlanController.text;
-                reviewModal.review = descriptionController.text;
-                print(reviewModal.review);
-
-                showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
-                      topRight:Radius.circular(20), )),
-                    builder: (context) =>AddReviewBottomSheetSecond(globalKey: globalKey,
-                      reviewModal: reviewModal,));
-
-
-              }:null,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                        "NEXT",
-                        style: const TextStyle(
-                            color:  const Color(0xff000000),
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 18.0
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: (){
+                    Navigator.pop(context);
+                    },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
+                        Text(
+                            "BACK",
+                            style:  TextStyle(
+                                color:   ColorClass.darkTextColor,
+                                fontWeight: FontWeight.w600,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 18.0
+                            ),
+                            textAlign: TextAlign.left
                         ),
-                        textAlign: TextAlign.left
+                      ],
                     ),
-                    Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
-                  ],
+                  ),
                 ),
-              ),
+
+
+
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap:rentController.text.isNotEmpty
+                      &&floorPlanController.text.isNotEmpty
+                      &&descriptionController.text.isNotEmpty? () {
+
+                    reviewModal.price = rentController.text;
+                    reviewModal.floorplan = floorPlanController.text;
+                    reviewModal.review = descriptionController.text;
+                    print(reviewModal.review);
+
+                    showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
+                          topRight:Radius.circular(20), )),
+                        builder: (context) =>AddReviewBottomSheetSecond(globalKey: globalKey,
+                          reviewModal: reviewModal,));
+
+
+                  }:(){
+                    Fluttertoast.showToast(msg: "All Fields must be Filled");
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                            "NEXT",
+                            style: const TextStyle(
+                                color:  const Color(0xff000000),
+                                fontWeight: FontWeight.w600,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 18.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
+                        Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),)
 
         ],),

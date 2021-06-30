@@ -47,21 +47,26 @@ double getPercentage(double value){
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-
+    width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           shrinkWrap: true,
           children: [
-          Align(alignment: Alignment.topRight,child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: ()
-            {Navigator.pop(context);},
-            child: Text("Close",
-              style: TextStyle(color: ColorClass.blueColor,fontWeight: FontWeight.w500),),
-          )),
+          Align(alignment: Alignment.topLeft,
+            child: TextButton.icon(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Icon(Icons.arrow_back_ios_outlined,color:Colors.black,size: 18,),
+                label: Text(
+                    "BACK",
+                    style:  TextStyle(
+                        color:   ColorClass.darkTextColor,
+                        fontWeight: FontWeight.w600,
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 15.0
+                    ),
+                    textAlign: TextAlign.left
+                ),),),
           Container(
             alignment: Alignment.center,
             child: CircularPercentIndicator(
@@ -97,152 +102,155 @@ double getPercentage(double value){
 
           Container(
               height: 100,alignment: Alignment.center,
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    animation: true,
-                    animationDuration: 1200,
-                    lineWidth: 3.5,
-                    percent: StringConstant.getpercentage(widget.reviewModal.facilities),
-                    center: new Text(
-                        widget.reviewModal.facilities.toString(),
-                      style:
-                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    backgroundColor: ColorClass.circularBgColor,
-                    progressColor: Colors.orange,
-                    footer: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Facilites",
-                          style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w700,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 12.0
-                          ),
-                          textAlign: TextAlign.left
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularPercentIndicator(
+                      radius: 40.0,
+                      animation: true,
+                      animationDuration: 1200,
+                      lineWidth: 3.5,
+                      percent: StringConstant.getpercentage(widget.reviewModal.facilities),
+                      center: new Text(
+                          widget.reviewModal.facilities.toString(),
+                        style:
+                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      backgroundColor: ColorClass.circularBgColor,
+                      progressColor: Colors.orange,
+                      footer: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Facilites",overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                                color:  ColorClass.lightTextColor,
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
                       ),
                     ),
-                  ),
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    animation: true,
-                    animationDuration: 1200,
-                    lineWidth: 3.5,
-                    percent: StringConstant.getpercentage(widget.reviewModal.design),
-                    center: new Text(
-                        widget.reviewModal.design.toString(),
-                      style:
-                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    backgroundColor: ColorClass.circularBgColor,
-                    progressColor: Colors.blue,
-                    footer:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Design",
-                          style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w700,
+                    CircularPercentIndicator(
+                      radius: 40.0,
+                      animation: true,
+                      animationDuration: 1200,
+                      lineWidth: 3.5,
+                      percent: StringConstant.getpercentage(widget.reviewModal.design),
+                      center: new Text(
+                          widget.reviewModal.design.toString(),
+                        style:
+                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      backgroundColor: ColorClass.circularBgColor,
+                      progressColor: Colors.blue,
+                      footer:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Design",overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                                color:  ColorClass.lightTextColor,
+                                fontWeight: FontWeight.w700,
 
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 12.0
-                          ),
-                          textAlign: TextAlign.left
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
                       ),
                     ),
-                  ),
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    animation: true,
-                    animationDuration: 1200,
-                    lineWidth: 3.5,
-                    percent: StringConstant.getpercentage(widget.reviewModal.location),
-                    center: new Text(
-                        widget.reviewModal.location.toString(),
-                      style:
-                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    backgroundColor: ColorClass.circularBgColor,
-                    progressColor: ColorClass.redColor,
-                    footer:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Location",
-                          style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w700,
+                    CircularPercentIndicator(
+                      radius: 40.0,
+                      animation: true,
+                      animationDuration: 1200,
+                      lineWidth: 3.5,
+                      percent: StringConstant.getpercentage(widget.reviewModal.location),
+                      center: new Text(
+                          widget.reviewModal.location.toString(),
+                        style:
+                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      backgroundColor: ColorClass.circularBgColor,
+                      progressColor: ColorClass.redColor,
+                      footer:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Location",overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                                color:  ColorClass.lightTextColor,
+                                fontWeight: FontWeight.w700,
 
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 12.0
-                          ),
-                          textAlign: TextAlign.left
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
                       ),
                     ),
-                  ),
 
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    animation: true,
-                    animationDuration: 1200,
-                    lineWidth: 3.5,
-                    percent: StringConstant.getpercentage(widget.reviewModal.value),
-                    center: new Text(
-                      widget.reviewModal.value.toString(),
-                      style:
-                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    backgroundColor: ColorClass.circularBgColor,
-                    progressColor: Colors.yellow,
-                    footer:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Value",
-                          style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w700,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 12.0
-                          ),
-                          textAlign: TextAlign.left
+                    CircularPercentIndicator(
+                      radius: 40.0,
+                      animation: true,
+                      animationDuration: 1200,
+                      lineWidth: 3.5,
+                      percent: StringConstant.getpercentage(widget.reviewModal.value),
+                      center: new Text(
+                        widget.reviewModal.value.toString(),
+                        style:
+                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      backgroundColor: ColorClass.circularBgColor,
+                      progressColor: Colors.yellow,
+                      footer:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Value",overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                                color:  ColorClass.lightTextColor,
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
                       ),
                     ),
-                  ),
-                  CircularPercentIndicator(
-                    radius: 40.0,
-                    animation: true,
-                    animationDuration: 1200,
-                    lineWidth: 3.5,
-                    percent: StringConstant.getpercentage(widget.reviewModal.management),
-                    center: new Text(
-                      widget.reviewModal.management.toString(),
-                      style:
-                      new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.butt,
-                    backgroundColor: ColorClass.circularBgColor,
-                    progressColor: Colors.purple,
-                    footer:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                          "Management",
-                          style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w700,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 12.0
-                          ),
-                          textAlign: TextAlign.left
+                    CircularPercentIndicator(
+                      radius: 40.0,
+                      animation: true,
+                      animationDuration: 1200,
+                      lineWidth: 3.5,
+                      percent: StringConstant.getpercentage(widget.reviewModal.management),
+                      center: new Text(
+                        widget.reviewModal.management.toString(),
+                        style:
+                        new TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.butt,
+                      backgroundColor: ColorClass.circularBgColor,
+                      progressColor: Colors.purple,
+                      footer:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            "Management",overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                                color:  ColorClass.lightTextColor,
+                                fontWeight: FontWeight.w700,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 12.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
           ),
 
@@ -272,40 +280,40 @@ double getPercentage(double value){
 
           SizedBox(height: 10,),
 
-          Row(mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Flexible(
-              fit: FlexFit.tight,flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                PriceWidget(widget.reviewModal.price),
-                BedRoomWidget(),
-                RatingWidget(2,widget.reviewModal.rating)
-              ],),
-            ),
-            Flexible(
-              fit: FlexFit.tight,flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                FloorPlanWidget(widget.reviewModal.floorplan),
-                BathRoomWidget(),
-                ReviewDateWidget(widget.reviewModal.reviewDate)
-
-              ],),
-            )
-          ],),
-          SizedBox(height: 10,),
-          Divider(
-            color: ColorClass.greyColor,
-            thickness: 1,height: 2,
-          ),
-
-          SizedBox(height: 15,),
+          // Row(mainAxisAlignment: MainAxisAlignment.start,
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //   Flexible(
+          //     fit: FlexFit.tight,flex: 1,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //       PriceWidget(widget.reviewModal.price),
+          //       BedRoomWidget(),
+          //       RatingWidget(2,widget.reviewModal.rating)
+          //     ],),
+          //   ),
+          //   Flexible(
+          //     fit: FlexFit.tight,flex: 1,
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.start,
+          //       crossAxisAlignment: CrossAxisAlignment.end,
+          //       children: [
+          //       FloorPlanWidget(widget.reviewModal.floorplan),
+          //       BathRoomWidget(),
+          //       ReviewDateWidget(widget.reviewModal.reviewDate)
+          //
+          //     ],),
+          //   )
+          // ],),
+          // SizedBox(height: 10,),
+          // Divider(
+          //   color: ColorClass.greyColor,
+          //   thickness: 1,height: 2,
+          // ),
+          //
+          // SizedBox(height: 15,),
 
           Text("Review",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
           fontSize: 16),),

@@ -93,7 +93,7 @@ class CompoundListState extends State<CompoundList>{
       behavior: HitTestBehavior.translucent,
       onTap: (){
         Navigator.push(context, CupertinoPageRoute(builder: (context)=>
-            CompoundDetails((compoundList[index] as CompoundModal).id,(compoundList[index] as CompoundModal))));
+            CompoundDetails(compoundDetailsKey: GlobalKeys.compoundDetailsKey,compoundID: (compoundList[index] as CompoundModal).id,compound: (compoundList[index] as CompoundModal))));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

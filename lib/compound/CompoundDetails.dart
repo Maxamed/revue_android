@@ -16,6 +16,7 @@ import 'package:revue_mobile/reviews/reviews_list.dart';
 import 'package:revue_mobile/bottom_tab_bar/FavouriteCom.dart';
 import 'package:revue_mobile/MainScreen.dart';
 
+
 class CompoundDetails extends StatefulWidget {
  final String compoundID;
 
@@ -25,7 +26,7 @@ class CompoundDetails extends StatefulWidget {
  // List<bool> isFavourite;
  CompoundModal compound;
 
-  CompoundDetails(this.compoundID,this.compound);
+  CompoundDetails({Key compoundDetailsKey,this.compoundID,this.compound}):super(key: compoundDetailsKey);
 
   @override
   State<StatefulWidget> createState() {
@@ -65,8 +66,8 @@ class CompoundDetailsState extends State<CompoundDetails> {
     Webservice.getCompoundDetails(widget.compoundID).then((value){
       this.setState(() {
         compoundModal = value;
-        print(compoundModal.position["coordinates"][0]);
-        print(compoundModal.position["coordinates"][1]);
+        // print(compoundModal.position["coordinates"][0]);
+        // print(compoundModal.position["coordinates"][1]);
       });
     });
 

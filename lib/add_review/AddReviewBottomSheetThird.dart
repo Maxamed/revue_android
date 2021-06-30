@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:getwidget/components/checkbox/gf_checkbox.dart';
 import 'package:getwidget/components/rating/gf_rating.dart';
 import 'package:getwidget/getwidget.dart';
@@ -289,6 +290,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                 type: GFCheckboxType.square,inactiveBorderColor: ColorClass.lightTextColor,
                 value:checkBox,
                 onChanged: (value){
+
                   setState(() {
                     checkBox = value;
                   });
@@ -334,8 +336,6 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                         }
                       });
                     }else{
-
-
                       DatePicker.showDatePicker(context,
                         theme: DatePickerTheme(
                           containerHeight: 210.0,
@@ -371,7 +371,8 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
           ),
         ),
 
-        Container(
+     checkBox==false?
+     Container(
           margin: EdgeInsets.only(left: 20,right: 20,top: 20),
           child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -442,7 +443,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                 ),),
             ],
           ),
-        ),
+        ):SizedBox(height: 120,),
 
 
         Align(alignment: Alignment.bottomRight,
@@ -480,27 +481,52 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap:facilitiesRating!=0
-                      &&designRating!=0
-                      &&locationRating!=0
-                      &&valueRating!= 0
-                      &&managementRating!=0
-                      &&startDateController.text.isNotEmpty
-                      &&endDateController.text.isNotEmpty? ()
-                  {
-                    double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
-                    print(rating);
-                    widget.reviewModal.rating = rating;
+                  onTap: (){
+                    if(facilitiesRating!=0
+                        &&designRating!=0
+                        &&locationRating!=0
+                        &&valueRating!= 0
+                        &&managementRating!=0
+                        &&startDateController.text.isNotEmpty){
+                      double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
+                      print(rating);
+                      widget.reviewModal.rating = rating;
 
-                    widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
+                      widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
 
-                    Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
-                        this.setState(() {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                    }));
-                  }:null,
+                      Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
+                          this.setState(() {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          }));
+                    }else{
+                      Fluttertoast.showToast(msg: "All Fields must be Filled");
+                    }
+                  },
+                  // onTap:facilitiesRating!=0
+                  //     &&designRating!=0
+                  //     &&locationRating!=0
+                  //     &&valueRating!= 0
+                  //     &&managementRating!=0
+                  //     &&startDateController.text.isNotEmpty
+                  //     &&endDateController.text.isNotEmpty? ()
+                  // {
+                  //   double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
+                  //   print(rating);
+                  //   widget.reviewModal.rating = rating;
+                  //
+                  //   widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
+                  //
+                  //   Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
+                  //       this.setState(() {
+                  //   Navigator.pop(context);
+                  //   Navigator.pop(context);
+                  //   Navigator.pop(context);
+                  //   }));
+                  // }:(){
+                  //   Fluttertoast.showToast(msg: "All Fields must be Filled");
+                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(

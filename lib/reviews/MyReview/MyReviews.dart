@@ -72,7 +72,8 @@ class MyReviewsState extends State<MyReviews>{
 
                 },
                 child: Container(
-                  child: Column(
+                  child:
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [

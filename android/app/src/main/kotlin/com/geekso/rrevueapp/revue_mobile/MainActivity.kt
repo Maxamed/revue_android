@@ -1,4 +1,4 @@
-package com.geekso.rrevueapp.revue_mobile
+package com.geekso.revueapp
 
 import io.flutter.embedding.android.FlutterActivity
 

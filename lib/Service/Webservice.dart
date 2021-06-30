@@ -47,8 +47,9 @@ class Webservice{
     if(jsonResponse["status"]== Constants.STATUS_SUCCESS &&
         jsonResponse["errorCode"] ==Constants.SUCCESS_REGISTER_CODE ){
       Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Login()));
-    }else{
-      print("not register");
+    }else if(jsonResponse["status"]== Constants.STATUS_FAIL &&
+        jsonResponse["message"]==Constants.REGISTER_FAILED_ALREADY_EXIST){
+      Fluttertoast.showToast(msg: "User Already Exist");
     }
   }
 
@@ -114,7 +115,7 @@ class Webservice{
         request["coordinates"]=[currentPosition.latitude,currentPosition.longitude];
       }
 
-    print(convert.jsonEncode(request));
+    // print(convert.jsonEncode(request));
     var response = await http.post(Uri.parse(ServerDetails.get_compound_request),
         body: convert.jsonEncode(request),
         headers: {
@@ -123,7 +124,7 @@ class Webservice{
         });
 
     // compoundList.clear();
-    print(response.body);
+    // print(response.body);
    var jsonResponse = convert.jsonDecode(response.body);
     // print(jsonResponse);
     CompoundModal compoundModal;
@@ -152,7 +153,7 @@ class Webservice{
         });
     var jsonResponse  = convert.jsonDecode(response.body);
     CompoundModal compoundModal;
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"] == Constants.STATUS_SUCCESS
         &&jsonResponse["errorCode"] == Constants.SUCCESS_CODE){
     compoundModal = CompoundModal.fromJson(jsonResponse["compoundModal"]);
@@ -219,18 +220,28 @@ class Webservice{
 
     List<http.MultipartFile> newList = new List<http.MultipartFile>();
     newList = reviewModal.images;
-    print(newList.length);
+    // print(newList.length);
 
     request.files.addAll(newList);
 
-    print(request.files);
-    print(request.fields);
+    // print(request.files);
+    // print(request.fields);
     var response = await request.send();
-    print(response.statusCode);
+    // print(response.statusCode);
+
     response.stream.transform(utf8.decoder).listen((value) {
-      print(value);
+      // print("response------------------ "+response.toString());
+      // print("valeue--------------"+value);
+      Map map = json.decode(value);
+      if(map["errorcode"] == 0 && map["status"]==true){
+        GlobalKeys.compoundDetailsKey.currentState.setState(() {
+
+        });
+      }
 
     });
+
+
   }
   
   
@@ -270,7 +281,7 @@ class Webservice{
 
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["status"] == Constants.STATUS_SUCCESS && jsonResponse["statusCode"]==0){
-      print("successfully post question");
+    Fluttertoast.showToast(msg: "Question Submitted Successfully ");
       Navigator.pop(context);
     }
   }
@@ -278,7 +289,7 @@ class Webservice{
 
   static Future<dynamic> postAnswerRequest(BuildContext context,AnswerModal answerModal)async{
     var request = answerModal.toJson();
-    print(request);
+    // print(request);
     var response = await http.post(Uri.parse(ServerDetails.post_Answer),
         body: convert.jsonEncode(request),
         headers: {
@@ -346,7 +357,7 @@ class Webservice{
 
 
     var jsonResponse = convert.jsonDecode(response.body);
-    print(jsonResponse);
+    // print(jsonResponse);
     if(jsonResponse["status"]==Constants.STATUS_SUCCESS &&
     jsonResponse["errorcode"] == Constants.ERROR_CODE){
       Fluttertoast.showToast(msg: "Answer Reported Successfully",gravity: ToastGravity.BOTTOM,
@@ -441,7 +452,7 @@ class Webservice{
           "accept": "application/json"
         });
 
-    print(response.body);
+    // print(response.body);
 
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["status"]== Constants.STATUS_SUCCESS &&
@@ -509,14 +520,14 @@ class Webservice{
           "accept": "application/json"
         });
 
-    print(request);
+    // print(request);
 
     tempFavList.clear();tempFavIDList.clear();
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["status"]== Constants.STATUS_SUCCESS &&
     jsonResponse["errorcode"] == Constants.SUCCESS_CODE){
       List list = jsonResponse["compound"];
-      print(list);
+      // print(list);
       CompoundModal compoundModal;
       if(list.isNotEmpty){
         list.forEach((element) {
@@ -560,7 +571,7 @@ class Webservice{
     }else if(jsonResponse["status"]==Constants.STATUS_FAIL &&
         jsonResponse["code"]==Constants.FAILED_FETCH_COMPOUNDLIST){
 
-      print(jsonResponse["code"]);
+      // print(jsonResponse["code"]);
       // Scaffold.of(context).showSnackBar(SnackBar(content: Text("Unable to Fetch Compound")));
     }
   }

@@ -27,10 +27,6 @@ class MyReviewDetails extends StatefulWidget{
 
 class MyReviewDetailState extends State<MyReviewDetails>{
 
-  double getPercentage(double value){
-    double percent = value/10;
-    return percent;
-  }
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

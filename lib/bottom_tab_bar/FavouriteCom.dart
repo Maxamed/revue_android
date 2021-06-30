@@ -82,8 +82,10 @@ class FavouriteComState extends State<FavouriteCom>{
                       behavior: HitTestBehavior.translucent,
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                            CompoundDetails((favList[index] as CompoundModal).id,
-                                favList[index] as CompoundModal)));
+                            CompoundDetails(compoundDetailsKey: GlobalKeys.compoundDetailsKey,
+                                compoundID: (favList[index] as CompoundModal).id,
+                                compound: (favList[index] as CompoundModal))));
+
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,

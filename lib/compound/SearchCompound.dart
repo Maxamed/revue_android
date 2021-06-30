@@ -4,6 +4,7 @@ import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/SearchModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/compound/CompoundDetails.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 
 import '../constant/ColorClass.dart';
 
@@ -138,8 +139,9 @@ class SearchCompoundState extends State<SearchCompound>{
                 return GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                        CompoundDetails((compoundSearchList[index] as CompoundModal).id,
-                            compoundSearchList[index] as CompoundModal)));
+
+                        CompoundDetails(compoundDetailsKey: GlobalKeys.compoundDetailsKey,compoundID: (compoundSearchList[index] as CompoundModal).id,
+                           compound:  compoundSearchList[index] as CompoundModal)));
                   },behavior: HitTestBehavior.translucent,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

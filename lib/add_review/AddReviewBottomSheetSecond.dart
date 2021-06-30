@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
@@ -33,13 +34,15 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
   List<ConsWidget> textfieldListCons = <ConsWidget>[];
   List prosList =[];
   List consList =[];
+
+  // List<String> tempProsList =[];
+
   @override
   void initState() {
     super.initState();
-    textfieldListPros.add(ProsWidget());
+    textfieldListPros.add(ProsWidget(0));
     textfieldListCons.add(ConsWidget());
   }
-
 
   List<Asset> pickedImages = <Asset>[];
 
@@ -124,6 +127,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     textAlign: TextAlign.left
                 ),
 
+
+
                 ListView.builder(
                   shrinkWrap:true,
                   physics: NeverScrollableScrollPhysics(),
@@ -153,6 +158,15 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     ),
                     textAlign: TextAlign.left
                 ),
+                // ListView.builder(
+                //   shrinkWrap:true,
+                //   physics: NeverScrollableScrollPhysics(),
+                //   itemCount: textfieldListCons.length,
+                //   itemBuilder: (context, index) {
+                //     return textfieldListCons[index];
+                //   },
+                // ),
+
                 ListView.builder(
                   shrinkWrap:true,
                   physics: NeverScrollableScrollPhysics(),
@@ -202,14 +216,12 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                           child: GestureDetector(
                               behavior: HitTestBehavior.translucent,
                               onTap: (){
-
                                 loadAssets();
                               },
                               child: Image.asset("assets/images/addCamera.png",
                                 width: 15,height: 15,)),
                         )
-                    )
-                        :buildGridView())
+                    ) :buildGridView())
               ],
             ),
           ),
@@ -222,8 +234,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                   behavior: HitTestBehavior.translucent,
                   onTap: (){
                     Navigator.pop(context);
-
-                  },
+                    },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
@@ -255,6 +266,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     for(int i =0;i<textfieldListPros.length;i++){
                       prosList.add(textfieldListPros[i].prosTextController.text);
                     }
+
+                    print(prosList);
                     for(int i =0;i<textfieldListCons.length;i++){
                       consList.add(textfieldListCons[i].consTextController.text);
                     }
@@ -282,7 +295,9 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                           topRight:Radius.circular(20), )),
                         builder:(context) => AddReviewBottomSheetThird(widget.reviewModal));
 
-                  }:null,
+                  }:(){
+                    Fluttertoast.showToast(msg: "All Fields must be Filled");
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
