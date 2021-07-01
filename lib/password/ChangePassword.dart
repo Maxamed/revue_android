@@ -169,7 +169,8 @@ class ChangePasswordState extends State<ChangePassword>{
                 height: 50
                 ,child: SizedBox(
                 width: 300,height: 50,
-                child: ElevatedButton(
+                child:
+                ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

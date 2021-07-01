@@ -220,13 +220,13 @@ class Webservice{
 
 
     List<http.MultipartFile> newList = new List<http.MultipartFile>();
-    newList = reviewModal.images;
+    newList = reviewModal.multipartImages;
     // print(newList.length);
 
     request.files.addAll(newList);
 
-    // print(request.files);
-    // print(request.fields);
+    print(request.files);
+    print(request.fields);
     var response = await request.send();
     // print(response.statusCode);
 
@@ -235,7 +235,12 @@ class Webservice{
       // print("valeue--------------"+value);
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
+        Fluttertoast.showToast(msg: "Review Added");
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
+
+      }
+      else{
+        Fluttertoast.showToast(msg: "Review Not Added. Please Try Again Later");
       }
 
     });

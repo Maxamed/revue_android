@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Login.dart';
+import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
+import 'package:revue_mobile/add_review/Add_Review.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
 
@@ -12,8 +14,8 @@ import 'RevueDetail.dart';
 
 class ReviewList extends StatefulWidget{
   List reviewList = [];
-
-  ReviewList(this.reviewList);
+CompoundModal compoundModal;
+  ReviewList({Key key,this.reviewList,this.compoundModal}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -186,5 +188,15 @@ class ReviewListState extends State<ReviewList>{
     );
   }
 
+  void openAddReview()
+  {
+    CupertinoScaffold.
+    showCupertinoModalBottomSheet(
+        context: context,backgroundColor: Colors.white,
+        barrierColor: Colors.black.withAlpha(10),
+        builder: (context)=>CupertinoScaffold(transitionBackgroundColor: Colors.white,
+            body: AddReview(widget.compoundModal.id,widget.compoundModal.compoundname)));
+
+  }
 
 }

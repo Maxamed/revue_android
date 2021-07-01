@@ -22,7 +22,14 @@ class ReviewModal{
   double _management;
   String _compoundName;
   int  _reviewDate ;
+  List<MultipartFile> _multipartImages=[];
 
+
+  List<MultipartFile> get multipartImages => _multipartImages;
+
+  set multipartImages(List<MultipartFile> value) {
+    _multipartImages = value;
+  }
 
   String get compoundName => _compoundName;
 

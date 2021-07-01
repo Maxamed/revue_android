@@ -19,10 +19,10 @@ import 'AddReviewBottomSheetFirst.dart';
 
 
 class AddReviewBottomSheetSecond extends StatefulWidget{
-  ReviewModal reviewModal;
+  // ReviewModal reviewModal;
 
 
-  AddReviewBottomSheetSecond({Key globalKey,this.reviewModal}):super(key: globalKey);
+  AddReviewBottomSheetSecond({Key globalKey}):super(key: globalKey);
 
   @override
   State<StatefulWidget> createState() {
@@ -88,8 +88,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
   Widget buildGridView() {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 250,
-      child: GridView.builder(itemCount:pickedImages.length>4?pickedImages.length:pickedImages.length+1 ,
+      child: GridView.builder(shrinkWrap: true,
+        itemCount:pickedImages.length>4?pickedImages.length:pickedImages.length+1 ,
         physics: NeverScrollableScrollPhysics(),
 
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
@@ -180,8 +180,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
       child: Container(
-        height: 600,
-        child: ListView(
+        child: ListView(physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
           Container(
@@ -196,7 +195,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                         color:Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -218,7 +217,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                         color:Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -240,12 +239,12 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                         color:  Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
 
-                Container(margin: EdgeInsets.all(30),
+                Container(margin: EdgeInsets.only(left:30,right:30,top:30,bottom: 20),
                     child:  pickedImages.isEmpty
                         ? Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -277,104 +276,104 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
             ),
           ),
 
-          Align(alignment: Alignment.bottomRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: (){
-                    Navigator.pop(context);
-                    },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
-                        Text(
-                            "BACK",
-                            style:  TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+          // Align(alignment: Alignment.bottomRight,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       GestureDetector(
+          //         behavior: HitTestBehavior.translucent,
+          //         onTap: (){
+          //           Navigator.pop(context);
+          //           },
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(10.0),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.start,
+          //             children: [
+          //               Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
+          //               Text(
+          //                   "BACK",
+          //                   style:  TextStyle(
+          //                       color:  ColorClass.darkTextColor,
+          //                       fontWeight: FontWeight.w600,
+          //                       fontStyle:  FontStyle.normal,
+          //                       fontSize: 18.0
+          //                   ),
+          //                   textAlign: TextAlign.left
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //
+          //
+          //       GestureDetector(
+          //         behavior: HitTestBehavior.translucent,
+          //         onTap: prosList.isNotEmpty
+          //             &&consList.isNotEmpty
+          //             &&pickedImages.isNotEmpty ?() async{
+          //
+          //           List tempProList = [];
+          //           List tempConsList =[];
+          //
+          //           for(int i =0;i<prosList.length;i++){
+          //             tempProList.add(prosList[i]);
+          //           }
+          //
+          //           print(tempProList);
+          //
+          //           for(int i =0;i<consList.length;i++){
+          //             tempConsList.add(consList[i]);
+          //           }
+          //
+          //           List<MultipartFile> tempList =[];
+          //
+          //           for(Asset asset in pickedImages){
+          //             ByteData byteData = await asset.getByteData();
+          //             List<int> imageData = byteData.buffer.asInt8List();
+          //             MultipartFile multipartFile = new MultipartFile.fromBytes( "imageData",
+          //                 imageData,filename:asset.name,);
+          //           tempList.add(multipartFile);
+          //           }
 
-
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: prosList.isNotEmpty
-                      &&consList.isNotEmpty
-                      &&pickedImages.isNotEmpty ?() async{
-
-                    List tempProList = [];
-                    List tempConsList =[];
-
-                    for(int i =0;i<prosList.length;i++){
-                      tempProList.add(prosList[i]);
-                    }
-
-                    print(tempProList);
-
-                    for(int i =0;i<consList.length;i++){
-                      tempConsList.add(consList[i]);
-                    }
-
-                    List<MultipartFile> tempList =[];
-
-                    for(Asset asset in pickedImages){
-                      ByteData byteData = await asset.getByteData();
-                      List<int> imageData = byteData.buffer.asInt8List();
-                      MultipartFile multipartFile = new MultipartFile.fromBytes( "imageData",
-                          imageData,filename:asset.name,);
-                    tempList.add(multipartFile);
-                    }
-
-
-                    widget.reviewModal.pros = tempProList;
-                    widget.reviewModal.cons = tempConsList;
-                    widget.reviewModal.images= tempList;
-
-                    print(widget.reviewModal.pros);
-
-                    showModalBottomSheet(context: context,
-                        isScrollControlled: true,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
-                          topRight:Radius.circular(20), )),
-                        builder:(context) => AddReviewBottomSheetThird(widget.reviewModal));
-
-                  }:(){
-                    Fluttertoast.showToast(msg: "All Fields must be Filled");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                            "NEXT",
-                            style: TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                        Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),)
+          //
+          //           widget.reviewModal.pros = tempProList;
+          //           widget.reviewModal.cons = tempConsList;
+          //           widget.reviewModal.images= tempList;
+          //
+          //           print(widget.reviewModal.pros);
+          //
+          //           showModalBottomSheet(context: context,
+          //               isScrollControlled: true,
+          //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
+          //                 topRight:Radius.circular(20), )),
+          //               builder:(context) => AddReviewBottomSheetThird(widget.reviewModal));
+          //
+          //         }:(){
+          //           Fluttertoast.showToast(msg: "All Fields must be Filled");
+          //         },
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(10.0),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.end,
+          //             children: [
+          //               Text(
+          //                   "NEXT",
+          //                   style: TextStyle(
+          //                       color:  ColorClass.darkTextColor,
+          //                       fontWeight: FontWeight.w600,
+          //                       fontStyle:  FontStyle.normal,
+          //                       fontSize: 18.0
+          //                   ),
+          //                   textAlign: TextAlign.left
+          //               ),
+          //               Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),)
 
         ],),
       ),
@@ -404,7 +403,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
             child: Row(
               children: [
                 Expanded(child: ProsTextFields(i)),
-                SizedBox(width: 16,),
+                SizedBox(width: 14,),
                 // we need add button at last friends row
                 _addRemoveProButton(i == prosList.length-1, i),
               ],
@@ -426,7 +425,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
             child: Row(
               children: [
                 Expanded(child: ConsTextFields(i)),
-                SizedBox(width: 16,),
+                SizedBox(width: 14,),
                 // we need add button at last friends row
                 _addRemoveConsButton(i == consList.length-1, i),
               ],
@@ -481,6 +480,45 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
       ),
     );
   }
+
+bool validate()
+{
+ return prosList.isNotEmpty
+              &&consList.isNotEmpty
+              &&pickedImages.isNotEmpty;
+}
+
+
+void addToReview(ReviewModal reviewModal) async{
+  List tempProList = [];
+  List tempConsList =[];
+
+  for(int i =0;i<prosList.length;i++){
+    tempProList.add(prosList[i]);
+  }
+
+  print(tempProList);
+
+  for(int i =0;i<consList.length;i++){
+    tempConsList.add(consList[i]);
+  }
+
+  List<MultipartFile> tempList =[];
+
+  for(Asset asset in pickedImages){
+    ByteData byteData = await asset.getByteData();
+    List<int> imageData = byteData.buffer.asInt8List();
+    MultipartFile multipartFile = new MultipartFile.fromBytes( "imageData",
+      imageData,filename:asset.name,);
+    tempList.add(multipartFile);
+  }
+
+            reviewModal.pros = tempProList;
+           reviewModal.cons = tempConsList;
+           reviewModal.multipartImages= tempList;
+
+}
+
 
 
 }
