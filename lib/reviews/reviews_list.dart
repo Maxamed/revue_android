@@ -49,13 +49,13 @@ class ReviewListState extends State<ReviewList>{
                                 color:ColorClass.redColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 17.0
+                                fontSize: 18.0
                             ),
                             textAlign: TextAlign.left
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Row(children: [
-                          Text("Posted On   ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,
+                          Text("Posted On   ",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,
                               fontSize: 14),),
                           Text(StringConstant.getReviewPostedDate( (widget.reviewList[index] as ReviewModal).reviewDate),style: TextStyle(color: ColorClass.lightTextColor,
                               fontWeight: FontWeight.w500,
@@ -164,7 +164,7 @@ class ReviewListState extends State<ReviewList>{
                                   body: RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length)));
 
                         },
-                        child: Text("View more".toUpperCase(),
+                        child: Text("View More",
                             style:  TextStyle(fontSize: 12,
                                 color: ColorClass.blueColor,
                                 fontStyle: FontStyle.normal,

@@ -81,55 +81,58 @@ class SearchCompoundState extends State<SearchCompound>{
                elevation: 5,
                 type: MaterialType.card,  shadowColor: Colors.grey,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2))),
-                child:CupertinoTextField(
-                  decoration: BoxDecoration(color: Colors.white),
-                  controller: searchController,
-                  placeholder: "Building, Compound or Cities",
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.search,
-                  placeholderStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 18),
-                  suffix: searchController.text.isNotEmpty?
-                      IconButton(icon: Icon(CupertinoIcons.clear_circled,
-                        color: ColorClass.lightTextColor,),onPressed: (){
-                        searchController.clear();
-                        compoundSearchList.clear();
-                        setState(() {
+                child:Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CupertinoTextField(
+                    decoration: BoxDecoration(color: Colors.white),
+                    controller: searchController,
+                    placeholder: "Building, Compound or Cities",
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.search,
+                    placeholderStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 16),
+                    suffix: searchController.text.isNotEmpty?
+                        IconButton(icon: Icon(CupertinoIcons.clear_circled,
+                          color: ColorClass.lightTextColor,),onPressed: (){
+                          searchController.clear();
+                          compoundSearchList.clear();
+                          setState(() {
+
+                          });
+                        },)
+                        :null,
+                    prefix:  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(CupertinoIcons.search,size: 25,color: ColorClass.blueColor,),
+                    ),style: TextStyle(color: ColorClass.darkTextColor,fontSize: 17),
+                    clearButtonMode: OverlayVisibilityMode.editing,
+                    onChanged: (string){
+
+
+                      if(string.length>3){
+                        print(string);
+                        // searchableitem.clear();
+                        searchModal.string = string;
+                        Webservice.searchCompoundRequest(searchModal).then((value) => this.setState(() {
+
+                          // compoundSearchList.forEach((element) {
+                          //   if(compoundSearchList.contains(element)){
+                          //     searchableitem.add(element);
+                          //     setState(() {});
+                          //   }else{
+                          //     searchableitem.remove(element);
+                          //   }
+                          //
+                          // });
+
+                        }));
+                      }else{
+                        compoundSearchList.clear();setState(() {
 
                         });
-                      },)
-                      :null,
-                  prefix:  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(CupertinoIcons.search,size: 25,color: ColorClass.blueColor,),
-                  ),style: TextStyle(color: ColorClass.darkTextColor,fontSize: 17),
-                  clearButtonMode: OverlayVisibilityMode.editing,
-                  onChanged: (string){
+                      }
 
-
-                    if(string.length>3){
-                      print(string);
-                      // searchableitem.clear();
-                      searchModal.string = string;
-                      Webservice.searchCompoundRequest(searchModal).then((value) => this.setState(() {
-
-                        // compoundSearchList.forEach((element) {
-                        //   if(compoundSearchList.contains(element)){
-                        //     searchableitem.add(element);
-                        //     setState(() {});
-                        //   }else{
-                        //     searchableitem.remove(element);
-                        //   }
-                        //
-                        // });
-
-                      }));
-                    }else{
-                      compoundSearchList.clear();setState(() {
-
-                      });
-                    }
-
-                  },
+                    },
+                  ),
                 )
               ),
               SizedBox(height: 20,),

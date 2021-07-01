@@ -57,7 +57,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         color:Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -68,7 +68,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       contentPadding: EdgeInsets.only(left: 15),
                       labelStyle: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color:  ColorClass.greyColor,),
@@ -90,7 +90,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         color:  Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -101,7 +101,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       contentPadding: EdgeInsets.only(left: 15),
                       labelStyle: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color:  ColorClass.greyColor,),
@@ -124,7 +124,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         fontWeight: FontWeight.w600,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -146,7 +146,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         contentPadding: EdgeInsets.all(15),
                         labelStyle: TextStyle(
                           color: Colors.black,
-                          fontSize: 16,),
+                          fontSize: 14,),
                         border: InputBorder.none,
                         fillColor: Colors.white
                     ),),
@@ -155,7 +155,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
             ),
           ),
 
-          SizedBox(height: 200,),
+          SizedBox(height: 20,),
 
           Align(alignment: Alignment.bottomRight,
             child: Row(

@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_absolute_path/flutter_absolute_path.dart';
@@ -87,22 +88,90 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
   Widget buildGridView() {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 300,
-      child: GridView.count(
-        crossAxisCount: 3,
+      height: 250,
+      child: GridView.builder(itemCount:pickedImages.length>4?pickedImages.length:pickedImages.length+1 ,
         physics: NeverScrollableScrollPhysics(),
-        children: List.generate(pickedImages.length, (index) {
+
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemBuilder: (context, index) {
+
+          if(index==(pickedImages.length)){
+
+            if(pickedImages.length>4)
+              {
+                return Container();
+              }
+                  return Container(
+                    width:100,
+                    height: 53,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(5)
+                        ),
+                        border: Border.all(
+                            color: ColorClass.greyColor,
+                            width: 1
+                        ),
+                        color: const Color(0x33dadada)
+                    ),
+                    child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: (){
+                          loadAssets();
+                        },
+                        child: Image.asset("assets/images/addCamera.png",
+                          width: 15,height: 15,)),
+                  );
+                }
           Asset asset = pickedImages[index];
-          return Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: AssetThumb(
-              asset: asset,
-              width: 500,
-              height: 500,
-            ),
-          );
-        }),
-      ),
+                return Stack(
+                  children: [
+
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AssetThumb(
+                        asset: asset,
+                        width: 500,
+                        height: 500,
+                      ),
+                    ),
+                    Positioned(right: 0,top:0,
+                        child: GestureDetector(onTap: (){
+                          pickedImages.remove(asset);
+                          setState(() {
+
+                          });
+                        },
+                            child: Icon(CupertinoIcons.clear_circled_solid,size: 15,))),
+                  ],
+                );
+      },)
+
+      // GridView.count(
+      //   crossAxisCount: 3,
+      //   physics: NeverScrollableScrollPhysics(),
+      //   children: List.generate(
+      //       (pickedImages.length), (index) {
+      //
+      //     if(index>(pickedImages.length)){
+      //       return Icon(Icons.ac_unit);
+      //     }
+      //     else{
+      //
+      //       Asset asset = pickedImages[index];
+      //       return Padding(
+      //         padding: const EdgeInsets.all(4.0),
+      //         child: AssetThumb(
+      //           asset: asset,
+      //           width: 500,
+      //           height: 500,
+      //         ),
+      //       );
+      //     }
+      //
+      //   }),
+      // ),
     );
   }
 
@@ -202,7 +271,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                               child: Image.asset("assets/images/addCamera.png",
                                 width: 15,height: 15,)),
                         )
-                    ) :buildGridView())
+                    ) :buildGridView()),
+
               ],
             ),
           ),

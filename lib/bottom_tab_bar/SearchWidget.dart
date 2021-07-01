@@ -50,19 +50,19 @@ class SearchWidget extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                            "Search",
+                            "   Search",
                             style:  TextStyle(
                                 color:  ColorClass.blueColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 20.0
+                                fontSize: 16.0
                             ),
                             textAlign: TextAlign.left
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Icon(CupertinoIcons.search,size: 25,),
+                        child: Icon(CupertinoIcons.search,size: 20,),
                       )
 
                     ],),
@@ -87,7 +87,7 @@ class SearchWidget extends StatelessWidget{
                                   color: ColorClass.darkTextColor,
                                   fontWeight: FontWeight.w400,
                                   fontStyle:  FontStyle.normal,
-                                  fontSize: 15.0
+                                  fontSize: 12.0
                               ),
                               textAlign: TextAlign.left
                           )

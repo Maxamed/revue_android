@@ -186,6 +186,7 @@ class Webservice{
 
     }
 
+
   }
 
 
@@ -234,12 +235,11 @@ class Webservice{
       // print("valeue--------------"+value);
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
-        GlobalKeys.compoundDetailsKey.currentState.setState(() {
-
-        });
+        GlobalKeys.compoundDetailsKey.currentState.fetchReview();
       }
 
     });
+
 
 
   }

@@ -222,7 +222,7 @@ class CompoundListState extends State<CompoundList>{
 
                 Container(
                   child: Row(children: [
-                    Icon(CupertinoIcons.mail_solid,size: 18,color: Colors.black87,),
+                    Icon(CupertinoIcons.mail_solid,size: 18,color:Colors.blue.shade700),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
@@ -240,7 +240,7 @@ class CompoundListState extends State<CompoundList>{
                 ),
                 Container(
                   child: Row(children: [
-                    Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.black87,size: 20,),
+                    Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.blue.shade700,size: 20,),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
@@ -263,11 +263,11 @@ class CompoundListState extends State<CompoundList>{
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
                           "View more",
-                          style: const TextStyle(
-                              color:  const Color(0xff4285f4),
+                          style:  TextStyle(
+                              color:  ColorClass.blueColor,
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
+                              fontSize: 12.0
                           ),
                           textAlign: TextAlign.left
                       ),

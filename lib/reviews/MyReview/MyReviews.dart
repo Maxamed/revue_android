@@ -77,7 +77,7 @@ class MyReviewsState extends State<MyReviews>{
                     mainAxisAlignment: MainAxisAlignment.start,crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                        Flexible(flex: 1,
+                        Flexible(flex: 2,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -87,18 +87,20 @@ class MyReviewsState extends State<MyReviews>{
                                       color:ColorClass.redColor,
                                       fontWeight: FontWeight.w600,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 20.0
+                                      fontSize: 18.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
-                              SizedBox(height: 5,),
+                              SizedBox(height: 20,),
                               Row(children: [
-                                Text("Posted On   ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
+                                Text("Posted On  : ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
                                     fontSize: 14),),
-                                Text(StringConstant.getReviewPostedDate( (myReviews[index] as MyReviewsModal).reviewDate),style: TextStyle(color: ColorClass.lightTextColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14))
+
+                                Text(StringConstant.getReviewPostedDate( (myReviews[index] as MyReviewsModal).reviewDate),style: TextStyle(color: Colors.black87,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 12))
                               ],),
+                              SizedBox(height: 5,),
 
                             ],
                           ),),
@@ -115,25 +117,25 @@ class MyReviewsState extends State<MyReviews>{
                               center: new Text(
                                 (myReviews[index] as MyReviewsModal).rating.toString(),
                                 style:
-                                new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                                new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                               ),
                               circularStrokeCap: CircularStrokeCap.butt,
                               backgroundColor: ColorClass.circularBgColor,
                               progressColor: ColorClass.blueColor,
-                              footer: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Text(
-                                    "Overall Rating",
-                                    style:  TextStyle(
-                                        color:ColorClass.lightTextColor  ,
-                                        fontWeight: FontWeight.w700,
-
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 12.0
-                                    ),
-                                    textAlign: TextAlign.left
-                                ),
-                              ),
+                              // footer: Padding(
+                              //   padding: const EdgeInsets.all(4.0),
+                              //   child: Text(
+                              //       "Overall Rating",
+                              //       style:  TextStyle(
+                              //           color:ColorClass.lightTextColor  ,
+                              //           fontWeight: FontWeight.w700,
+                              //
+                              //           fontStyle:  FontStyle.normal,
+                              //           fontSize: 12.0
+                              //       ),
+                              //       textAlign: TextAlign.left
+                              //   ),
+                              // ),
                             ),
 
                           ),
@@ -148,7 +150,7 @@ class MyReviewsState extends State<MyReviews>{
                               fontWeight: FontWeight.w600,
 
                               fontStyle:  FontStyle.normal,
-                              fontSize: 15.0
+                              fontSize: 14.0
                           ),
                         ),
                       ),
@@ -158,11 +160,11 @@ class MyReviewsState extends State<MyReviews>{
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
                             style:  TextStyle(
-                                color:  ColorClass.lightTextColor,
-                                fontWeight: FontWeight.w500,
+                                color:  Colors.black87,
+                                fontWeight: FontWeight.w400,
 
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 13.0
+                                fontSize: 12.0
                             ),
                             textAlign: TextAlign.left
                         ),
@@ -223,17 +225,17 @@ class MyReviewsState extends State<MyReviews>{
                                       color:  ColorClass.darkTextColor,
                                       fontWeight: FontWeight.w500,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 15.0
+                                      fontSize: 14.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
                               Text(
-                                  (myReviews[index] as MyReviewsModal).floorplan,
+                                  (myReviews[index] as MyReviewsModal).floorplan + " / Sq. Ft.",
                                   style:  TextStyle(
                                       color: ColorClass.lightTextColor,
                                       fontWeight: FontWeight.w500,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 14.0
+                                      fontSize: 12.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
@@ -248,16 +250,16 @@ class MyReviewsState extends State<MyReviews>{
                                       color:  ColorClass.darkTextColor,
                                       fontWeight: FontWeight.w500,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 15.0
+                                      fontSize: 14.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
                               Text(
-                                  (myReviews[index] as MyReviewsModal).price,
+                                  (myReviews[index] as MyReviewsModal).price +" QAR",
                                   style:  TextStyle(
                                       color:  ColorClass.lightTextColor,
                                       fontStyle:  FontStyle.normal,
-                                      fontSize: 15.0
+                                      fontSize: 12.0
                                   ),
                                   textAlign: TextAlign.left
                               ),
@@ -270,13 +272,13 @@ class MyReviewsState extends State<MyReviews>{
                                   MyReviewDetails((myReviews[index] as MyReviewsModal))));
                             },behavior: HitTestBehavior.translucent,
                             child: Text(
-                                "View more",
+                                "View More",
                                 style: const TextStyle(
                                     color:  const Color(0xcc156fc2),
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w600,
 
                                     fontStyle:  FontStyle.normal,
-                                    fontSize: 15.0
+                                    fontSize: 12.0
                                 ),
                                 textAlign: TextAlign.left
                             ),

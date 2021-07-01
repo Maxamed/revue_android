@@ -74,15 +74,18 @@ class CompoundDetailsState extends State<CompoundDetails> {
     });
 
 
-    Webservice.fetchAllReviews(context,
-        widget.compoundID,reviewList).then((value) => this.setState(() {
-
-    }));
+   fetchReview();
 
     if(favouriteIDList.contains(widget.compound.id)){
       favourite = !favourite;
     }
 
+  }
+  fetchReview(){
+    Webservice.fetchAllReviews(context,
+        widget.compoundID,reviewList).then((value) => this.setState(() {
+
+    }));
   }
 
   @override
@@ -202,7 +205,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                               primary: ColorClass.redColor
                             ),
                             icon: Icon(
-                              CupertinoIcons.bubble_left_bubble_right_fill,
+                              CupertinoIcons.chat_bubble_2_fill,
                               color: Colors.white,
                             ),
 
@@ -215,7 +218,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                                               compoundModal.compoundname, compoundModal.address)));
                             },
                             label: Text(
-                              "Message",
+                              "Q and A",
                               style: TextStyle(fontSize: 16,color: ColorClass.whiteColor),
                             ),
                           ),

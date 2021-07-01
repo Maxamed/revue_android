@@ -16,6 +16,7 @@ import 'package:revue_mobile/reviews/widgets/floorplan_widget.dart';
 import 'package:revue_mobile/reviews/widgets/price_widget.dart';
 import 'package:revue_mobile/reviews/widgets/rating_widget.dart';
 import 'package:revue_mobile/reviews/widgets/reviewdate_widget.dart';
+import 'package:share/share.dart';
 
 class RevueDetail  extends StatefulWidget{
   ReviewModal reviewModal ;
@@ -48,8 +49,11 @@ double getPercentage(double value){
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-navigationBar: CupertinoNavigationBar(leading: GestureDetector(child: Icon(CupertinoIcons.back,size: 20,),onTap: (){ Navigator.pop(context);},)),
+navigationBar: CupertinoNavigationBar(backgroundColor: Colors.grey.shade50,
+    leading: GestureDetector(
+  child: Icon(CupertinoIcons.back,size: 20,),onTap: (){ Navigator.pop(context);},)),
       child: Container(
+        color: Colors.white,
       width: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -452,9 +456,15 @@ navigationBar: CupertinoNavigationBar(leading: GestureDetector(child: Icon(Cuper
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.share_outlined,
-                        color: Colors.blue,
+                   GestureDetector(
+                        onTap: (){
+                          Share.share("Check out this property https://revueapp.com/property");
+                        },
+                        child: Icon(
+                          Icons.share_outlined,
+                          color: Colors.blue,
+                          size: 20,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
