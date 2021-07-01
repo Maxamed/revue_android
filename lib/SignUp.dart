@@ -36,262 +36,263 @@ class SignUpState extends State<SignUp>{
                       image: AssetImage("assets/images/map.png"))
               ),
           ),
-          ListView(
-            children: [
-              // Create Account
-              Padding(
-                padding: const EdgeInsets.only(top: 40,left: 20,bottom: 40),
-                child: Text(
-                    "Create Account",
-                    style:  TextStyle(
-                        color: ColorClass.blueColor,
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                // Create Account
+                Padding(
+                  padding: const EdgeInsets.only(top: 40,left: 20,bottom: 40),
+                  child: Text(
+                      "Create Account",
+                      style:  TextStyle(
+                          color: ColorClass.blueColor,
+                          fontWeight: FontWeight.w700,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 25.0
+                      ),
+                      textAlign: TextAlign.left
+                  ),
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      flex: 1,fit: FlexFit.tight,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // First Name
+                            Text(
+                                "First Name",
+                                style:  TextStyle(
+                                    color:  ColorClass.blueColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),
+                                textAlign: TextAlign.left
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: TextField(
+                                controller: firstNameController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.name,
+                                style: TextStyle(
+                                  color: ColorClass.blackColor,
+                                  fontSize: 14,
+                                ),
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(left: 15),
+
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color:  ColorClass.greyColor,),
+                                    ),
+                                    fillColor: Colors.white
+                                ),),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    Flexible(
+                      flex: 1,fit: FlexFit.tight,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // First Name
+                            Text(
+                                "Last Name",
+                                style:  TextStyle(
+                                    color:ColorClass.blueColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),
+                                textAlign: TextAlign.start
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: TextField(
+                                controller: lastNameController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.name,
+                                style: TextStyle(
+                                  color: ColorClass.blackColor,
+                                  fontSize: 14,
+                                ),
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(left: 15),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color:  ColorClass.greyColor,),
+                                    ),
+                                    fillColor: Colors.white
+                                ),),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // First Name
+                      Text(
+                          "Email Address",
+                          style:  TextStyle(
+                              color: ColorClass.blueColor,
+                              fontWeight: FontWeight.w600,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+                      TextField(
+                        controller: emailController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(
+                          color: ColorClass.blackColor,
+                          fontSize: 14,
+                        ),
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 15),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:  ColorClass.greyColor,),
+                            ),
+                            fillColor: Colors.white
+                        ),),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // First Name
+                      Text(
+                          "Mobile No.",
+                          style:  TextStyle(
+                              color:ColorClass.blueColor,
+                              fontWeight: FontWeight.w600,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+                      TextField(
+                        controller: mobileNumberController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(
+                          color: ColorClass.blackColor,
+                          fontSize: 14,
+                        ),
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 15),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:  ColorClass.greyColor,),
+                            ),
+                            fillColor: Colors.white
+                        ),),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // First Name
+                      Text(
+                          "Password",
+                          style:  TextStyle(
+                              color:  ColorClass.blueColor,
+                              fontWeight: FontWeight.w600,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        textInputAction: TextInputAction.next,
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        style: TextStyle(
+                          color: ColorClass.blackColor,
+                          fontSize: 14,
+                        ),
+                        validator: (value) => value.isEmpty ? "Please enter password" : null,
+
+                        decoration: InputDecoration(
+
+                            contentPadding: EdgeInsets.only(left: 15),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:  ColorClass.greyColor,),
+                            ),
+                            fillColor: Colors.white
+                        ),),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(left: 20,right: 20,top: 20,bottom: 30),
+                  child:  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // First Name
+                      Text(
+                          "Confirm Password",
+                          style:  TextStyle(
+                              color: ColorClass.blueColor,
+                              fontWeight: FontWeight.w600,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 16.0
+                          ),
+                          textAlign: TextAlign.left
+                      ),
+                      TextFormField(textInputAction: TextInputAction.done,
+                        controller: confirmPasswordController,
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        style: TextStyle(
+                          color: ColorClass.blackColor,
+                          fontSize: 14,
+                        ),
+                        validator: (value) => value.isEmpty ? "Confirm password is required" : null,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 15),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color:  ColorClass.greyColor,),
+                            ),
+                            fillColor: Colors.white
+                        ),),
+                    ],
+                  ),
+                ),
+
+                ElevatedButton(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left:55.0,right: 55,top:10,bottom:10),
+                    child: Text('Sign Up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Sahitya',
                         fontWeight: FontWeight.w700,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 30.0
-                    ),
-                    textAlign: TextAlign.left
-                ),
-              ),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,fit: FlexFit.tight,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // First Name
-                          Text(
-                              "First Name",
-                              style:  TextStyle(
-                                  color:  ColorClass.blueColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 18.0
-                              ),
-                              textAlign: TextAlign.left
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width/2,
-                            child: TextField(
-                              controller: firstNameController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.name,
-                              style: TextStyle(
-                                color: ColorClass.blackColor,
-                                fontSize: 16,
-                              ),
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 15),
-
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color:  ColorClass.greyColor,),
-                                  ),
-                                  fillColor: Colors.white
-                              ),),
-                          ),
-                        ],
                       ),
-                    ),
-                  ),
-
-                  Flexible(
-                    flex: 1,fit: FlexFit.tight,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 20,right: 20,top: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // First Name
-                          Text(
-                              "Last Name",
-                              style:  TextStyle(
-                                  color:ColorClass.blueColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 18.0
-                              ),
-                              textAlign: TextAlign.start
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width/2,
-                            child: TextField(
-                              controller: lastNameController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.name,
-                              style: TextStyle(
-                                color: ColorClass.blackColor,
-                                fontSize: 16,
-                              ),
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 15),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color:  ColorClass.greyColor,),
-                                  ),
-                                  fillColor: Colors.white
-                              ),),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // First Name
-                    Text(
-                        "Email Address",
-                        style:  TextStyle(
-                            color: ColorClass.blueColor,
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 18.0
-                        ),
-                        textAlign: TextAlign.left
-                    ),
-                    TextField(
-                      controller: emailController,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.emailAddress,
-                      style: TextStyle(
-                        color: ColorClass.blackColor,
-                        fontSize: 16,
-                      ),
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 15),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color:  ColorClass.greyColor,),
-                          ),
-                          fillColor: Colors.white
-                      ),),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // First Name
-                    Text(
-                        "Mobile No.",
-                        style:  TextStyle(
-                            color:ColorClass.blueColor,
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 18.0
-                        ),
-                        textAlign: TextAlign.left
-                    ),
-                    TextField(
-                      controller: mobileNumberController,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.phone,
-                      style: TextStyle(
-                        color: ColorClass.blackColor,
-                        fontSize: 16,
-                      ),
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 15),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color:  ColorClass.greyColor,),
-                          ),
-                          fillColor: Colors.white
-                      ),),
-                  ],
-                ),
-              ),
-
-              Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // First Name
-                    Text(
-                        "Password",
-                        style:  TextStyle(
-                            color:  ColorClass.blueColor,
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 18.0
-                        ),
-                        textAlign: TextAlign.left
-                    ),
-                    TextFormField(
-                      controller: passwordController,
-                      textInputAction: TextInputAction.next,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      style: TextStyle(
-                        color: ColorClass.blackColor,
-                        fontSize: 16,
-                      ),
-                      validator: (value) => value.isEmpty ? "Please enter password" : null,
-
-                      decoration: InputDecoration(
-
-                          contentPadding: EdgeInsets.only(left: 15),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color:  ColorClass.greyColor,),
-                          ),
-                          fillColor: Colors.white
-                      ),),
-                  ],
-                ),
-              ),
-
-              Container(
-                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-                child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // First Name
-                    Text(
-                        "Confirm Password",
-                        style:  TextStyle(
-                            color: ColorClass.blueColor,
-                            fontWeight: FontWeight.w600,
-                            fontStyle:  FontStyle.normal,
-                            fontSize: 18.0
-                        ),
-                        textAlign: TextAlign.left
-                    ),
-                    TextFormField(textInputAction: TextInputAction.done,
-                      controller: confirmPasswordController,
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      style: TextStyle(
-                        color: ColorClass.blackColor,
-                        fontSize: 16,
-                      ),
-                      validator: (value) => value.isEmpty ? "Confirm password is required" : null,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(left: 15),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color:  ColorClass.greyColor,),
-                          ),
-                          fillColor: Colors.white
-                      ),),
-                  ],
-                ),
-              ),
-
-              Container(margin: EdgeInsets.only(left:80,right:80,top: 50),
-                alignment: Alignment.center,
-
-                child:   ElevatedButton(
-                  child: Text('Sign Up',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'Sahitya',
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   onPressed: () {
@@ -328,48 +329,47 @@ class SignUpState extends State<SignUp>{
                     primary: ColorClass.blueColor,
                     onPrimary: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32.0),
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
                   ),
                 ),
-              ),
 
+             SizedBox(height: MediaQuery.of(context).size.height/10,),
 
-              SizedBox(height: 120,),
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Already have an account? ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: (){
-                          Navigator.pop(context);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
-                        },
-                        child: Text('Sign In',
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Already have an account? ',
                           style: TextStyle(
-                            color: Color(0xffea4335),
+                            color: Colors.black,
                             fontSize: 18,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                      ),
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: (){
+Navigator.pop(context);
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login(),));
+                          },
+                          child: Text('Sign In',
+                            style: TextStyle(
+                              color: Color(0xffea4335),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
 
-                    ],),
-                ],
-              ),
-              SizedBox(height: 60,),
-            ],),
+                      ],),
+                  ],
+                ),
+                SizedBox(height: 30,),
+              ],),
+          ),
         ],
       ),
     ),

@@ -108,17 +108,17 @@ class LoginState extends State<Login>{
                       image: AssetImage("assets/images/map.png"))
               ),
           ),
-          ListView(
-
-            shrinkWrap: true,
+          Column(
             children: [
               Center(child: Padding(
                 padding: const EdgeInsets.only(left:90.0,right: 90,top: 80),
                 child: Image.asset("assets/images/revueLogo.png"),
               )),
+
+              Spacer(),
               Container(
                 height: 50,
-                margin: EdgeInsets.only(left: 40,right: 40,top: 240),
+                margin: EdgeInsets.only(left: 40,right: 40,top:10),
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.fill,
@@ -132,7 +132,7 @@ class LoginState extends State<Login>{
                       hintText: "Enter Email",
                       hintStyle: TextStyle(
                         color: Color(0x7f3c2f47),
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                       border: InputBorder.none,
                       fillColor: Colors.white
@@ -157,7 +157,7 @@ class LoginState extends State<Login>{
                       hintText: "Enter Password",
                       hintStyle: TextStyle(
                         color: Color(0x7f3c2f47),
-                        fontSize: 18,
+                        fontSize: 16,
 
                       ),
                       border: InputBorder.none,
@@ -172,7 +172,7 @@ class LoginState extends State<Login>{
                   ),),
               ),
               Container(
-                margin: EdgeInsets.only(left: 40,right: 40,top:15),
+                margin: EdgeInsets.only(left: 40,right: 40,top:15,bottom: 20),
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -185,54 +185,54 @@ class LoginState extends State<Login>{
                           color:  const Color(0xff4285f4),
                           fontWeight: FontWeight.w600,
                           fontStyle:  FontStyle.normal,
-                          fontSize: 18.0
+                          fontSize: 16.0
                       ),
                       textAlign: TextAlign.left
                   ),
                 ),
               ),
-              Container(margin: EdgeInsets.only(left:110,right:110,top: 40),
-
-                child:   ElevatedButton(
+              ElevatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.only(left:55.0,right: 55,top:10,bottom:10),
                   child: Text('Login',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 16,
                       fontFamily: 'Sahitya',
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  onPressed: () {
+                ),
+                onPressed: () {
 
 
-                    if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
-                      bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
-                      hasMatch(emailController.text);
-                      if(emailValid==false){
-                        Fluttertoast.showToast(msg:"Please Enter Valid Email Address");
-                      }
-                      else if(passwordController.text.length<6){
-                        Fluttertoast.showToast(msg:"Please Enter Valid Password");
-                      }
-                      else{
-                        UserModal userModal = new UserModal();
-                        userModal.email = emailController.text;
-                        userModal.password = passwordController.text;
-                        Webservice.loginRequest(context, userModal);
-                      }
-
-                    }else{
-                      Fluttertoast.showToast(msg:"Please fill fields");
-
+                  if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
+                    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").
+                    hasMatch(emailController.text);
+                    if(emailValid==false){
+                      Fluttertoast.showToast(msg:"Please Enter Valid Email Address");
+                    }
+                    else if(passwordController.text.length<6){
+                      Fluttertoast.showToast(msg:"Please Enter Valid Password");
+                    }
+                    else{
+                      UserModal userModal = new UserModal();
+                      userModal.email = emailController.text;
+                      userModal.password = passwordController.text;
+                      Webservice.loginRequest(context, userModal);
                     }
 
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: ColorClass.blueColor,
-                    onPrimary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32.0),
-                    ),
+                  }else{
+                    Fluttertoast.showToast(msg:"Please fill fields");
+
+                  }
+
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: ColorClass.blueColor,
+                  onPrimary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
@@ -286,11 +286,11 @@ class LoginState extends State<Login>{
               Container(margin: EdgeInsets.only(top:30,bottom: 30),
                 child:   Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don’t have an account? ',
+                    Text('Don’t have an account ? ',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     GestureDetector(
@@ -301,7 +301,7 @@ class LoginState extends State<Login>{
                       child: Text('Sign Up',
                         style: TextStyle(
                           color: Color(0xffea4335),
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.w800,
                         ),
                       ),

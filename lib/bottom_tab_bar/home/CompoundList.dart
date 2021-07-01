@@ -48,19 +48,6 @@ class CompoundListState extends State<CompoundList>{
   }
 
 
-  // Widget _createListView(){
-  //   if(_scrollController.position.maxScrollExtent==_scrollController.position.pixels){
-  //
-  //     objectID = (compoundList.last as CompoundModal).id;
-  //     Webservice.getCompoundRequest(context,compoundList,objectID).then((value) => this.setState(() {
-  //       isFavourite = List.filled(compoundList.length, true);
-  //     }));
-  //
-  //   }
-  //
-  //
-  //
-  // }
 
 
   @override
@@ -146,7 +133,7 @@ class CompoundListState extends State<CompoundList>{
                               maxLines: 2,overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   color:  ColorClass.darkTextColor,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w400,
                                   fontStyle:  FontStyle.normal,
                                   fontSize: 16.0
                               ),
@@ -191,7 +178,7 @@ class CompoundListState extends State<CompoundList>{
                       padding:  EdgeInsets.only(top: 4,bottom: 4),
                       child: Row(
                         children: [
-                          Icon(CupertinoIcons.location_solid,size: 20,),
+                          Icon(CupertinoIcons.location_solid,size: 18,),
                           // Image.asset("assets/images/userLocation.png",
                           //   height: 25,width: 25,alignment: Alignment.topLeft,fit: BoxFit.cover,),
                           Text(
@@ -213,7 +200,7 @@ class CompoundListState extends State<CompoundList>{
                           (compoundList[index] as CompoundModal).address,
                           style:  TextStyle(
                               color:  ColorClass.darkTextColor,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w300,
                               fontStyle:  FontStyle.normal,
                               fontSize: 12.0
                           ),
@@ -221,41 +208,7 @@ class CompoundListState extends State<CompoundList>{
                           textAlign: TextAlign.start
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Row(mainAxisAlignment: MainAxisAlignment.end,children: [
-                    //     Image.asset("assets/images/ratingStar.png"),
-                    //     Image.asset("assets/images/ratingStar.png"),
-                    //     Image.asset("assets/images/ratingStar.png"),
-                    //     Image.asset("assets/images/ratingStar.png"),
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(left: 3),
-                    //       child: RichText(
-                    //           text: TextSpan(
-                    //               children: [
-                    //                 TextSpan(
-                    //                     style: const TextStyle(
-                    //                         color:  const Color(0xff000000),
-                    //                         fontWeight: FontWeight.w700,
-                    //
-                    //                         fontStyle:  FontStyle.normal,
-                    //                         fontSize: 15.0
-                    //                     ),
-                    //                     text: (compoundList[index] as CompoundModal).rating.toString()),
-                    //                 TextSpan(
-                    //                     style: const TextStyle(
-                    //                         color:  const Color(0x78000000),
-                    //                         fontWeight: FontWeight.w300,
-                    //                         fontStyle:  FontStyle.normal,
-                    //                         fontSize: 15.0
-                    //                     ),
-                    //                     text: "/5")
-                    //               ]
-                    //           )
-                    //       ),
-                    //     )
-                    //   ],),
-                    // ),
+
 
 
                   ],),
@@ -266,27 +219,10 @@ class CompoundListState extends State<CompoundList>{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                // Container(
-                //   child: Row(children: [
-                //     Icon(CupertinoIcons.phone_fill),
-                //     Padding(
-                //       padding: const EdgeInsets.all(5.0),
-                //       child: Text(
-                //           "Call",
-                //           style: const TextStyle(
-                //               color:  const Color(0xff000000),
-                //               fontWeight: FontWeight.w400,
-                //               fontStyle:  FontStyle.normal,
-                //               fontSize: 13.0
-                //           ),
-                //           textAlign: TextAlign.left
-                //       ),
-                //     )
-                //   ],),
-                // ),
+
                 Container(
                   child: Row(children: [
-                    Icon(CupertinoIcons.mail_solid),
+                    Icon(CupertinoIcons.mail_solid,size: 18,color: Colors.black87,),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
@@ -304,7 +240,7 @@ class CompoundListState extends State<CompoundList>{
                 ),
                 Container(
                   child: Row(children: [
-                    Icon(CupertinoIcons.chat_bubble_2_fill,color:  ColorClass.darkTextColor,),
+                    Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.black87,size: 20,),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
@@ -331,7 +267,7 @@ class CompoundListState extends State<CompoundList>{
                               color:  const Color(0xff4285f4),
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 16.0
+                              fontSize: 14.0
                           ),
                           textAlign: TextAlign.left
                       ),

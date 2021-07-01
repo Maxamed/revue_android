@@ -49,7 +49,7 @@ class HomePageState extends State<HomePage>{
                             color:  ColorClass.blueColor,
                             fontWeight: FontWeight.w600,
                             fontStyle:  FontStyle.normal,
-                            fontSize: 20.0
+                            fontSize: 18.0
                         ),
                         textAlign: TextAlign.left
                     ),
