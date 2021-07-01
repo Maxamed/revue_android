@@ -7,6 +7,7 @@ import 'package:revue_mobile/Modal/QuestionModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
 import 'package:revue_mobile/messages/QuestionAnswerScreen.dart';
+import 'package:revue_mobile/messages/SearchQuestionWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constant/ColorClass.dart';
@@ -147,29 +148,36 @@ class MessagingScreenState extends State<MessagingScreen>{
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(
                           color: Color(0x33000000), width: 1)),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          CupertinoIcons.search,
-                          size: 25,
-                        ),
-                      ),
-                      Padding(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: (){
+                      CupertinoScaffold.showCupertinoModalBottomSheet(
+                          context: context, builder: (context)=>SearchQuestion(questionsList));
+                     },
+                    child: Row(
+                      children: [
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: // Questions
-                          Text(
-                              "Search Questions",
-                              style:  TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 16.0
-                              ),
-                              textAlign: TextAlign.left
-                          )),
-                    ],
+                          child: Icon(
+                            CupertinoIcons.search,
+                            size: 25,
+                          ),
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: // Questions
+                            Text(
+                                "Search Questions",
+                                style:  TextStyle(
+                                    color:  ColorClass.lightTextColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontStyle:  FontStyle.normal,
+                                    fontSize: 16.0
+                                ),
+                                textAlign: TextAlign.left
+                            )),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -184,8 +192,8 @@ class MessagingScreenState extends State<MessagingScreen>{
                     itemBuilder: (context,index){
                       return GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: ()async{
-                         await Navigator.push(context,MaterialPageRoute(builder: (context)=>
+                        onTap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>
                               QuestionAnswerScreen(widget.compoundID,widget.compoundName,
                                   (questionsList[index] as QuestionModal))));
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
@@ -24,6 +26,14 @@ class OTPVerificationState extends State<OTPVerification>{
   TextEditingController forthController= TextEditingController();
   TextEditingController fifthController= TextEditingController();
   TextEditingController sixthController= TextEditingController();
+
+  bool onPressedValue=true;
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,25 +107,20 @@ class OTPVerificationState extends State<OTPVerification>{
                                 Radius.circular(5)
                             ),
                             border: Border.all(
-                                color: const Color(0x4d000000),
+                                color: ColorClass.borderColor,
                                 width: 1
                             ),
-                            color: const Color(0xb2ffffff)
+                            color:ColorClass.whiteColor
                         ),
                             child: CupertinoTextField(
-                              showCursor: false,controller: firstController,
+                              controller: firstController,showCursor: true,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
                               textAlign: TextAlign.center,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
 
-                              ),
-                             placeholderStyle:TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
                               ),
                               decoration: BoxDecoration(
                                   border: Border(
@@ -137,22 +142,18 @@ class OTPVerificationState extends State<OTPVerification>{
                                     Radius.circular(5)
                                 ),
                                 border: Border.all(
-                                    color: const Color(0x4d000000),
+                                    color: ColorClass.borderColor,
                                     width: 1
                                 ),
-                                color: const Color(0xb2ffffff)
+                                color:ColorClass.whiteColor
                             ),
                             child: CupertinoTextField(
                               textAlign: TextAlign.center,controller: secondController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                              ),
-                              placeholderStyle:TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
                               ),
                               decoration: BoxDecoration(
                                   border: Border(
@@ -174,23 +175,20 @@ class OTPVerificationState extends State<OTPVerification>{
                                     Radius.circular(5)
                                 ),
                                 border: Border.all(
-                                    color: const Color(0x4d000000),
+                                    color: ColorClass.borderColor,
                                     width: 1
                                 ),
-                                color: const Color(0xb2ffffff)
+                                color:ColorClass.whiteColor
                             ),
                             child: CupertinoTextField(
                               textAlign: TextAlign.center,controller: thirdController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
                               ),
-                              placeholderStyle:TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
-                              ),
+
                               decoration: BoxDecoration(
                                   border: Border(
                                       top: BorderSide.none,
@@ -211,22 +209,18 @@ class OTPVerificationState extends State<OTPVerification>{
                                     Radius.circular(5)
                                 ),
                                 border: Border.all(
-                                    color: const Color(0x4d000000),
+                                    color: ColorClass.borderColor,
                                     width: 1
                                 ),
-                                color: const Color(0xb2ffffff)
+                                color:ColorClass.whiteColor
                             ),
                             child: CupertinoTextField(
                               textAlign: TextAlign.center,controller: forthController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                              ),
-                              placeholderStyle:TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
                               ),
                               decoration: BoxDecoration(
                                   border: Border(
@@ -248,22 +242,18 @@ class OTPVerificationState extends State<OTPVerification>{
                                     Radius.circular(5)
                                 ),
                                 border: Border.all(
-                                    color: const Color(0x4d000000),
+                                    color: ColorClass.borderColor,
                                     width: 1
                                 ),
-                                color: const Color(0xb2ffffff)
+                                color:ColorClass.whiteColor
                             ),
                             child: CupertinoTextField(
                               textAlign: TextAlign.center,controller: fifthController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                              ),
-                              placeholderStyle:TextStyle(
-                                  color: ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
                               ),
                               decoration: BoxDecoration(
                                   border: Border(
@@ -285,22 +275,18 @@ class OTPVerificationState extends State<OTPVerification>{
                                     Radius.circular(5)
                                 ),
                                 border: Border.all(
-                                    color: const Color(0x4d000000),
+                                    color: ColorClass.borderColor,
                                     width: 1
                                 ),
-                                color: const Color(0xb2ffffff)
+                                color:ColorClass.whiteColor
                             ),
                             child: CupertinoTextField(
                               textAlign: TextAlign.center,controller: sixthController,
+                              keyboardType: TextInputType.number,
+                              textInputAction: TextInputAction.done,
                               style:  TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                              ),
-                              placeholderStyle:TextStyle(
-                                  color:  ColorClass.lightTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 20.0
                               ),
                               decoration: BoxDecoration(
                                   border: Border(
@@ -320,10 +306,24 @@ class OTPVerificationState extends State<OTPVerification>{
 
                   SizedBox(height: 20,),
 
-                  Align(alignment: Alignment.centerRight,child: Text("Resend Password",style: TextStyle(color: ColorClass.darkTextColor,
-                      fontWeight: FontWeight.w600),),),
+                  // Align(
+                  //   alignment: Alignment.centerRight,
+                  //   child: TextButton(
+                  //     onPressed: onPressedValue==true?(){
+                  //       setState((){
+                  //         onPressedValue=false;
+                  //       });
+                  //       Timer(Duration(minutes: 3),(){
+                  //         setState((){
+                  //           onPressedValue=true;
+                  //         });
+                  //       });
+                  //
+                  //     }:null,
+                  //     child: Text("Resend Password",style: TextStyle(color: ColorClass.blueColor,
+                  //       fontWeight: FontWeight.w600),),),),
 
-                  SizedBox(height: 10,),
+                  // SizedBox(height: 10,),
 
 
                   Container(

@@ -11,11 +11,11 @@ import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/add_review/AddReviewBottomSheetThird.dart';
 import 'package:revue_mobile/add_review/widgets/cons_widget.dart';
 import 'package:revue_mobile/add_review/widgets/pros_widget.dart';
+import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
 
 import 'AddReviewBottomSheetFirst.dart';
 
-final globalKey = GlobalKeys.addReviewSecondKey;
 
 class AddReviewBottomSheetSecond extends StatefulWidget{
   ReviewModal reviewModal;
@@ -30,18 +30,23 @@ class AddReviewBottomSheetSecond extends StatefulWidget{
 }
 
 class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
-  List<ProsWidget> textfieldListPros = <ProsWidget>[];
-  List<ConsWidget> textfieldListCons = <ConsWidget>[];
-  List prosList =[];
-  List consList =[];
+  // List<ProsWidget> textfieldListPros = <ProsWidget>[];
+  // List<ConsWidget> textfieldListCons = <ConsWidget>[];
+  // List prosList =[];
+  // List consList =[];
 
   // List<String> tempProsList =[];
+
+  List<String> consList = [null];
+  List<String> prosList = [null];
+
 
   @override
   void initState() {
     super.initState();
-    textfieldListPros.add(ProsWidget(0));
-    textfieldListCons.add(ConsWidget());
+
+    // textfieldListPros.add(ProsWidget(0));
+    // textfieldListCons.add(ConsWidget());
   }
 
   List<Asset> pickedImages = <Asset>[];
@@ -126,17 +131,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     ),
                     textAlign: TextAlign.left
                 ),
-
-
-
-                ListView.builder(
-                  shrinkWrap:true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: textfieldListPros.length,
-                  itemBuilder: (context, index) {
-                    return textfieldListPros[index];
-                  },
-                ),
+                ..._getProsWidget(),
 
               ],
             ),
@@ -158,23 +153,9 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     ),
                     textAlign: TextAlign.left
                 ),
-                // ListView.builder(
-                //   shrinkWrap:true,
-                //   physics: NeverScrollableScrollPhysics(),
-                //   itemCount: textfieldListCons.length,
-                //   itemBuilder: (context, index) {
-                //     return textfieldListCons[index];
-                //   },
-                // ),
 
-                ListView.builder(
-                  shrinkWrap:true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: textfieldListCons.length,
-                  itemBuilder: (context, index) {
-                    return textfieldListCons[index];
-                  },
-                ),
+                ..._getConsWidget()
+
               ],
             ),
           ),
@@ -208,7 +189,7 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                                   Radius.circular(5)
                               ),
                               border: Border.all(
-                                  color: const Color(0x4d000000),
+                                  color: ColorClass.greyColor,
                                   width: 1
                               ),
                               color: const Color(0x33dadada)
@@ -243,8 +224,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                         Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
                         Text(
                             "BACK",
-                            style: const TextStyle(
-                                color:  const Color(0xff000000),
+                            style:  TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
@@ -259,17 +240,21 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
 
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap: textfieldListPros.isNotEmpty
-                      &&textfieldListCons.isNotEmpty
+                  onTap: prosList.isNotEmpty
+                      &&consList.isNotEmpty
                       &&pickedImages.isNotEmpty ?() async{
 
-                    for(int i =0;i<textfieldListPros.length;i++){
-                      prosList.add(textfieldListPros[i].prosTextController.text);
+                    List tempProList = [];
+                    List tempConsList =[];
+
+                    for(int i =0;i<prosList.length;i++){
+                      tempProList.add(prosList[i]);
                     }
 
-                    print(prosList);
-                    for(int i =0;i<textfieldListCons.length;i++){
-                      consList.add(textfieldListCons[i].consTextController.text);
+                    print(tempProList);
+
+                    for(int i =0;i<consList.length;i++){
+                      tempConsList.add(consList[i]);
                     }
 
                     List<MultipartFile> tempList =[];
@@ -283,8 +268,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                     }
 
 
-                    widget.reviewModal.pros = prosList;
-                    widget.reviewModal.cons = consList;
+                    widget.reviewModal.pros = tempProList;
+                    widget.reviewModal.cons = tempConsList;
                     widget.reviewModal.images= tempList;
 
                     print(widget.reviewModal.pros);
@@ -305,8 +290,8 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
                       children: [
                         Text(
                             "NEXT",
-                            style: const TextStyle(
-                                color:  const Color(0xff000000),
+                            style: TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
@@ -333,4 +318,99 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
     print(file.absolute);
     return file;
   }
+
+
+
+  ////////////////////////////////
+
+
+
+  List<Widget> _getProsWidget(){
+    List<Widget> proTextFieldList = [];
+    for(int i=0; i<prosList.length; i++){
+      proTextFieldList.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              children: [
+                Expanded(child: ProsTextFields(i)),
+                SizedBox(width: 16,),
+                // we need add button at last friends row
+                _addRemoveProButton(i == prosList.length-1, i),
+              ],
+            ),
+          )
+      );
+    }
+    return proTextFieldList;
+  }
+
+  //////////////////////////////////
+
+  List<Widget> _getConsWidget(){
+    List<Widget> consTextFieldList = [];
+    for(int i=0; i<consList.length; i++){
+      consTextFieldList.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              children: [
+                Expanded(child: ConsTextFields(i)),
+                SizedBox(width: 16,),
+                // we need add button at last friends row
+                _addRemoveConsButton(i == consList.length-1, i),
+              ],
+            ),
+          )
+      );
+    }
+    return consTextFieldList;
+  }
+
+
+
+  Widget _addRemoveProButton(bool add, int index){
+    return InkWell(
+      onTap: (){
+        if(add){
+          // add new text-fields at the top of all friends textfields
+          prosList.insert(0, null);
+        }
+        else prosList.removeAt(index);
+        setState((){});
+      },
+      child: Container(
+        width: 30,
+        height: 30,
+        // decoration: BoxDecoration(
+        //   color: (add) ? ColorClass.blackColor : ColorClass.blueColor,
+        // ),
+        child: Icon((add) ?
+        Icons.add_circle_outline : Icons.remove_circle_outline, color: Colors.black,size: 18,),
+      ),
+    );
+  }
+  Widget _addRemoveConsButton(bool add, int index){
+    return InkWell(
+      onTap: (){
+        if(add){
+          // add new text-fields at the top of all friends textfields
+          consList.insert(0, null);
+        }
+        else consList.removeAt(index);
+        setState((){});
+      },
+      child: Container(
+        width: 30,
+        height: 30,
+        // decoration: BoxDecoration(
+        //   color: (add) ? ColorClass.blackColor : ColorClass.blueColor,
+        // ),
+        child: Icon((add) ?
+        Icons.add_circle_outline : Icons.remove_circle_outline, color: Colors.black,size: 18,),
+      ),
+    );
+  }
+
+
 }

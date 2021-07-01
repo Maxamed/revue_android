@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 
 import 'AddReviewBottomSheetSecond.dart';
 
@@ -133,13 +134,15 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       color: Colors.white,
                       shape: BoxShape.rectangle,
                       border: Border.all(
-                          color: ColorClass.borderColor, width: 1)),
+                          color: ColorClass.greyColor, width: 1)),
                   child: TextField(
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.multiline,
                     maxLines: 15,
                     controller: descriptionController,
                     decoration: InputDecoration(
+                      hintText: "Add Description Here...",
+                        hintStyle: TextStyle(color: ColorClass.greyColor,fontSize: 14),
                         contentPadding: EdgeInsets.all(15),
                         labelStyle: TextStyle(
                           color: Colors.black,
@@ -172,8 +175,8 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
                         Text(
                             "BACK",
-                            style:  TextStyle(
-                                color:   ColorClass.darkTextColor,
+                            style:   TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
@@ -203,7 +206,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         isScrollControlled: true,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
                           topRight:Radius.circular(20), )),
-                        builder: (context) =>AddReviewBottomSheetSecond(globalKey: globalKey,
+                        builder: (context) =>AddReviewBottomSheetSecond(globalKey: GlobalKeys.addReviewSecondKey,
                           reviewModal: reviewModal,));
 
 
@@ -217,8 +220,8 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       children: [
                         Text(
                             "NEXT",
-                            style: const TextStyle(
-                                color:  const Color(0xff000000),
+                            style:  TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
@@ -237,4 +240,13 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
       ),
     );
   }
+
+
+
+
+
+
+
+
 }
+

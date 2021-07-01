@@ -35,71 +35,6 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
 
-  // showStartDatePickerWidget(){
-  //   return showCupertinoModalPopup(
-  //       context: context,
-  //       builder:  (BuildContext builder){
-  //         return Container(
-  //             height: MediaQuery.of(context).copyWith().size.height / 3,
-  //             child: CupertinoDatePicker(
-  //               backgroundColor: Colors.black,
-  //               initialDateTime: DateTime.now().subtract(Duration(hours: 1)),
-  //               onDateTimeChanged: (DateTime newdate) {
-  //                 print(newdate);
-  //                 var formatter = new DateFormat('dd/MM/yyyy');
-  //                 // String formattedTime = DateFormat('kk:mm:a').format(newdate);
-  //                 String formattedDate = formatter.format(newdate);
-  //                 // print(formattedTime);
-  //                 print(formattedDate);
-  //                 setState(() {
-  //                   startDateController.text=formattedDate;
-  //                 });
-  //               },
-  //
-  //               use24hFormat: false,
-  //               maximumDate: new DateTime(2050, 12, 31),
-  //               minimumYear: 2010,
-  //               maximumYear: 2040,
-  //               minuteInterval: 1,
-  //               mode: CupertinoDatePickerMode.date,
-  //             )
-  //         );
-  //       }
-  //   );
-  // }
-  //
-  // showEndDatePickerWidget(){
-  //   return showCupertinoModalPopup(
-  //       context: context,
-  //       builder:  (BuildContext builder){
-  //         return Container(
-  //             height: MediaQuery.of(context).copyWith().size.height / 3,
-  //             child: CupertinoDatePicker(
-  //               backgroundColor: Colors.black,
-  //               initialDateTime: DateTime.now().subtract(Duration(hours: 1)),
-  //               onDateTimeChanged: (DateTime newdate) {
-  //                 print(newdate);
-  //                 var formatter = new DateFormat('MM/dd/yyyy');
-  //                 String formattedTime = DateFormat('kk:mm:a').format(newdate);
-  //                 String formattedDate = formatter.format(newdate);
-  //                 print(formattedTime);
-  //                 print(formattedDate);
-  //                 setState(() {
-  //                   endDateController.text=formattedDate;
-  //                 });
-  //               },
-  //
-  //               use24hFormat: false,
-  //               maximumDate: new DateTime(2050, 12, 31),
-  //               minimumYear: 2010,
-  //               maximumYear: 2040,
-  //               minuteInterval: 1,
-  //               mode: CupertinoDatePickerMode.date,
-  //             )
-  //         );
-  //       }
-  //   );
-  // }
 
 
 
@@ -127,7 +62,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
               GFRating(
                 size: 30,
-                value: facilitiesRating,allowHalfRating: true,borderColor: ColorClass.lightTextColor,
+                value: facilitiesRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
@@ -160,7 +95,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
               GFRating(
                 size: 30,
-                value: designRating,allowHalfRating: true,borderColor: ColorClass.lightTextColor,
+                value: designRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
@@ -192,7 +127,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
               GFRating(
                 size: 30,
-                value: locationRating,allowHalfRating: true,borderColor: ColorClass.lightTextColor,
+                value: locationRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color:ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
@@ -223,7 +158,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
               GFRating(
                 size: 30,
-                value: valueRating,allowHalfRating: true,borderColor: ColorClass.lightTextColor,
+                value: valueRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
@@ -254,7 +189,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
 
               GFRating(
                 size: 30,
-                value: managementRating,allowHalfRating: true,borderColor: ColorClass.lightTextColor,
+                value: managementRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
@@ -287,7 +222,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                 size: 20,
                 activeBorderColor: Colors.black,
                 activeBgColor: ColorClass.blueColor,
-                type: GFCheckboxType.square,inactiveBorderColor: ColorClass.lightTextColor,
+                type: GFCheckboxType.square,inactiveBorderColor: ColorClass.greyColor,
                 value:checkBox,
                 onChanged: (value){
 
@@ -465,8 +400,8 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                         Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
                         Text(
                             "BACK",
-                            style: const TextStyle(
-                                color:  const Color(0xff000000),
+                            style: TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
@@ -504,29 +439,6 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       Fluttertoast.showToast(msg: "All Fields must be Filled");
                     }
                   },
-                  // onTap:facilitiesRating!=0
-                  //     &&designRating!=0
-                  //     &&locationRating!=0
-                  //     &&valueRating!= 0
-                  //     &&managementRating!=0
-                  //     &&startDateController.text.isNotEmpty
-                  //     &&endDateController.text.isNotEmpty? ()
-                  // {
-                  //   double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
-                  //   print(rating);
-                  //   widget.reviewModal.rating = rating;
-                  //
-                  //   widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
-                  //
-                  //   Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
-                  //       this.setState(() {
-                  //   Navigator.pop(context);
-                  //   Navigator.pop(context);
-                  //   Navigator.pop(context);
-                  //   }));
-                  // }:(){
-                  //   Fluttertoast.showToast(msg: "All Fields must be Filled");
-                  // },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
@@ -534,10 +446,9 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       children: [
                         Text(
                             "DONE",
-                            style: const TextStyle(
-                                color:  const Color(0xff000000),
+                            style:  TextStyle(
+                                color:  ColorClass.darkTextColor,
                                 fontWeight: FontWeight.w600,
-
                                 fontStyle:  FontStyle.normal,
                                 fontSize: 18.0
                             ),
@@ -555,8 +466,6 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
       ],),
     );
   }
-
-
 
 }
 
