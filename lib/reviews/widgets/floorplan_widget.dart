@@ -16,22 +16,22 @@ class FloorPlanWidget extends StatelessWidget{
         child: Row(
           children: [
             AutoSizeText(
-                "Floor Plan ",
+                "Floor Plan : ",
                 style:  TextStyle(
                     color:  ColorClass.darkTextColor,
                     fontWeight: FontWeight.w700,
                     fontStyle:  FontStyle.normal,
-                    fontSize: 15.0
+                    fontSize: 14.0
                 ),
                 textAlign: TextAlign.left
             ),
             AutoSizeText(
                 "$floorPlan sqft",
                 style:  TextStyle(
-                    color:ColorClass.greyColor,
-                    fontWeight: FontWeight.w600,
+                    color:Colors.black87,
+                    fontWeight: FontWeight.w400,
                     fontStyle:  FontStyle.normal,
-                    fontSize: 13.0
+                    fontSize: 12.0
                 ),
                 textAlign: TextAlign.left
             ),
