@@ -34,7 +34,7 @@ class ReviewListState extends State<ReviewList>{
         itemCount: widget.reviewList.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left:8.0,right:8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -49,17 +49,17 @@ class ReviewListState extends State<ReviewList>{
                                 color:ColorClass.redColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 20.0
+                                fontSize: 17.0
                             ),
                             textAlign: TextAlign.left
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: 10,),
                         Row(children: [
-                          Text("Posted On   ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600,
+                          Text("Posted On   ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,
                               fontSize: 14),),
                           Text(StringConstant.getReviewPostedDate( (widget.reviewList[index] as ReviewModal).reviewDate),style: TextStyle(color: ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14))
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12))
                         ],),
 
                       ],
@@ -77,25 +77,25 @@ class ReviewListState extends State<ReviewList>{
                         center: new Text(
                           (widget.reviewList[index] as ReviewModal).rating.toString(),
                           style:
-                          new TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                          new TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
                         ),
                         circularStrokeCap: CircularStrokeCap.butt,
                         backgroundColor: ColorClass.circularBgColor,
                         progressColor: ColorClass.redColor,
-                        footer: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text(
-                              "Overall Rating",
-                              style:  TextStyle(
-                                  color:ColorClass.lightTextColor  ,
-                                  fontWeight: FontWeight.w700,
-
-                                  fontStyle:  FontStyle.normal,
-                                  fontSize: 12.0
-                              ),
-                              textAlign: TextAlign.left
-                          ),
-                        ),
+                        // footer: Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Text(
+                        //       "Overall Rating",
+                        //       style:  TextStyle(
+                        //           color:Colors.black87 ,
+                        //           fontWeight: FontWeight.w500,
+                        //
+                        //           fontStyle:  FontStyle.normal,
+                        //           fontSize: 12.0
+                        //       ),
+                        //       textAlign: TextAlign.left
+                        //   ),
+                        // ),
                       ),
 
                     ),
@@ -107,10 +107,10 @@ class ReviewListState extends State<ReviewList>{
                     "Description",
                     style:  TextStyle(
                         color: ColorClass.darkTextColor,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 15.0
+                        fontSize: 14.0
                     ),
                   ),
                 ),
@@ -122,9 +122,9 @@ class ReviewListState extends State<ReviewList>{
                       maxLines: 4,
                       style:  TextStyle(
                           color:  ColorClass.lightTextColor,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                           fontStyle:  FontStyle.normal,
-                          fontSize: 13.0),
+                          fontSize: 12.0),
                       textAlign: TextAlign.left),
                 ),
 
@@ -139,49 +139,36 @@ class ReviewListState extends State<ReviewList>{
                       // 1350 sqft
                       Text((widget.reviewList[index] as ReviewModal).floorplan +" SQFT",
                           style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
+                              color:  Colors.black87,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 15.0,
-                            fontWeight: FontWeight.w500,),
+                              fontSize: 14.0,
+                            fontWeight: FontWeight.w400,),
                           textAlign: TextAlign.left),
                       // 45000 INR
                       Text((widget.reviewList[index] as ReviewModal).price +" QAR",
                           style:  TextStyle(
-                              color:  ColorClass.lightTextColor,
+                              color:  Colors.black87,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 15.0,
-                            fontWeight: FontWeight.w500,),
+                              fontSize: 14.0,
+                            fontWeight: FontWeight.w400,),
                           textAlign: TextAlign.left),
                       // View more
                       GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
                           CupertinoScaffold.
-                          showCupertinoModalBottomSheet(context: context,backgroundColor: Colors.white,
-                              barrierColor: Colors.white,
-                              builder: (context)=>RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length));
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext c) {
-                          //       return AlertDialog(
-                          //         backgroundColor: Colors.white,
-                          //         insetPadding: EdgeInsets.all(20),
-                          //         contentPadding: EdgeInsets.zero,
-                          //         clipBehavior:
-                          //         Clip.antiAliasWithSaveLayer,
-                          //         shape: RoundedRectangleBorder(
-                          //             borderRadius:
-                          //             BorderRadius.circular(
-                          //                 20)),
-                          //         content: RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length),
-                          //       );
-                          //     });
+                          showCupertinoModalBottomSheet(
+                              context: context,backgroundColor: Colors.white,
+                              barrierColor: Colors.black.withAlpha(10),
+                              builder: (context)=>CupertinoScaffold(transitionBackgroundColor: Colors.white,
+                                  body: RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length)));
+
                         },
                         child: Text("View more".toUpperCase(),
-                            style:  TextStyle(fontSize: 15,
+                            style:  TextStyle(fontSize: 12,
                                 color: ColorClass.blueColor,
                                 fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w500),
                             textAlign: TextAlign.left),
                       )
                     ],
@@ -189,7 +176,7 @@ class ReviewListState extends State<ReviewList>{
                 ),
                 Divider(
                   color: ColorClass.greyColor,
-                  thickness: 1,
+                  thickness: 0.5,
                 ),
               ],
             ),

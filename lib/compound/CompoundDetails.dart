@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/FavoriteModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
@@ -10,6 +11,7 @@ import 'package:revue_mobile/add_review/AddReviewBottomSheetFirst.dart';
 import 'package:revue_mobile/compound/AmenitiesGridClass.dart';
 import 'package:revue_mobile/compound/CompoundRatings.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
+import 'package:revue_mobile/constant/StringConstant.dart';
 import 'package:revue_mobile/map/mapScreen.dart';
 import 'package:revue_mobile/messages/MessagingScreen.dart';
 import 'package:revue_mobile/reviews/reviews_list.dart';
@@ -299,7 +301,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   color: isShrink ?Colors.transparent:ColorClass.redColor,
-                                  fontSize: 25.0,
+                                  fontSize: 18.0,
                                   fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -308,8 +310,8 @@ class CompoundDetailsState extends State<CompoundDetails> {
                               child: Text(
                                   compoundModal.address,maxLines: 2,
                                   style:  TextStyle(
-                                    color: ColorClass.lightTextColor,fontSize: 13,
-                                    fontWeight: FontWeight.w500,
+                                    color: ColorClass.lightTextColor,fontSize: 12,
+                                    fontWeight: FontWeight.w400,
                                     fontStyle: FontStyle.normal,),
                                   textAlign: TextAlign.left),
                             ),
@@ -325,10 +327,45 @@ class CompoundDetailsState extends State<CompoundDetails> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            
-                            Text(compoundModal.rating.toInt().toString(),style:TextStyle(color: ColorClass.lightTextColor,
-                              fontSize: 20,fontWeight: FontWeight.w800,
-                              fontStyle: FontStyle.normal,),textAlign: TextAlign.start,)
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child:   CircularPercentIndicator(
+                                  radius: 40.0,
+                                  animation: true,
+                                  animationDuration: 1200,
+                                  lineWidth: 4.0,
+                                  percent: StringConstant.getpercentage(compoundModal.rating.toDouble()),
+                                  center: new Text(
+                                    (compoundModal.rating.toDouble()).toStringAsFixed(1),
+                                    style:
+                                    new TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
+                                  ),
+                                  circularStrokeCap: CircularStrokeCap.butt,
+                                  backgroundColor: ColorClass.circularBgColor,
+                                  progressColor: ColorClass.redColor,
+                                  // footer: Padding(
+                                  //   padding: const EdgeInsets.all(8.0),
+                                  //   child: Text(
+                                  //       "Overall Rating",
+                                  //       style:  TextStyle(
+                                  //           color:Colors.black87 ,
+                                  //           fontWeight: FontWeight.w500,
+                                  //
+                                  //           fontStyle:  FontStyle.normal,
+                                  //           fontSize: 12.0
+                                  //       ),
+                                  //       textAlign: TextAlign.left
+                                  //   ),
+                                  // ),
+                                ),
+
+                              ),
+                            )
+                            // Text(compoundModal.rating.toInt().toString(),style:TextStyle(color: ColorClass.lightTextColor,
+                            //   fontSize: 18,fontWeight: FontWeight.w800,
+                            //   fontStyle: FontStyle.normal,),textAlign: TextAlign.start,)
                           ],),
                       )
 
@@ -345,9 +382,9 @@ class CompoundDetailsState extends State<CompoundDetails> {
                   children: [
                     Text("Rating",
                       style:  TextStyle(color: ColorClass.darkTextColor,
-                        fontWeight: FontWeight.w700,fontSize: 18,
+                        fontWeight: FontWeight.w600,fontSize: 18,
                         fontStyle: FontStyle.normal,),),
-                    SizedBox(height: 10,),
+                    SizedBox(height: 20,),
                     CompoundRatings(compoundModal)
 
                   ],),
@@ -362,7 +399,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                   children: [
                     Text(
                       "Amentites",style: TextStyle(color: ColorClass.darkTextColor,
-                      fontWeight: FontWeight.w700,fontSize: 18,
+                      fontWeight: FontWeight.w600,fontSize: 18,
                       fontStyle: FontStyle.normal,),
                     ),
                     // SizedBox(height: 10,),
@@ -380,7 +417,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                   children: [
                     Text(
                       "Description",style: TextStyle(color: ColorClass.darkTextColor,
-                      fontWeight: FontWeight.w700,fontSize: 18,
+                      fontWeight: FontWeight.w600,fontSize: 18,
                       fontStyle: FontStyle.normal,),
                     ),
                     SizedBox(height: 10,),
@@ -388,8 +425,8 @@ class CompoundDetailsState extends State<CompoundDetails> {
                       maxLines:descTextShowFlag?compoundModal.description.length: 4,
                       overflow: TextOverflow.fade,textAlign: TextAlign.start,
                       style: TextStyle(
-                          color: ColorClass.lightTextColor,fontSize: 13,
-                          fontWeight: FontWeight.w500,
+                          color: ColorClass.lightTextColor,fontSize: 12,
+                          fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,wordSpacing: 2,letterSpacing: 0.3),),
 
                     Container(
@@ -443,7 +480,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                     Text("Reviews",
                         style: TextStyle(
                             color: ColorClass.darkTextColor,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w600,
                             fontStyle: FontStyle.normal,
                             fontSize: 18.0),
                         textAlign: TextAlign.left),
@@ -457,12 +494,13 @@ class CompoundDetailsState extends State<CompoundDetails> {
                           Icon(
                             CupertinoIcons.add,
                             color: ColorClass.blueColor,
+                            size: 15,
                           ),
                           Text("ADD",
                               style: const TextStyle(
                                   decoration: TextDecoration.underline,
                                   color: const Color(0xcc156fc2),
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 14.0),
                               textAlign: TextAlign.left),
@@ -476,7 +514,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                 padding: const EdgeInsets.only(left:8.0,right: 8),
                 child: Divider(
                   color: ColorClass.greyColor,
-                  thickness: 1,
+                  thickness: 0.5,
                 ),
               ),
 

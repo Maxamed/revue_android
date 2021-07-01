@@ -128,7 +128,7 @@ class MyReviewDetailState extends State<MyReviewDetails>{
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             PriceWidget(widget.myReviewsModal.price),
-                            BedRoomWidget(),
+                            BedRoomWidget(widget.myReviewsModal.bathRooms.toString()),
                             RatingWidget(2,widget.myReviewsModal.rating)
                           ],),
                       ),
@@ -139,7 +139,7 @@ class MyReviewDetailState extends State<MyReviewDetails>{
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             FloorPlanWidget(widget.myReviewsModal.floorplan),
-                            BathRoomWidget(),
+                            BathRoomWidget(widget.myReviewsModal.bathRooms.toString()),
                             ReviewDateWidget(widget.myReviewsModal.reviewDate)
 
                           ],),

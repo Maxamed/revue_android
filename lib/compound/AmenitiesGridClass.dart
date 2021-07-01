@@ -18,8 +18,8 @@ class AmenitiesGridClass extends StatelessWidget{
           ),
           itemBuilder: (BuildContext context,index){
         return Text(amentitiesList[index],
-          style: TextStyle(color: ColorClass.lightTextColor,fontSize: 13,
-            fontWeight: FontWeight.w500,
+          style: TextStyle(color: Colors.black,fontSize: 12,
+            fontWeight: FontWeight.w400,
           fontStyle: FontStyle.normal,),);
           }),
     );
