@@ -40,7 +40,7 @@ class MessagingScreenState extends State<MessagingScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(child: Scaffold(
+    return CupertinoScaffold(body:  Scaffold(
       bottomNavigationBar: new Stack(
         children: <Widget>[
           Container(
@@ -151,8 +151,14 @@ class MessagingScreenState extends State<MessagingScreen>{
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: (){
-                      CupertinoScaffold.showCupertinoModalBottomSheet(
-                          context: context, builder: (context)=>SearchQuestion(questionsList));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context)=>
+                              SearchQuestion(questionsList,widget.compoundID,widget.compoundName)));
+                      // showCupertinoModalBottomSheet(
+                      //     barrierColor: Colors.white,
+                      //     backgroundColor: ColorClass.whiteColor,shape: RoundedRectangleBorder
+                      //   (borderRadius:BorderRadius.all(Radius.circular(10))),
+                      //     context: context, builder: (context)=>SearchQuestion(questionsList));
                      },
                     child: Row(
                       children: [
