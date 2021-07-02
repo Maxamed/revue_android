@@ -11,7 +11,7 @@ class AddReviewBottomSheetFirst extends StatefulWidget{
   String compoundID="";
   String compoundName = "";
 
-  AddReviewBottomSheetFirst(this.compoundID,this.compoundName);
+  AddReviewBottomSheetFirst({Key key,this.compoundID,this.compoundName}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -42,8 +42,8 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
       padding: MediaQuery.of(context).viewInsets,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 600,
-        child: ListView(shrinkWrap: true,children: [
+        child: ListView(physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,children: [
 
           Container(
             margin: EdgeInsets.only(left: 20,right: 20,top: 30),
@@ -57,7 +57,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         color:Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -68,7 +68,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       contentPadding: EdgeInsets.only(left: 15),
                       labelStyle: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color:  ColorClass.greyColor,),
@@ -90,7 +90,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         color:  Colors.black,
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -101,7 +101,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                       contentPadding: EdgeInsets.only(left: 15),
                       labelStyle: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color:  ColorClass.greyColor,),
@@ -124,7 +124,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         fontWeight: FontWeight.w600,
 
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.left
                 ),
@@ -146,7 +146,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         contentPadding: EdgeInsets.all(15),
                         labelStyle: TextStyle(
                           color: Colors.black,
-                          fontSize: 16,),
+                          fontSize: 14,),
                         border: InputBorder.none,
                         fillColor: Colors.white
                     ),),
@@ -155,86 +155,86 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
             ),
           ),
 
-          SizedBox(height: 200,),
+          SizedBox(height: 20,),
 
-          Align(alignment: Alignment.bottomRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: (){
-                    Navigator.pop(context);
-                    },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
-                        Text(
-                            "BACK",
-                            style:   TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-
-
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap:rentController.text.isNotEmpty
-                      &&floorPlanController.text.isNotEmpty
-                      &&descriptionController.text.isNotEmpty? () {
-
-                    reviewModal.price = rentController.text;
-                    reviewModal.floorplan = floorPlanController.text;
-                    reviewModal.review = descriptionController.text;
-                    print(reviewModal.review);
-
-                    showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
-                          topRight:Radius.circular(20), )),
-                        builder: (context) =>AddReviewBottomSheetSecond(globalKey: GlobalKeys.addReviewSecondKey,
-                          reviewModal: reviewModal,));
-
-
-                  }:(){
-                    Fluttertoast.showToast(msg: "All Fields must be Filled");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                            "NEXT",
-                            style:  TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                        Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),)
+          // Align(alignment: Alignment.bottomRight,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //
+          //       GestureDetector(
+          //         behavior: HitTestBehavior.translucent,
+          //         onTap: (){
+          //           Navigator.pop(context);
+          //           },
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(10.0),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.start,
+          //             children: [
+          //               Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
+          //               Text(
+          //                   "BACK",
+          //                   style:   TextStyle(
+          //                       color:  ColorClass.darkTextColor,
+          //                       fontWeight: FontWeight.w600,
+          //                       fontStyle:  FontStyle.normal,
+          //                       fontSize: 18.0
+          //                   ),
+          //                   textAlign: TextAlign.left
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //
+          //
+          //
+          //       GestureDetector(
+          //         behavior: HitTestBehavior.translucent,
+          //         onTap:rentController.text.isNotEmpty
+          //             &&floorPlanController.text.isNotEmpty
+          //             &&descriptionController.text.isNotEmpty? () {
+          //
+          //           reviewModal.price = rentController.text;
+          //           reviewModal.floorplan = floorPlanController.text;
+          //           reviewModal.review = descriptionController.text;
+          //           print(reviewModal.review);
+          //
+          //           showModalBottomSheet(
+          //               context: context,
+          //               isScrollControlled: true,
+          //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
+          //                 topRight:Radius.circular(20), )),
+          //               builder: (context) =>AddReviewBottomSheetSecond(globalKey: GlobalKeys.addReviewSecondKey,
+          //                 reviewModal: reviewModal,));
+          //
+          //
+          //         }:(){
+          //           Fluttertoast.showToast(msg: "All Fields must be Filled");
+          //         },
+          //         child: Padding(
+          //           padding: const EdgeInsets.all(10.0),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.end,
+          //             children: [
+          //               Text(
+          //                   "NEXT",
+          //                   style:  TextStyle(
+          //                       color:  ColorClass.darkTextColor,
+          //                       fontWeight: FontWeight.w600,
+          //                       fontStyle:  FontStyle.normal,
+          //                       fontSize: 18.0
+          //                   ),
+          //                   textAlign: TextAlign.left
+          //               ),
+          //               Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),)
 
         ],),
       ),
@@ -243,7 +243,12 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
 
 
 
-
+bool validate()
+{
+  return rentController.text.isNotEmpty
+              &&floorPlanController.text.isNotEmpty
+              &&descriptionController.text.isNotEmpty;
+}
 
 
 

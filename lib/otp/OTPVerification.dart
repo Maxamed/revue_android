@@ -62,9 +62,9 @@ class OTPVerificationState extends State<OTPVerification>{
               largeTitle: Text(" Forget Password",
                   style: const TextStyle(
                       color: const Color(0xff000000),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
-                      fontSize: 25.0),
+                      fontSize: 22.0),
                   textAlign: TextAlign.left),
 
             ),
@@ -85,7 +85,7 @@ class OTPVerificationState extends State<OTPVerification>{
                             fontWeight: FontWeight.w600,
 
                             fontStyle:  FontStyle.normal,
-                            fontSize: 23.0
+                            fontSize: 18.0
                         ),
                         textAlign: TextAlign.left
                     ),

@@ -9,6 +9,8 @@ import 'package:revue_mobile/bottom_tab_bar/FavouriteCom.dart';
 import 'package:revue_mobile/compound/CompoundDetails.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
+import 'package:revue_mobile/messages/MessagingScreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -221,41 +223,68 @@ class CompoundListState extends State<CompoundList>{
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
 
                 Container(
-                  child: Row(children: [
-                    Icon(CupertinoIcons.mail_solid,size: 18,color: Colors.black87,),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(
-                          "Email",
-                          style:  TextStyle(
-                              color:   ColorClass.darkTextColor,
-                              fontWeight: FontWeight.w400,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 13.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
-                    )
-                  ],),
-                ),
-                Container(
-                  child: Row(children: [
-                    Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.black87,size: 20,),
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Text(
-                          "Q and A",
-                          style:  TextStyle(
-                              color:  ColorClass.darkTextColor,
-                              fontWeight: FontWeight.w400,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap:(){
+print("onTap");
 
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 13.0
-                          ),
-                          textAlign: TextAlign.left
-                      ),
-                    )
-                  ],),
+                    final Uri emailLaunchUri = Uri(
+                      scheme: 'mailto',
+                      path: "revueappqa@gmail.com",
+                      query: encodeQueryParameters(<String, String>{
+                        'subject': (compoundList[index] as CompoundModal).category+" : "+(compoundList[index] as CompoundModal).compoundname
+                      }),
+                    );
+
+                    launch(emailLaunchUri.toString());
+                  } ,
+                    child: Row(children: [
+                      Icon(CupertinoIcons.mail_solid,size: 18,color:Colors.blue.shade700),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                            "Email",
+                            style:  TextStyle(
+                                color:   ColorClass.darkTextColor,
+                                fontWeight: FontWeight.w400,
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 13.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
+                      )
+                    ],),
+                  ),
+                ),
+                GestureDetector(behavior: HitTestBehavior.translucent,onTap: (){
+                  CompoundModal compound=(compoundList[index] as CompoundModal);
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) =>
+                              MessagingScreen(compound.id,
+                                  compound.compoundname, compound.address)));
+
+                },
+                  child: Container(
+                    child: Row(children: [
+                      Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.blue.shade700,size: 20,),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                            "Q and A",
+                            style:  TextStyle(
+                                color:  ColorClass.darkTextColor,
+                                fontWeight: FontWeight.w400,
+
+                                fontStyle:  FontStyle.normal,
+                                fontSize: 13.0
+                            ),
+                            textAlign: TextAlign.left
+                        ),
+                      )
+                    ],),
+                  ),
                 ),
                 Container(
                   child: Row(children: [
@@ -263,11 +292,11 @@ class CompoundListState extends State<CompoundList>{
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
                           "View more",
-                          style: const TextStyle(
-                              color:  const Color(0xff4285f4),
+                          style:  TextStyle(
+                              color:  ColorClass.blueColor,
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 14.0
+                              fontSize: 12.0
                           ),
                           textAlign: TextAlign.left
                       ),
@@ -283,5 +312,11 @@ class CompoundListState extends State<CompoundList>{
         ),
       ),
     );
+  }
+
+  String encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 }

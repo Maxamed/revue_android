@@ -4,16 +4,19 @@ import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Login.dart';
+import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
+import 'package:revue_mobile/add_review/Add_Review.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
 
 import 'RevueDetail.dart';
 
 class ReviewList extends StatefulWidget{
   List reviewList = [];
-
-  ReviewList(this.reviewList);
+CompoundModal compoundModal;
+  ReviewList({Key key,this.reviewList,this.compoundModal}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -49,13 +52,13 @@ class ReviewListState extends State<ReviewList>{
                                 color:ColorClass.redColor,
                                 fontWeight: FontWeight.w600,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 17.0
+                                fontSize: 18.0
                             ),
                             textAlign: TextAlign.left
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(height: 20,),
                         Row(children: [
-                          Text("Posted On   ",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,
+                          Text("Posted On   ",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,
                               fontSize: 14),),
                           Text(StringConstant.getReviewPostedDate( (widget.reviewList[index] as ReviewModal).reviewDate),style: TextStyle(color: ColorClass.lightTextColor,
                               fontWeight: FontWeight.w500,
@@ -164,7 +167,7 @@ class ReviewListState extends State<ReviewList>{
                                   body: RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length)));
 
                         },
-                        child: Text("View more".toUpperCase(),
+                        child: Text("View More",
                             style:  TextStyle(fontSize: 12,
                                 color: ColorClass.blueColor,
                                 fontStyle: FontStyle.normal,
@@ -186,5 +189,15 @@ class ReviewListState extends State<ReviewList>{
     );
   }
 
+  void openAddReview()
+  {
+    CupertinoScaffold.
+    showCupertinoModalBottomSheet(
+        context: context,backgroundColor: Colors.white,
+        barrierColor: Colors.black.withAlpha(10),
+        builder: (context)=>CupertinoScaffold(transitionBackgroundColor: Colors.white,
+            body: AddReview(key: GlobalKeys.addReviewKey,compoundID: widget.compoundModal.id,compoundName: widget.compoundModal.compoundname)));
+
+  }
 
 }

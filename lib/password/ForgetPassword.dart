@@ -42,9 +42,9 @@ class ForgetPasswordState extends State<ForgetPassword>{
               largeTitle: Text(" Forget Password",
                   style: const TextStyle(
                       color: const Color(0xff000000),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
-                      fontSize: 25.0),
+                      fontSize: 22.0),
                   textAlign: TextAlign.left),
 
             ),
@@ -72,7 +72,7 @@ class ForgetPasswordState extends State<ForgetPassword>{
                             color:  ColorClass.lightTextColor,
                             fontWeight: FontWeight.w400,
                             fontStyle:  FontStyle.normal,
-                            fontSize: 20.0
+                            fontSize: 16.0
                         ),
                         decoration: BoxDecoration(
                            border: Border(

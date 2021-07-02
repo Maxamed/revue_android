@@ -54,7 +54,7 @@ class MyAccountState extends State<MyAccount>{
                     color:  ColorClass.darkTextColor,
                     fontWeight: FontWeight.w700,
                     fontStyle:  FontStyle.normal,
-                    fontSize: 20.0
+                    fontSize: 18.0
                 ),
                 textAlign: TextAlign.left
             ),
@@ -80,7 +80,7 @@ class MyAccountState extends State<MyAccount>{
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w600,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 22.0
+                        fontSize: 18.0
                     ),
                     textAlign: TextAlign.center
                 ),
@@ -90,7 +90,7 @@ class MyAccountState extends State<MyAccount>{
                         color:  const Color(0xff000000),
                         fontWeight: FontWeight.w400,
                         fontStyle:  FontStyle.normal,
-                        fontSize: 18.0
+                        fontSize: 16.0
                     ),
                     textAlign: TextAlign.center
                 ),
@@ -101,7 +101,7 @@ class MyAccountState extends State<MyAccount>{
                   padding: const EdgeInsets.only(top: 30),
                   child: Material(
                     child: ListTile(
-                      leading: Image.asset("assets/images/inspection.png",width: 20,height: 20,),
+                      leading: Image.asset("assets/images/inspection.png",width: 18,height: 18,),
                       title:// My Reviews
                       Text(
                           "My Reviews",
@@ -109,7 +109,7 @@ class MyAccountState extends State<MyAccount>{
                               color:  const Color(0xb2000000),
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 18.0
+                              fontSize: 16.0
                           ),
                           textAlign: TextAlign.left
                       ),
@@ -149,7 +149,7 @@ class MyAccountState extends State<MyAccount>{
                             color:  const Color(0xffffffff),
                             fontWeight: FontWeight.w600,
                             fontStyle:  FontStyle.normal,
-                            fontSize: 20.0
+                            fontSize: 16.0
                         ),
                         textAlign: TextAlign.left
                     ),

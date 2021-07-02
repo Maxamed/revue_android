@@ -64,10 +64,10 @@ class ChangePasswordState extends State<ChangePassword>{
               largeTitle: Text(" Forget Password",
                   style: const TextStyle(
                       color: const Color(0xff000000),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w600,
 
                       fontStyle: FontStyle.normal,
-                      fontSize: 25.0),
+                      fontSize: 22.0),
                   textAlign: TextAlign.left),
             ),
             SliverToBoxAdapter(child: Column(children: [
@@ -169,7 +169,8 @@ class ChangePasswordState extends State<ChangePassword>{
                 height: 50
                 ,child: SizedBox(
                 width: 300,height: 50,
-                child: ElevatedButton(
+                child:
+                ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

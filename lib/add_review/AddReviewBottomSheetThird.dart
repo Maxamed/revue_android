@@ -14,10 +14,11 @@ import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 
 class AddReviewBottomSheetThird extends  StatefulWidget{
+  AddReviewBottomSheetThird({Key key}):super(key: key);
 
-  ReviewModal reviewModal;
+  // ReviewModal reviewModal;
 
-  AddReviewBottomSheetThird(this.reviewModal);
+  // AddReviewBottomSheetThird(this.reviewModal);
 
   @override
   State<StatefulWidget> createState() {
@@ -41,8 +42,8 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
-      child: ListView(children: [
+      child: ListView(physics: NeverScrollableScrollPhysics(),shrinkWrap: true,
+        children: [
 
         Container(
           margin: EdgeInsets.only(left: 20,right: 20,top: 20),
@@ -55,20 +56,19 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
 
               GFRating(
-                size: 30,
+                size: 25,
                 value: facilitiesRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
                     facilitiesRating = value;
-                    widget.reviewModal.facilities = facilitiesRating;
-                    widget.reviewModal.facilities = value;
+                    // widget.reviewModal.facilities = facilitiesRating;
                   });
 
                 },
@@ -88,19 +88,19 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
 
               GFRating(
-                size: 30,
+                size: 25,
                 value: designRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
                     designRating = value;
-                    widget.reviewModal.design = value;
+                    // widget.reviewModal.design = value;
                   });
 
                 },
@@ -120,19 +120,19 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
 
               GFRating(
-                size: 30,
+                size: 25,
                 value: locationRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color:ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
                     locationRating = value;
-                    widget.reviewModal.location = value;
+                    // widget.reviewModal.location = value;
                   });
                 },
               )
@@ -151,19 +151,19 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
 
               GFRating(
-                size: 30,
+                size: 25,
                 value: valueRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
                     valueRating = value;
-                    widget.reviewModal.value = value;
+                    // widget.reviewModal.value = value;
                   });
                 },
               )
@@ -182,19 +182,19 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
 
               GFRating(
-                size: 30,
+                size: 25,
                 value: managementRating,allowHalfRating: true,borderColor: ColorClass.greyColor,
                 color: ColorClass.blueColor,
                 onChanged: (value) {
                   setState(() {
                     managementRating = value;
-                    widget.reviewModal.management = value;
+                    // widget.reviewModal.management = value;
                   });
                 },
               )
@@ -214,7 +214,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                       color:  const Color(0xff000000),
                       fontWeight: FontWeight.w600,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 16.0
                   ),
                   textAlign: TextAlign.left
               ),
@@ -251,7 +251,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                           fontWeight: FontWeight.w600,
 
                           fontStyle:  FontStyle.normal,
-                          fontSize: 18.0
+                          fontSize: 16.0
                       ),
                       textAlign: TextAlign.left
                   ),
@@ -321,7 +321,7 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                           color:Colors.black,
                           fontWeight: FontWeight.w600,
                           fontStyle:  FontStyle.normal,
-                          fontSize: 18.0
+                          fontSize: 16.0
                       ),
                       textAlign: TextAlign.left
                   ),
@@ -378,93 +378,117 @@ class AddReviewBottomSheetThirdState extends State<AddReviewBottomSheetThird>{
                 ),),
             ],
           ),
-        ):SizedBox(height: 120,),
+        ):Container(),
 
 
-        Align(alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 30,bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
-                        Text(
-                            "BACK",
-                            style: TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: (){
-                    if(facilitiesRating!=0
-                        &&designRating!=0
-                        &&locationRating!=0
-                        &&valueRating!= 0
-                        &&managementRating!=0
-                        &&startDateController.text.isNotEmpty){
-                      double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
-                      print(rating);
-                      widget.reviewModal.rating = rating;
-
-                      widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
-
-                      Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
-                          this.setState(() {
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                          }));
-                    }else{
-                      Fluttertoast.showToast(msg: "All Fields must be Filled");
-                    }
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                            "DONE",
-                            style:  TextStyle(
-                                color:  ColorClass.darkTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                        Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),)
+        // Align(alignment: Alignment.bottomRight,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(top: 30,bottom: 10),
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         GestureDetector(
+        //           behavior: HitTestBehavior.translucent,
+        //           onTap: (){
+        //             Navigator.pop(context);
+        //           },
+        //           child: Padding(
+        //             padding: const EdgeInsets.all(10.0),
+        //             child: Row(
+        //               mainAxisAlignment: MainAxisAlignment.start,
+        //               children: [
+        //                 Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
+        //                 Text(
+        //                     "BACK",
+        //                     style: TextStyle(
+        //                         color:  ColorClass.darkTextColor,
+        //                         fontWeight: FontWeight.w600,
+        //                         fontStyle:  FontStyle.normal,
+        //                         fontSize: 18.0
+        //                     ),
+        //                     textAlign: TextAlign.left
+        //                 ),
+        //               ],
+        //             ),
+        //           ),
+        //         ),
+        //
+        //
+        //         GestureDetector(
+        //           behavior: HitTestBehavior.translucent,
+        //           onTap: (){
+        //             if(facilitiesRating!=0
+        //                 &&designRating!=0
+        //                 &&locationRating!=0
+        //                 &&valueRating!= 0
+        //                 &&managementRating!=0
+        //                 &&startDateController.text.isNotEmpty){
+        //               double rating = (facilitiesRating+designRating+locationRating+valueRating+managementRating)/5;
+        //               print(rating);
+        //               widget.reviewModal.rating = rating;
+        //
+        //               widget.reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
+        //
+        //               Webservice.addReviewRequest(context, widget.reviewModal).then((value) =>
+        //                   this.setState(() {
+        //                     Navigator.pop(context);
+        //                     Navigator.pop(context);
+        //                     Navigator.pop(context);
+        //                   }));
+        //             }else{
+        //               Fluttertoast.showToast(msg: "All Fields must be Filled");
+        //             }
+        //           },
+        //           child: Padding(
+        //             padding: const EdgeInsets.all(10.0),
+        //             child: Row(
+        //               mainAxisAlignment: MainAxisAlignment.end,
+        //               children: [
+        //                 Text(
+        //                     "DONE",
+        //                     style:  TextStyle(
+        //                         color:  ColorClass.darkTextColor,
+        //                         fontWeight: FontWeight.w600,
+        //                         fontStyle:  FontStyle.normal,
+        //                         fontSize: 18.0
+        //                     ),
+        //                     textAlign: TextAlign.left
+        //                 ),
+        //                 Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
+        //               ],
+        //             ),
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ),)
 
       ],),
     );
+  }
+
+
+  bool validate(){
+    return facilitiesRating!=0
+                    &&designRating!=0
+                    &&locationRating!=0
+                    &&valueRating!= 0
+                    &&managementRating!=0
+                    &&startDateController.text.isNotEmpty;
+  }
+
+
+  void addToReview(ReviewModal reviewModal){
+    // double rating = ;
+    //               print(rating);
+                  reviewModal.facilities = facilitiesRating;
+                  reviewModal.value = valueRating;
+                  reviewModal.location = locationRating;
+                  reviewModal.management = managementRating;
+                  reviewModal.design = designRating;
+          reviewModal.rating =((facilitiesRating+designRating+locationRating+valueRating+managementRating)/5);
+          reviewModal.reviewDate =DateTime.now().millisecondsSinceEpoch;
+
   }
 
 }

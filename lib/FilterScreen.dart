@@ -45,6 +45,7 @@ class FilterScreenState extends State<FilterScreen> {
      .toList();
 
  static  const  List searchRadius = [
+     'None',
     'This area only',
     'Near 5 KM',
     'Near 10 KM',
@@ -96,23 +97,26 @@ class FilterScreenState extends State<FilterScreen> {
     }
 
     switch (radius){
-      case 2:
+      case 0:
         radiusSelected=searchRadius[0];
-        break;
-      case 5:
+            break;
+      case 2:
         radiusSelected=searchRadius[1];
         break;
-       case 10:
+      case 5:
         radiusSelected=searchRadius[2];
         break;
-        case 20:
+       case 10:
         radiusSelected=searchRadius[3];
         break;
-        case 25:
+        case 20:
         radiusSelected=searchRadius[4];
         break;
-      case 30:
+        case 25:
         radiusSelected=searchRadius[5];
+        break;
+      case 30:
+        radiusSelected=searchRadius[6];
         break;
         default:
           radiusSelected=searchRadius[0];
@@ -202,7 +206,7 @@ class FilterScreenState extends State<FilterScreen> {
                       color: const Color(0xff000000),
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.normal,
-                      fontSize: 25.0),
+                      fontSize: 18.0),
                   textAlign: TextAlign.left),
             ),
             SliverToBoxAdapter(
@@ -222,7 +226,7 @@ class FilterScreenState extends State<FilterScreen> {
                                   fontWeight: FontWeight.w400,
 
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18.0),
+                                  fontSize: 16.0),
                               textAlign: TextAlign.center),
 
                           GestureDetector(
@@ -258,7 +262,7 @@ class FilterScreenState extends State<FilterScreen> {
                                               color:ColorClass.lightTextColor,
                                               fontWeight: FontWeight.w400,
                                               fontStyle: FontStyle.normal,
-                                              fontSize: 16.0),
+                                              fontSize: 14.0),
                                           textAlign: TextAlign.left)),
                                 ],
                               ),
@@ -280,7 +284,7 @@ class FilterScreenState extends State<FilterScreen> {
                                   color: ColorClass.lightHeadingColor,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18.0),
+                                  fontSize: 16.0),
                               textAlign: TextAlign.left),
 
                           Container(
@@ -290,7 +294,7 @@ class FilterScreenState extends State<FilterScreen> {
                             // width: MediaQuery.of(context).size.width,
                             child: ToggleSwitch(
                               minWidth:110,
-                              fontSize: 16.0,
+                              fontSize: 14.0,
                               cornerRadius: 5,
                               borderColor: [ ColorClass.borderColor],borderWidth: 1,
                               inactiveFgColor: ColorClass.lightTextColor,
@@ -323,7 +327,7 @@ class FilterScreenState extends State<FilterScreen> {
                                   color: ColorClass.lightHeadingColor,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18.0),
+                                  fontSize: 16.0),
                               textAlign: TextAlign.center),
 
 
@@ -336,7 +340,7 @@ class FilterScreenState extends State<FilterScreen> {
                               headerColor: Colors.white,
                               height: 80,
                               scroll: true,
-                              textStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 16),
+                              textStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 14),
                               showHeader: false,selectedChipColor: ColorClass.blueColor,
                               selectedTextStyle: TextStyle(color: Colors.white),
                               decoration: BoxDecoration(color: Colors.white,
@@ -367,7 +371,7 @@ class FilterScreenState extends State<FilterScreen> {
                                   color: ColorClass.lightHeadingColor,
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 18.0),
+                                  fontSize: 16.0),
                               textAlign: TextAlign.center),
                           Container(
                             height: 50,
@@ -385,7 +389,7 @@ class FilterScreenState extends State<FilterScreen> {
                                     color: ColorClass.borderColor, width: 1),
                                 dropdownButtonColor: Colors.white,
                                 value: radiusSelected,
-                                style: TextStyle(color: ColorClass.lightTextColor,fontSize: 16),
+                                style: TextStyle(color: ColorClass.lightTextColor,fontSize: 14),
                                 onChanged: (newValue) async{
                               determinePosition();
 
@@ -659,19 +663,20 @@ class FilterScreenState extends State<FilterScreen> {
    int index=searchRadius.indexOf(radiusSelected);
    switch (index){
      case 0:
-       return 2;
+       return 0;
      case 1:
-       return 5;
+       return 2;
      case 2:
-       return 10;
+       return 5;
      case 3:
-       return 20;
+       return 10;
      case 4:
-       return 25;
+       return 20;
      case 5:
+       return 25;
+     case 6:
        return 30;
-
-     default :
+       default :
        return 30;
    }
  }
