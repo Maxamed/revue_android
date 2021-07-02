@@ -50,8 +50,10 @@ double getPercentage(double value){
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
 navigationBar: CupertinoNavigationBar(backgroundColor: Colors.grey.shade50,
-    leading: GestureDetector(
-  child: Icon(CupertinoIcons.back,size: 20,),onTap: (){ Navigator.pop(context);},)),
+  middle: Text(widget.reviewModal.reviewerName,style: TextStyle(color: Colors.black87,fontSize: 14),),
+  //   leading: GestureDetector(
+  // child: Icon(CupertinoIcons.back,size: 20,),onTap: (){ Navigator.pop(context);},)
+),
       child: Container(
         color: Colors.white,
       width: MediaQuery.of(context).size.width,

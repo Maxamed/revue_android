@@ -8,6 +8,7 @@ import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/add_review/Add_Review.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
 
 import 'RevueDetail.dart';
@@ -195,7 +196,7 @@ class ReviewListState extends State<ReviewList>{
         context: context,backgroundColor: Colors.white,
         barrierColor: Colors.black.withAlpha(10),
         builder: (context)=>CupertinoScaffold(transitionBackgroundColor: Colors.white,
-            body: AddReview(widget.compoundModal.id,widget.compoundModal.compoundname)));
+            body: AddReview(key: GlobalKeys.addReviewKey,compoundID: widget.compoundModal.id,compoundName: widget.compoundModal.compoundname)));
 
   }
 

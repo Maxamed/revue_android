@@ -489,7 +489,7 @@ bool validate()
 }
 
 
-void addToReview(ReviewModal reviewModal) async{
+Future<void> addToReview(ReviewModal reviewModal) async{
   List tempProList = [];
   List tempConsList =[];
 
@@ -502,6 +502,7 @@ void addToReview(ReviewModal reviewModal) async{
   for(int i =0;i<consList.length;i++){
     tempConsList.add(consList[i]);
   }
+  print(tempConsList);
 
   List<MultipartFile> tempList =[];
 
@@ -515,6 +516,9 @@ void addToReview(ReviewModal reviewModal) async{
 
             reviewModal.pros = tempProList;
            reviewModal.cons = tempConsList;
+
+           print(reviewModal.pros);
+           print(reviewModal.cons);
            reviewModal.multipartImages= tempList;
 
 }

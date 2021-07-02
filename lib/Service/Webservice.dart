@@ -227,21 +227,32 @@ class Webservice{
 
     print(request.files);
     print(request.fields);
+    GlobalKeys.addReviewKey.currentState.setState(() {
+      GlobalKeys.addReviewKey.currentState.load=true;
+    });
     var response = await request.send();
+
     // print(response.statusCode);
 
     response.stream.transform(utf8.decoder).listen((value) {
-      // print("response------------------ "+response.toString());
-      // print("valeue--------------"+value);
+      print("response------------------ "+response.toString());
+      print("valeue--------------"+value);
       Map map = json.decode(value);
       if(map["errorcode"] == 0 && map["status"]==true){
         Fluttertoast.showToast(msg: "Review Added");
+
         GlobalKeys.compoundDetailsKey.currentState.fetchReview();
 
       }
       else{
         Fluttertoast.showToast(msg: "Review Not Added. Please Try Again Later");
       }
+
+
+    });
+    GlobalKeys.addReviewKey.currentState.setState(() {
+      GlobalKeys.addReviewKey.currentState.load=false;
+      Navigator.pop(context);
 
     });
 

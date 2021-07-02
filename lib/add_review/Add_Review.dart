@@ -16,7 +16,7 @@ class AddReview extends StatefulWidget{
   String compoundName = "";
 
 
-  AddReview(this.compoundID, this.compoundName);
+  AddReview({Key key,this.compoundID, this.compoundName}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -39,9 +39,16 @@ class AddReviewState extends State<AddReview>{
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(backgroundColor: Colors.grey.shade50,
-          leading: GestureDetector(
-            child: Icon(CupertinoIcons.back,size: 20,),onTap: (){ Navigator.pop(context);},)),
+      navigationBar: CupertinoNavigationBar(
+          middle: Text("Add Review",style: TextStyle(color: Colors.black87,fontSize: 14),),
+          backgroundColor: Colors.grey.shade50,
+          // trailing: TextButton(child: Text("Close",style: TextStyle(fontSize: 14,color: ColorClass.blueColor,fontWeight: FontWeight.w600),),onPressed: (){
+          //   Navigator.pop(context);
+          // },),
+          // leading: GestureDetector(
+          //   behavior: HitTestBehavior.translucent,
+          //   child: Icon(CupertinoIcons.back,size: 25,),onTap: (){},)
+      ),
       child: Material(
         child: SingleChildScrollView(
           child: Column(children: [
@@ -65,23 +72,18 @@ class AddReviewState extends State<AddReview>{
           if(GlobalKeys.addReviewFirstKey.currentState.validate()
               &&GlobalKeys.addReviewSecondKey.currentState.validate()
           &&GlobalKeys.addReviewThirdKey.currentState.validate()){
-            setState(() {
-              load=true;
-            });
+
             reviewModal.price = GlobalKeys.addReviewFirstKey.currentState.rentController.text;
             reviewModal.floorplan = GlobalKeys.addReviewFirstKey.currentState.floorPlanController.text;
             reviewModal.review = GlobalKeys.addReviewFirstKey.currentState.descriptionController.text;
-            GlobalKeys.addReviewSecondKey.currentState.addToReview(reviewModal);
+           await GlobalKeys.addReviewSecondKey.currentState.addToReview(reviewModal);
             GlobalKeys.addReviewThirdKey.currentState.addToReview(reviewModal);
             reviewModal.compoundID = widget.compoundID;
             reviewModal.compoundName = widget.compoundName;
 
 
-           await Webservice.addReviewRequest(context, reviewModal);
-           setState(() {
-             load=false;
-           });
-           Navigator.pop(context);
+            Webservice.addReviewRequest(context, reviewModal);
+           // Navigator.pop(context);
           }
           else
           {

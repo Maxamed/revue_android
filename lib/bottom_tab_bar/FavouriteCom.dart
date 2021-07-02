@@ -10,6 +10,7 @@ import 'package:revue_mobile/bottom_tab_bar/SearchWidget.dart';
 import 'package:revue_mobile/compound/CompoundDetails.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
+import 'package:revue_mobile/messages/MessagingScreen.dart';
 
 final favGlobalKey= GlobalKeys.favoriteKey;
 class FavouriteCom extends StatefulWidget{
@@ -55,9 +56,9 @@ class FavouriteComState extends State<FavouriteCom>{
                       "My Favourite",
                       style:  TextStyle(
                           color:  ColorClass.blueColor,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           fontStyle:  FontStyle.normal,
-                          fontSize: 20.0
+                          fontSize: 16.0
                       ),
                       textAlign: TextAlign.left
                   ),
@@ -68,7 +69,7 @@ class FavouriteComState extends State<FavouriteCom>{
                     style: TextStyle(
                         color:  Colors.black,
                         fontStyle:  FontStyle.normal,
-                        fontSize:17.0
+                        fontSize:14.0
                     ),
                     textAlign: TextAlign.left
                 ):
@@ -134,8 +135,8 @@ class FavouriteComState extends State<FavouriteCom>{
                                               (favList[index] as CompoundModal).compoundname.toUpperCase(),
                                               maxLines: 2,
                                               style:  TextStyle(
-                                                  color:  ColorClass.blackColor,
-                                                  fontWeight: FontWeight.w500,
+                                                  color:  ColorClass.darkTextColor,
+                                                  fontWeight: FontWeight.w400,
                                                   fontStyle:  FontStyle.normal,
                                                   fontSize: 16.0
 
@@ -161,16 +162,16 @@ class FavouriteComState extends State<FavouriteCom>{
                                     Padding(
                                       padding:  EdgeInsets.only(top: 4,bottom: 4),child: Row(
                                       children: [
-                                        Icon(CupertinoIcons.location_solid,size: 25,),
+                                        Icon(CupertinoIcons.location_solid,size: 18,),
                                         // Image.asset("assets/images/userLocation.png",
                                         //   height: 25,width: 25,alignment: Alignment.topLeft,fit: BoxFit.cover,),
                                         Text(
                                             "ADDRESS",
                                             style:  TextStyle(
-                                                color: ColorClass.darkTextColor ,
+                                                color: Colors.grey.shade800 ,
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle:  FontStyle.normal,
-                                                fontSize: 13.0
+                                                fontSize: 12.0
                                             ),
                                             textAlign: TextAlign.left
                                         )
@@ -183,7 +184,7 @@ class FavouriteComState extends State<FavouriteCom>{
                                           (favList[index] as CompoundModal).address,
                                           style:  TextStyle(
                                               color:  ColorClass.darkTextColor,
-                                              fontWeight: FontWeight.w400,
+                                              fontWeight: FontWeight.w300,
                                               fontStyle:  FontStyle.normal,
                                               fontSize: 12.0
                                           ),
@@ -230,40 +231,20 @@ class FavouriteComState extends State<FavouriteCom>{
                                 ),),
                             ],),
 
-
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                                Container(
-                                  child: Row(children: [
-                                    Icon(CupertinoIcons.phone_fill),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Text(
-                                          "Call",
-                                          style: const TextStyle(
-                                              color:  const Color(0xff000000),
-                                              fontWeight: FontWeight.w400,
 
-                                              fontStyle:  FontStyle.normal,
-                                              fontSize: 13.0
-                                          ),
-                                          textAlign: TextAlign.left
-                                      ),
-                                    )
-                                  ],),
-                                ),
                                 Container(
                                   child: Row(children: [
-                                    Icon(CupertinoIcons.mail_solid),
+                                    Icon(CupertinoIcons.mail_solid,size: 18,color:Colors.blue.shade700),
                                     Padding(
                                       padding: const EdgeInsets.all(5.0),
                                       child: Text(
                                           "Email",
-                                          style: const TextStyle(
-                                              color:  const Color(0xff000000),
+                                          style:  TextStyle(
+                                              color:   ColorClass.darkTextColor,
                                               fontWeight: FontWeight.w400,
-
                                               fontStyle:  FontStyle.normal,
                                               fontSize: 13.0
                                           ),
@@ -272,24 +253,36 @@ class FavouriteComState extends State<FavouriteCom>{
                                     )
                                   ],),
                                 ),
-                                Container(
-                                  child: Row(children: [
-                                    Icon(CupertinoIcons.bubble_left_bubble_right_fill),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Text(
-                                          "Message",
-                                          style: const TextStyle(
-                                              color:  const Color(0xff000000),
-                                              fontWeight: FontWeight.w400,
+                                GestureDetector(
+                                  behavior: HitTestBehavior.translucent,onTap: (){
+                                  CompoundModal compound=(favList[index] as CompoundModal);
+                                  Navigator.push(
+                                      context,
+                                      CupertinoPageRoute(
+                                          builder: (context) =>
+                                              MessagingScreen(compound.id,
+                                                  compound.compoundname, compound.address)));
 
-                                              fontStyle:  FontStyle.normal,
-                                              fontSize: 13.0
-                                          ),
-                                          textAlign: TextAlign.left
-                                      ),
-                                    )
-                                  ],),
+                                },
+                                  child: Container(
+                                    child: Row(children: [
+                                      Icon(CupertinoIcons.chat_bubble_2_fill,color:Colors.blue.shade700,size: 20,),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Text(
+                                            "Q and A",
+                                            style:  TextStyle(
+                                                color:  ColorClass.darkTextColor,
+                                                fontWeight: FontWeight.w400,
+
+                                                fontStyle:  FontStyle.normal,
+                                                fontSize: 13.0
+                                            ),
+                                            textAlign: TextAlign.left
+                                        ),
+                                      )
+                                    ],),
+                                  ),
                                 ),
                                 Container(
                                   child: Row(children: [
@@ -297,12 +290,11 @@ class FavouriteComState extends State<FavouriteCom>{
                                       padding: const EdgeInsets.all(5.0),
                                       child: Text(
                                           "View more",
-                                          style: const TextStyle(
-                                              color:  const Color(0xff4285f4),
+                                          style:  TextStyle(
+                                              color:  ColorClass.blueColor,
                                               fontWeight: FontWeight.w600,
-
                                               fontStyle:  FontStyle.normal,
-                                              fontSize: 16.0
+                                              fontSize: 12.0
                                           ),
                                           textAlign: TextAlign.left
                                       ),
@@ -311,6 +303,86 @@ class FavouriteComState extends State<FavouriteCom>{
                                 )
                               ],),
                             ),
+                            // Padding(
+                            //   padding: const EdgeInsets.all(8.0),
+                            //   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+                            //     Container(
+                            //       child: Row(children: [
+                            //         Icon(CupertinoIcons.phone_fill),
+                            //         Padding(
+                            //           padding: const EdgeInsets.all(5.0),
+                            //           child: Text(
+                            //               "Call",
+                            //               style: const TextStyle(
+                            //                   color:  const Color(0xff000000),
+                            //                   fontWeight: FontWeight.w400,
+                            //
+                            //                   fontStyle:  FontStyle.normal,
+                            //                   fontSize: 13.0
+                            //               ),
+                            //               textAlign: TextAlign.left
+                            //           ),
+                            //         )
+                            //       ],),
+                            //     ),
+                            //     Container(
+                            //       child: Row(children: [
+                            //         Icon(CupertinoIcons.mail_solid),
+                            //         Padding(
+                            //           padding: const EdgeInsets.all(5.0),
+                            //           child: Text(
+                            //               "Email",
+                            //               style: const TextStyle(
+                            //                   color:  const Color(0xff000000),
+                            //                   fontWeight: FontWeight.w400,
+                            //
+                            //                   fontStyle:  FontStyle.normal,
+                            //                   fontSize: 13.0
+                            //               ),
+                            //               textAlign: TextAlign.left
+                            //           ),
+                            //         )
+                            //       ],),
+                            //     ),
+                            //     Container(
+                            //       child: Row(children: [
+                            //         Icon(CupertinoIcons.bubble_left_bubble_right_fill),
+                            //         Padding(
+                            //           padding: const EdgeInsets.all(5.0),
+                            //           child: Text(
+                            //               "Message",
+                            //               style: const TextStyle(
+                            //                   color:  const Color(0xff000000),
+                            //                   fontWeight: FontWeight.w400,
+                            //
+                            //                   fontStyle:  FontStyle.normal,
+                            //                   fontSize: 13.0
+                            //               ),
+                            //               textAlign: TextAlign.left
+                            //           ),
+                            //         )
+                            //       ],),
+                            //     ),
+                            //     Container(
+                            //       child: Row(children: [
+                            //         Padding(
+                            //           padding: const EdgeInsets.all(5.0),
+                            //           child: Text(
+                            //               "View more",
+                            //               style: const TextStyle(
+                            //                   color:  const Color(0xff4285f4),
+                            //                   fontWeight: FontWeight.w600,
+                            //
+                            //                   fontStyle:  FontStyle.normal,
+                            //                   fontSize: 16.0
+                            //               ),
+                            //               textAlign: TextAlign.left
+                            //           ),
+                            //         )
+                            //       ],),
+                            //     )
+                            //   ],),
+                            // ),
 
                             Divider(color: Color(0x33000000),thickness: 1,)
 
