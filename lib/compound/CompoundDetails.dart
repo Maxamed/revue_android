@@ -217,8 +217,9 @@ class CompoundDetailsState extends State<CompoundDetails> {
                                     context,
                                     CupertinoPageRoute(
                                         builder: (context) =>
-                                            MessagingScreen(compoundModal.id,
-                                                compoundModal.compoundname, compoundModal.address)));
+                                            MessagingScreen(key:GlobalKeys.addQuestionKey,
+                                                compoundID: compoundModal.id,
+                                                address: compoundModal.compoundname,compoundName:  compoundModal.address)));
                               },
                               label: Text(
                                 "Q and A",

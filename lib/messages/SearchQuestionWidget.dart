@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:revue_mobile/Modal/QuestionModal.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 
 import 'QuestionAnswerScreen.dart';
 
@@ -57,7 +58,7 @@ class SearchQuestionState extends State<SearchQuestion>{
                      placeholder: "Have a Question? Search Here",
                      keyboardType: TextInputType.text,
                      textInputAction: TextInputAction.search,
-                     placeholderStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 18),
+                     placeholderStyle: TextStyle(color: ColorClass.lightTextColor,fontSize: 16),
                      suffix: searchController.text.isNotEmpty?
                      IconButton(icon: Icon(CupertinoIcons.clear_circled,
                        color: ColorClass.lightTextColor,),onPressed: (){
@@ -104,11 +105,12 @@ class SearchQuestionState extends State<SearchQuestion>{
                      behavior: HitTestBehavior.translucent,
                      onTap: (){
                        Navigator.push(context,MaterialPageRoute(builder: (context)=>
-                           QuestionAnswerScreen(widget.compoundID,widget.compoundName,
-                               searchList[index] as QuestionModal)));
+                           QuestionAnswerScreen(key: GlobalKeys.addAswerKey,compoundID: widget.compoundID,
+                               compoundName: widget.compoundName,
+                              questionModal:  searchList[index] as QuestionModal)));
                      },
                      child: Text((searchList[index] as QuestionModal).question,
-                       style: TextStyle(color: ColorClass.darkTextColor,fontSize: 16,
+                       style: TextStyle(color: ColorClass.darkTextColor,fontSize: 14,
                        fontWeight: FontWeight.w500
                        ),textAlign: TextAlign.center,),
                    ),

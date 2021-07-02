@@ -260,8 +260,8 @@ class FavouriteComState extends State<FavouriteCom>{
                                       context,
                                       CupertinoPageRoute(
                                           builder: (context) =>
-                                              MessagingScreen(compound.id,
-                                                  compound.compoundname, compound.address)));
+                                              MessagingScreen(key: GlobalKeys.addQuestionKey,compoundID:  compound.id,
+                                                 compoundName:  compound.compoundname,address: compound.address)));
 
                                 },
                                   child: Container(

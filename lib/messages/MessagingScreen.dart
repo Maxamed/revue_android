@@ -5,6 +5,7 @@ import 'package:revue_mobile/Modal/AnswerModal.dart';
 import 'package:revue_mobile/Modal/MessagingModal.dart';
 import 'package:revue_mobile/Modal/QuestionModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
+import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
 import 'package:revue_mobile/messages/QuestionAnswerScreen.dart';
 import 'package:revue_mobile/messages/SearchQuestionWidget.dart';
@@ -18,7 +19,7 @@ class MessagingScreen extends StatefulWidget{
   String address;
 
 
-  MessagingScreen(this.compoundID, this.compoundName,this.address);
+  MessagingScreen({Key key,this.compoundID, this.compoundName,this.address}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -33,10 +34,15 @@ class MessagingScreenState extends State<MessagingScreen>{
   @override
   void initState() {
     super.initState();
+   getAllQuestions();
+  }
+
+  getAllQuestions(){
     Webservice.getAllRequestedQuestions(questionsList, widget.compoundID).then((value) => this.setState(() {
 
     }));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +107,7 @@ class MessagingScreenState extends State<MessagingScreen>{
             onRefresh:(){
               return new Future<void>.delayed(const Duration(seconds: 2))
                 ..then((_) {
-                  Webservice.getAllRequestedQuestions(questionsList, widget.compoundID).then((value) => this.setState(() {
-
-                  }));
-
+                 getAllQuestions();
                 });
 
             },
@@ -147,7 +150,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(15),
                       border: Border.all(
-                          color: Color(0x33000000), width: 1)),
+                          color: ColorClass.borderColor, width: 1)),
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: (){
@@ -200,8 +203,8 @@ class MessagingScreenState extends State<MessagingScreen>{
                         behavior: HitTestBehavior.translucent,
                         onTap: (){
                           Navigator.push(context,MaterialPageRoute(builder: (context)=>
-                              QuestionAnswerScreen(widget.compoundID,widget.compoundName,
-                                  (questionsList[index] as QuestionModal))));
+                              QuestionAnswerScreen(key: GlobalKeys.addAswerKey,compoundID: widget.compoundID,compoundName: widget.compoundName,
+                                 questionModal:  (questionsList[index] as QuestionModal))));
 
                          setState(() {
 
@@ -223,7 +226,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                             ),
                             answerWidget((questionsList[index] as QuestionModal).answerList),
                             SizedBox(height: 10,),
-                            Divider(color: Color(0x33000000),height: 1,thickness: 1,)
+                            Divider(color: ColorClass.borderColor,height: 1,thickness: 1,)
                           ],),
                         ),
                       );
@@ -293,11 +296,11 @@ class MessagingScreenState extends State<MessagingScreen>{
               padding:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
               child: Text(
                   "Your question might be answered by any user who lived there",
-                  style: const TextStyle(
-                      color:  const Color(0x80000000),
-                      fontWeight: FontWeight.w600,
+                  style:  TextStyle(
+                      color: ColorClass.lightTextColor,
+                      fontWeight: FontWeight.w400,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 15.0
+                      fontSize: 14.0
                   ),
                   textAlign: TextAlign.left
               ),
@@ -315,7 +318,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                     height: 40,width: 150,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xffb2b2b2),
+                        primary: ColorClass.inactiveIconColor,
                         padding: EdgeInsets.all(10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -327,7 +330,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                       },
                       child: Text(
                         "Cancel",
-                        style: TextStyle(fontSize: 16,color: Colors.white),
+                        style: TextStyle(fontSize: 14,color: Colors.white),
                       ),
 
                     ),
@@ -344,6 +347,7 @@ class MessagingScreenState extends State<MessagingScreen>{
                        primary: ColorClass.blueColor,
                       ),
                       onPressed: () async{
+
                         SharedPreferences pref = await SharedPreferences.getInstance();
                         MessagingModal messaging = new MessagingModal();
                         messaging.question = questionController.text;
@@ -353,15 +357,14 @@ class MessagingScreenState extends State<MessagingScreen>{
                         messaging.compoundName = widget.compoundName;
                         messaging.timestamp = DateTime.now().millisecondsSinceEpoch;
 
-
-
                         Webservice.postQuestionRequest(context, messaging).then((value) => this.setState(() {
-
+                          questionController.text="";
                         }));
+
                       },
                       child: Text(
                         "Post",
-                        style: TextStyle(fontSize: 16,color: Colors.white,),
+                        style: TextStyle(fontSize: 14,color: Colors.white,),
                       ),),
                   ),
                 ],),
@@ -381,8 +384,8 @@ class MessagingScreenState extends State<MessagingScreen>{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text("No answers",style:TextStyle(
-                  color:   ColorClass.darkTextColor,
-                  fontWeight: FontWeight.w600,
+                  color:    ColorClass.greyColor,
+                  fontWeight: FontWeight.w500,
                   fontStyle:  FontStyle.normal,
                   fontSize: 15.0
               ),),
@@ -406,44 +409,41 @@ class MessagingScreenState extends State<MessagingScreen>{
             ),
           ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 6),
-              child: Row(children: [
-                Flexible(
-                  flex: 2,
-                  fit: FlexFit.tight,
-                  child: Row(
-                    children: [
-                      Icon(CupertinoIcons.person_circle_fill,color: Colors.grey,),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                            "${(ansList[ind] as AnswerModal).userName}",
-                            style:  TextStyle(
-                                color:   ColorClass.greyColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 15.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
+            Row(children: [
+              Flexible(
+                flex: 2,
+                fit: FlexFit.tight,
+                child: Row(
+                  children: [
+                    Icon(CupertinoIcons.person_circle_fill,color: Colors.grey,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                          "${(ansList[ind] as AnswerModal).userName}",
+                          style:  TextStyle(
+                              color:   ColorClass.greyColor,
+                              fontWeight: FontWeight.w500,
+                              fontStyle:  FontStyle.normal,
+                              fontSize: 15.0
+                          ),
+                          textAlign: TextAlign.left
                       ),
-                    ],
-                  ),
-                ),
-                Flexible(fit: FlexFit.tight,flex: 1,child: // 1 Month ago
-                Text(
-                    StringConstant.getReviewPostedDate((ansList[ind] as AnswerModal).timestamp),
-                    style:  TextStyle(
-                        color:  ColorClass.lightTextColor,
-                        fontWeight: FontWeight.w600,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 15.0
                     ),
-                    textAlign: TextAlign.left
-                ),)
-              ],),
-            ),],);
+                  ],
+                ),
+              ),
+              Flexible(fit: FlexFit.tight,flex: 1,child: // 1 Month ago
+              Text(
+                  StringConstant.getReviewPostedDate((ansList[ind] as AnswerModal).timestamp),
+                  style:  TextStyle(
+                      color:  ColorClass.lightTextColor,
+                      fontWeight: FontWeight.w400,
+                      fontStyle:  FontStyle.normal,
+                      fontSize: 15.0
+                  ),
+                  textAlign: TextAlign.left
+              ),)
+            ],),],);
             })
 
 

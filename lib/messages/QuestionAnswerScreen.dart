@@ -16,7 +16,7 @@ class QuestionAnswerScreen extends StatefulWidget{
   String compoundID;
   String compoundName;
   QuestionModal questionModal;
-  QuestionAnswerScreen(this.compoundID, this.compoundName,this.questionModal);
+  QuestionAnswerScreen({Key key,this.compoundID, this.compoundName,this.questionModal}):super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -37,10 +37,12 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
   void initState() {
 
     super.initState();
+    getAllAnswers();
+  }
+  getAllAnswers(){
     Webservice.getAllAnswersRequest(answerList, widget.questionModal.id).then((value) => this.setState(() {
 
     }));
-
   }
 
   @override
@@ -101,6 +103,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
       body: ListView(
         shrinkWrap: true,
         children: [
+          SizedBox(height: 10,),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
@@ -114,8 +117,9 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
               textAlign: TextAlign.left
           ),
         ),
-        Divider(color: ColorClass.greyColor,height: 2,thickness: 1,),
+        Divider(color: ColorClass.borderColor,height: 5,thickness: 1,),
 
+        SizedBox(height: 10,),
 
 
         answerList.isEmpty?
@@ -159,8 +163,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                                 answer.userName+"......",
                                 style:  TextStyle(
                                     color:  ColorClass.darkTextColor,
-                                    fontWeight: FontWeight.w600,
-
+                                    fontWeight: FontWeight.w500,
                                     fontStyle:  FontStyle.normal,
                                     fontSize: 15.0
                                 ),
@@ -176,11 +179,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                             answer.timestamp),
                         style: TextStyle(
                             color:  ColorClass.greyColor,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             fontStyle:  FontStyle.normal,
-                            fontSize: 15.0
+                            fontSize: 14.0
                         ),
-                        textAlign: TextAlign.left
+                        textAlign: TextAlign.end
                     ),)
                   ],),
                 ),
@@ -195,14 +198,14 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                             "Helpful?",
                             style:  TextStyle(
                                 color:  ColorClass.greyColor,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
                                 fontStyle:  FontStyle.normal,
-                                fontSize: 15.0
+                                fontSize: 14.0
                             ),
                             textAlign: TextAlign.left
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 10),
                           child: Row(children: [
                             IconButton(
 
@@ -310,7 +313,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                               color:  ColorClass.darkTextColor,
                               fontWeight: FontWeight.w600,
                               fontStyle:  FontStyle.normal,
-                              fontSize: 15.0
+                              fontSize: 14.0
                           ),
                           textAlign: TextAlign.left
                       ),
@@ -321,7 +324,10 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
 
                 SizedBox(height: 10,),
 
-                Divider(color: Color(0x33000000),height: 1,thickness: 1,)
+                Padding(
+                  padding: const EdgeInsets.only(left: 10,right: 10,bottom: 5),
+                  child: Divider(color: Color(0x33000000),height: 1,thickness: 1,),
+                )
 
               ],),);
           },
@@ -388,11 +394,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
               child: // Your answer will shown among the oyher answer.
               Text(
                   StringConstant.answer,
-                  style: const TextStyle(
-                      color:  const Color(0x80000000),
-                      fontWeight: FontWeight.w600,
+                  style:  TextStyle(
+                      color:  ColorClass.lightTextColor,
+                      fontWeight: FontWeight.w400,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 15.0
+                      fontSize: 14.0
                   ),
                   textAlign: TextAlign.left
               )
@@ -413,7 +419,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          primary: Color(0xffb2b2b2),
+                          primary: ColorClass.inactiveIconColor,
                           padding: EdgeInsets.all(10),
                         ),
                         onPressed: () {
@@ -497,11 +503,11 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
 
               child: // If you find this content inappropriate and think i
               Text(StringConstant.report,
-                  style: const TextStyle(
-                      color:  const Color(0x80000000),
-                      fontWeight: FontWeight.w600,
+                  style:  TextStyle(
+                      color:  ColorClass.lightTextColor,
+                      fontWeight: FontWeight.w400,
                       fontStyle:  FontStyle.normal,
-                      fontSize: 18.0
+                      fontSize: 14.0
                   ),
                   textAlign: TextAlign.left
               )

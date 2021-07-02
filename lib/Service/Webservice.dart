@@ -300,6 +300,8 @@ class Webservice{
     Fluttertoast.showToast(msg: "Question Submitted Successfully ");
       Navigator.pop(context);
     }
+
+    GlobalKeys.addQuestionKey.currentState.getAllQuestions();
   }
 
 
@@ -319,9 +321,10 @@ class Webservice{
         && jsonResponse["errorCode"]==0){
       Fluttertoast.showToast(msg: "Post answer successfully",gravity: ToastGravity.BOTTOM,
           toastLength: Toast.LENGTH_SHORT);
-
       Navigator.pop(context);
     }
+
+    GlobalKeys.addAswerKey.currentState.getAllAnswers();
   }
 
 
