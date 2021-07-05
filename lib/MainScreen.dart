@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/bottom_tab_bar/FavouriteCom.dart';
 import 'package:revue_mobile/bottom_tab_bar/home/HomePage.dart';
@@ -111,22 +112,30 @@ class MainScreenState extends State<MainScreen>{
    //   ),
    // );
 
-    return SafeArea(child: Scaffold(
-      body: _screensList[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onTap,
-        currentIndex: currentIndex,
-        type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: TextStyle(fontSize: 17,color: ColorClass.blueColor),
-        selectedIconTheme: IconThemeData(color: ColorClass.redColor),
-        unselectedIconTheme: IconThemeData(color: ColorClass.inactiveIconColor),
-        unselectedLabelStyle: TextStyle(fontSize: 15,color: ColorClass.inactiveIconColor),
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon:  Icon(CupertinoIcons.search,), label: "Search",),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart,), label: "Favorite"),
-          BottomNavigationBarItem(icon:  Icon(CupertinoIcons.person,), label: "My Account"),
-        ],
-      ),
-    ));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: CupertinoColors.white,
+        // statusBarIconBrightness:  Brightness.light,
+
+      ),);
+    return Container(color: Colors.white,
+      child: SafeArea(
+          child: Scaffold(
+        body: _screensList[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _onTap,
+          currentIndex: currentIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: TextStyle(fontSize: 17,color: ColorClass.blueColor),
+          selectedIconTheme: IconThemeData(color: ColorClass.redColor),
+          unselectedIconTheme: IconThemeData(color: ColorClass.inactiveIconColor),
+          unselectedLabelStyle: TextStyle(fontSize: 15,color: ColorClass.inactiveIconColor),
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon:  Icon(CupertinoIcons.search,), label: "Search",),
+            BottomNavigationBarItem(icon: Icon(CupertinoIcons.heart,), label: "Favorite"),
+            BottomNavigationBarItem(icon:  Icon(CupertinoIcons.person,), label: "My Account"),
+          ],
+        ),
+      )),
+    );
   }
 }

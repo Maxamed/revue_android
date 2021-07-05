@@ -200,9 +200,9 @@ class Webservice{
     //
     // request.headers.addAll(headerMap);
 
-    request.fields["review"] = reviewModal.review;
-    request.fields["rent"] =reviewModal.price;
-    request.fields["floorplan"] = reviewModal.floorplan;
+    request.fields["review"] = reviewModal.review.trim();
+    request.fields["rent"] =reviewModal.price.trim();
+    request.fields["floorplan"] = reviewModal.floorplan.trim();
     request.fields["reviewername"] = sharedPreferences.getString("name");
     request.fields["compoundID"] = reviewModal.compoundID ;
     request.fields["userId"] = sharedPreferences.getString("userID");
@@ -216,7 +216,9 @@ class Webservice{
     request.fields["rating"] = reviewModal.rating.toString();
     request.fields["compoundName"] = reviewModal.compoundName;
     request.fields["timestamp"] = reviewModal.reviewDate.toString();
+    request.fields["bedRooms"]=reviewModal.bedRooms.toString();
 
+    request.fields["bathRooms"]=reviewModal.bathRooms.toString();
 
 
     List<http.MultipartFile> newList = new List<http.MultipartFile>();
@@ -400,8 +402,8 @@ class Webservice{
     var jsonResponse = convert.jsonDecode(response.body);
     if(jsonResponse["errorCode"] == Constants.ERROR_CODE
         && jsonResponse["status"]==Constants.STATUS_SUCCESS){
-      Fluttertoast.showToast(msg: "updated",gravity: ToastGravity.BOTTOM,
-          toastLength: Toast.LENGTH_SHORT);
+      // Fluttertoast.showToast(msg: "updated",gravity: ToastGravity.BOTTOM,
+      //     toastLength: Toast.LENGTH_SHORT);
     }
 
   }

@@ -25,6 +25,8 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
   TextEditingController floorPlanController = TextEditingController();
   TextEditingController rentController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController bedroomController = TextEditingController();
+  TextEditingController bathroomController = TextEditingController();
 
   ReviewModal reviewModal;
 
@@ -94,6 +96,7 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                     ),
                     textAlign: TextAlign.left
                 ),
+
                 TextField(textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
                   controller: rentController,
@@ -111,6 +114,74 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
               ],
             ),
           ),
+            Container(
+              margin: EdgeInsets.only(left: 20,right: 20,top: 30),
+              child:  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // First Name
+                  Text(
+                      "Bed Rooms",
+                      style: const TextStyle(
+                          color:  Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.left
+                  ),
+
+                  TextField(textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    controller: bedroomController,
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 15),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color:  ColorClass.greyColor,),
+                        ),
+                        fillColor: Colors.white
+                    ),),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20,right: 20,top: 30),
+              child:  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // First Name
+                  Text(
+                      "Bath Roooms",
+                      style: const TextStyle(
+                          color:  Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: 16.0
+                      ),
+                      textAlign: TextAlign.left
+                  ),
+
+                  TextField(textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    controller: bathroomController,
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 15),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color:  ColorClass.greyColor,),
+                        ),
+                        fillColor: Colors.white
+                    ),),
+                ],
+              ),
+            ),
           Container(
             margin: EdgeInsets.only(left: 20,right: 20,top: 30),
             child:  Column(
@@ -151,6 +222,8 @@ class AddReviewBottomSheetState extends State<AddReviewBottomSheetFirst>{
                         fillColor: Colors.white
                     ),),
                 ),
+
+
               ],
             ),
           ),

@@ -22,6 +22,7 @@ class HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       child: Stack(

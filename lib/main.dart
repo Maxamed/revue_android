@@ -17,8 +17,9 @@ Future<void> main() async {
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
   //     .then((_) {
   //   runApp(new MyApp());
-  // });
-
+  // // });
+  // SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
 
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,18 +28,17 @@ Future<void> main() async {
 
   print(email);
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: CupertinoColors.extraLightBackgroundGray,
-    statusBarIconBrightness:  Brightness.dark,
-
-  ),);
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   statusBarColor: CupertinoColors.extraLightBackgroundGray,
+  //   statusBarIconBrightness:  Brightness.light,
+  //
+  // ),);
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
 
   runApp(
       CupertinoApp(
-    debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         localizationsDelegates: [
           DefaultMaterialLocalizations.delegate,
@@ -46,7 +46,8 @@ Future<void> main() async {
           DefaultCupertinoLocalizations.delegate,
         ],
         theme: CupertinoThemeData(
-
+          brightness: Brightness.light,
+          // scaffoldBackgroundColor: Colors.white,
           // This is the theme of your application.
           //
           // Try running your application with "flutter run". You'll see the
@@ -56,7 +57,7 @@ Future<void> main() async {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-            primaryColor: CupertinoColors.black,
+          //   primaryColor: CupertinoColors.black,
             textTheme: CupertinoTextThemeData
               (textStyle: TextStyle(fontFamily: GoogleFonts.mulish().fontFamily))
         ),
@@ -73,11 +74,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: CupertinoColors.extraLightBackgroundGray,
-      statusBarIconBrightness:  Brightness.dark,
-
-    ),);
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: CupertinoColors.extraLightBackgroundGray,
+    //   statusBarIconBrightness:  Brightness.light,
+    //
+    // ),);
     SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp],
     );

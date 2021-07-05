@@ -491,34 +491,10 @@ class CompoundDetailsState extends State<CompoundDetails> {
                               fontStyle: FontStyle.normal,
                               fontSize: 18.0),
                           textAlign: TextAlign.left),
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-
-                         GlobalKeys.reviewListKey.currentState.openAddReview();
-                          // Navigator.push(context,MaterialPageRoute(builder:
-                          //     (context)=>CupertinoScaffold(body:
-                          //     AddReview(compoundModal.id,compoundModal.compoundname))));
-                          // // openBottomSheet(context);
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              CupertinoIcons.add,
-                              color: ColorClass.blueColor,
-                              size: 15,
-                            ),
-                            Text("ADD",
-                                style: const TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: const Color(0xcc156fc2),
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0),
-                                textAlign: TextAlign.left),
-                          ],
-                        ),
-                      ),
+                      ElevatedButton(
+                          onPressed: (){
+                            GlobalKeys.reviewListKey.currentState.openAddReview();
+                      }, child: Text("Add Review",style: TextStyle(fontSize: 12),)),
                     ],
                   ),
                 ),
