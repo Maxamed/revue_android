@@ -46,12 +46,17 @@ class Webservice{
 
     if(jsonResponse["status"]== Constants.STATUS_SUCCESS &&
         jsonResponse["errorCode"] ==Constants.SUCCESS_REGISTER_CODE ){
+      Fluttertoast.showToast(msg: "Registration Successful");
       Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Login()));
     }else if(jsonResponse["status"]== Constants.STATUS_FAIL &&
         jsonResponse["message"]==Constants.REGISTER_FAILED_ALREADY_EXIST){
       Fluttertoast.showToast(msg: "User Already Exist");
     }
+    else{
+      Fluttertoast.showToast(msg: "Registration Failed \n Please Try Again Later");
+    }
   }
+
 
   static void loginRequest(BuildContext context,UserModal userModal)async{
     var request ={};
@@ -702,5 +707,22 @@ class Webservice{
   }
 
 
+  static Future<bool> checkReview(String compoundId)
+  async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var request ={};
+    request["userId"]= sharedPreferences.getString("userID");
+    request["compoundId"]= compoundId;
+    var response = await http.post(Uri.parse(ServerDetails.check_review),body: convert.jsonEncode(request),
+        headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+        });
+    print(response.body);
 
+    var jsonResponse  = convert.jsonDecode(response.body);
+    return jsonResponse['reviewExists'];
+
+
+  }
 }

@@ -71,13 +71,13 @@ class AddReviewState extends State<AddReview>{
             }
           if(GlobalKeys.addReviewFirstKey.currentState.validate()
               &&GlobalKeys.addReviewSecondKey.currentState.validate()
-          &&GlobalKeys.addReviewThirdKey.currentState.validate()){
+          &&GlobalKeys.addReviewThirdKey.currentState.validate() && !load){
 
             reviewModal.price = GlobalKeys.addReviewFirstKey.currentState.rentController.text;
             reviewModal.floorplan = GlobalKeys.addReviewFirstKey.currentState.floorPlanController.text;
             reviewModal.review = GlobalKeys.addReviewFirstKey.currentState.descriptionController.text;
-            reviewModal.bedRooms = int.parse(GlobalKeys.addReviewFirstKey.currentState.bedroomController.text);
-            reviewModal.bathRooms = int.parse(GlobalKeys.addReviewFirstKey.currentState.bathroomController.text);
+            reviewModal.bedRooms = int.parse(GlobalKeys.addReviewFirstKey.currentState.bedroomController.text.trim());
+            reviewModal.bathRooms = int.parse(GlobalKeys.addReviewFirstKey.currentState.bathroomController.text.trim());
            await GlobalKeys.addReviewSecondKey.currentState.addToReview(reviewModal);
             GlobalKeys.addReviewThirdKey.currentState.addToReview(reviewModal);
             reviewModal.compoundID = widget.compoundID;

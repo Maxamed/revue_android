@@ -320,7 +320,8 @@ bool validate()
 {
   return rentController.text.isNotEmpty
               &&floorPlanController.text.isNotEmpty
-              &&descriptionController.text.isNotEmpty;
+              &&descriptionController.text.isNotEmpty && bedroomController.text.isNotEmpty
+  && bathroomController.text.isNotEmpty;
 }
 
 

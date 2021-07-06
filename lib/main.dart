@@ -46,7 +46,7 @@ Future<void> main() async {
           DefaultCupertinoLocalizations.delegate,
         ],
         theme: CupertinoThemeData(
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
           // scaffoldBackgroundColor: Colors.white,
           // This is the theme of your application.
           //

@@ -1,7 +1,7 @@
  class ServerDetails{
-  // static String base_url ="http://94.237.48.11:8080/RevueBackend";
+  static String base_url ="http://94.237.48.11:8080/RevueBackend";
 
-  static String base_url= "http://192.168.1.125:8080/Revue_Backend-1.0-SNAPSHOT";
+  // static String base_url= "http://192.168.1.125:8080/Revue_Backend-1.0-SNAPSHOT";
  static String register_request = base_url+"/register";
  static String login_request = base_url+"/login";
  static String get_compound_request = base_url+"/getCompound";
@@ -25,4 +25,5 @@
   static String forget_password_request = base_url+"/sendOtp";
   static String validate_OTP_request = base_url+"/verifyOtp";
   static String change_password = base_url+"/updatePassword";
+  static String check_review = base_url+"/checkReview";
 }

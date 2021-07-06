@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Modal/CompoundModal.dart';
@@ -492,8 +493,17 @@ class CompoundDetailsState extends State<CompoundDetails> {
                               fontSize: 18.0),
                           textAlign: TextAlign.left),
                       ElevatedButton(
-                          onPressed: (){
-                            GlobalKeys.reviewListKey.currentState.openAddReview();
+                          onPressed: ()
+                          async {
+
+                            bool exists= await Webservice.checkReview(compoundModal.id);
+                            if(!exists){
+                              GlobalKeys.reviewListKey.currentState.openAddReview();
+                            }
+                            else{
+                              Fluttertoast.showToast(msg: "Review Already Exists");
+                            }
+
                       }, child: Text("Add Review",style: TextStyle(fontSize: 12),)),
                     ],
                   ),

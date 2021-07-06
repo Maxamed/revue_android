@@ -112,13 +112,9 @@ class MainScreenState extends State<MainScreen>{
    //   ),
    // );
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: CupertinoColors.white,
-        // statusBarIconBrightness:  Brightness.light,
 
-      ),);
     return Container(color: Colors.white,
-      child: SafeArea(
+      child: SafeArea(bottom: false,
           child: Scaffold(
         body: _screensList[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
