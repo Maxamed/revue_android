@@ -6,10 +6,12 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Login.dart';
 import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
+import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/add_review/Add_Review.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
+import 'package:revue_mobile/reviews/review_card.dart';
 
 import 'RevueDetail.dart';
 
@@ -25,166 +27,42 @@ CompoundModal compoundModal;
 }
 
 class ReviewListState extends State<ReviewList>{
-  
 
+
+
+
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.maxFinite,
-      child:  ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: widget.reviewList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(left:8.0,right:8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                  Flexible(flex: 1,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                            (widget.reviewList[index] as ReviewModal).reviewerName.toUpperCase(),
-                            style: TextStyle(
-                                color:ColorClass.redColor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle:  FontStyle.normal,
-                                fontSize: 18.0
-                            ),
-                            textAlign: TextAlign.left
-                        ),
-                        SizedBox(height: 20,),
-                        Row(children: [
-                          Text("Posted On   ",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w500,
-                              fontSize: 14),),
-                          Text(StringConstant.getReviewPostedDate( (widget.reviewList[index] as ReviewModal).reviewDate),style: TextStyle(color: ColorClass.lightTextColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12))
-                        ],),
+      child: widget.reviewList.isEmpty?
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text("No Review Added",style: TextStyle(color: ColorClass.darkTextColor,fontWeight:
+            FontWeight.w400,fontSize: 16),),
+          ):
 
-                      ],
-                    ),),
-                  Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child:   CircularPercentIndicator(
-                        radius: 40.0,
-                        animation: true,
-                        animationDuration: 1200,
-                        lineWidth: 4.0,
-                        percent: StringConstant.getpercentage((widget.reviewList[index] as ReviewModal).rating),
-                        center: new Text(
-                          (widget.reviewList[index] as ReviewModal).rating.toString(),
-                          style:
-                          new TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
-                        ),
-                        circularStrokeCap: CircularStrokeCap.butt,
-                        backgroundColor: ColorClass.circularBgColor,
-                        progressColor: ColorClass.redColor,
-                        // footer: Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Text(
-                        //       "Overall Rating",
-                        //       style:  TextStyle(
-                        //           color:Colors.black87 ,
-                        //           fontWeight: FontWeight.w500,
-                        //
-                        //           fontStyle:  FontStyle.normal,
-                        //           fontSize: 12.0
-                        //       ),
-                        //       textAlign: TextAlign.left
-                        //   ),
-                        // ),
-                      ),
+      Column(
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: exists? widget.reviewList.length:
+            widget.reviewList.length<2?
+            1:2,
+            itemBuilder: (context, index) {
+              double rating  = (widget.reviewList[index] as ReviewModal).rating;
+              return ReviewCard((widget.reviewList[index] as ReviewModal), rating, widget.reviewList);
+            },
+          ),
+          exists?Container():Padding(
+            padding: const EdgeInsets.only(top: 10,right: 10,left: 10,bottom: 20),
+            child: Text("Please add Review to view more Reviews",
+              style: TextStyle(color: ColorClass.redColor,fontWeight: FontWeight.w500,fontSize: 16),),
+          )
 
-                    ),
-                  )
-                ],),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Description",
-                    style:  TextStyle(
-                        color: ColorClass.darkTextColor,
-                        fontWeight: FontWeight.w500,
-
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 14.0
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 8,bottom: 5,top: 5),
-                  child: Text(
-                      (widget.reviewList[index] as ReviewModal).review,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
-                      style:  TextStyle(
-                          color:  ColorClass.lightTextColor,
-                          fontWeight: FontWeight.w400,
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 12.0),
-                      textAlign: TextAlign.left),
-                ),
-
-                SizedBox(height: 10,),
-
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                    children: [
-                      // 1350 sqft
-                      Text((widget.reviewList[index] as ReviewModal).floorplan +" SQFT",
-                          style:  TextStyle(
-                              color:  Colors.black87,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0,
-                            fontWeight: FontWeight.w400,),
-                          textAlign: TextAlign.left),
-                      // 45000 INR
-                      Text((widget.reviewList[index] as ReviewModal).price +" QAR",
-                          style:  TextStyle(
-                              color:  Colors.black87,
-                              fontStyle:  FontStyle.normal,
-                              fontSize: 14.0,
-                            fontWeight: FontWeight.w400,),
-                          textAlign: TextAlign.left),
-                      // View more
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          CupertinoScaffold.
-                          showCupertinoModalBottomSheet(
-                              context: context,backgroundColor: Colors.white,
-                              barrierColor: Colors.black.withAlpha(10),
-                              builder: (context)=>CupertinoScaffold(transitionBackgroundColor: Colors.white,
-                                  body: RevueDetail(widget.reviewList[index] as ReviewModal,widget.reviewList.length)));
-
-                        },
-                        child: Text("View More",
-                            style:  TextStyle(fontSize: 12,
-                                color: ColorClass.blueColor,
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w500),
-                            textAlign: TextAlign.left),
-                      )
-                    ],
-                  ),
-                ),
-                Divider(
-                  color: ColorClass.greyColor,
-                  thickness: 0.5,
-                ),
-              ],
-            ),
-          );
-        },
+        ],
       ),
     );
   }
@@ -200,4 +78,20 @@ class ReviewListState extends State<ReviewList>{
 
   }
 
+
+  bool exists;
+
+  @override
+  void initState() {
+    super.initState();
+    checkReviews();
+  }
+
+
+  checkReviews()async{
+    exists = await Webservice.checkReview(widget.compoundModal.id);
+    setState(() {
+
+    });
+  }
 }

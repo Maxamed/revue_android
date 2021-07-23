@@ -93,6 +93,8 @@ flutter:
     - assets/images/addCamera.png
     - assets/images/mapbg.png
     - assets/images/heart_filled.png
+    - assets/images/animatedQues.jpg
+    - assets/images/share.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -696,6 +696,7 @@ class Webservice{
     request[""]= email;
     var response = await http.post(Uri.parse(ServerDetails.change_password),body: convert.jsonEncode(request),
         headers: {
+
           "content-type": "application/json",
           "accept": "application/json"
         });

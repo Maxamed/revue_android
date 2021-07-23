@@ -7,6 +7,7 @@ import 'package:revue_mobile/Modal/QuestionModal.dart';
 import 'package:revue_mobile/Modal/ReportModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
+import 'package:revue_mobile/constant/custom_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constant/ColorClass.dart';
@@ -48,6 +49,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(child: Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(preferredSize: Size.fromHeight(50),child: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
@@ -92,7 +94,7 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                 // );
               },
               child: Text(
-                "Write your Answer",
+                "Answer",
                 style: TextStyle(fontSize: 16,color: Colors.white,),
               ),
 
@@ -122,9 +124,25 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
         SizedBox(height: 10,),
 
 
-        answerList.isEmpty?
-        Text("Currently no answers posted",
-            style:TextStyle(color: ColorClass.lightTextColor,)):
+        answerList.isEmpty? Container(
+          width: double.maxFinite,
+          // alignment: Alignment.center,
+
+          height: MediaQuery.of(context).size.height,
+          margin: EdgeInsets.only(top: 15,bottom: 10,left: 10,right: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("No Answers Posted",
+                style: TextStyle(color: ColorClass.darkTextColor,
+                    fontWeight: FontWeight.w500,fontSize: 17),),
+              SizedBox(height: 6,),
+              Image.asset("assets/images/animatedQues.jpg",fit: BoxFit.fill,height: 50,width: 50,)
+
+            ],
+          ),
+        ):
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -446,15 +464,24 @@ class QuestionAnswerScreenState extends State<QuestionAnswerScreen>{
                           padding: EdgeInsets.all(10),
                         ),
                         onPressed: () async {
-                          SharedPreferences prefs = await SharedPreferences.getInstance();
-                          AnswerModal answerModal = new AnswerModal();
-                          answerModal.answer = answerController.text;
-                          answerModal.timestamp = DateTime.now().millisecondsSinceEpoch;
-                          answerModal.compoundID = widget.compoundID;
-                          answerModal.userID = prefs.getString("userID");
-                          answerModal.userName = prefs.getString("name");
-                          answerModal.questionID = widget.questionModal.id;
-                          Webservice.postAnswerRequest(context, answerModal);
+                         if(answerController.text.isNotEmpty||answerController.text!=""){
+                           SharedPreferences prefs = await SharedPreferences.getInstance();
+                           AnswerModal answerModal = new AnswerModal();
+                           answerModal.answer = answerController.text;
+                           answerModal.timestamp = DateTime.now().millisecondsSinceEpoch;
+                           answerModal.compoundID = widget.compoundID;
+                           answerModal.userID = prefs.getString("userID");
+                           answerModal.userName = prefs.getString("name");
+                           answerModal.questionID = widget.questionModal.id;
+                           Webservice.postAnswerRequest(context, answerModal);
+
+                         }
+                         else{
+
+                           Navigator.pop(context);
+                           displayAlertDialog(context,title: "Post Answer",
+                               content: "Empty Answer Cannot Be Posted");
+                         }
 
                         },
                         child: Text(

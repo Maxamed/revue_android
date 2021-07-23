@@ -118,6 +118,7 @@ class _ProsTextFieldsState extends State<ProsTextFields> {
     return TextFormField(
       controller: _proController,
       onChanged: (v) => GlobalKeys.addReviewSecondKey.currentState.prosList[widget.index] = v,
+        autofocus: false,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 15),
             labelStyle: TextStyle(

@@ -147,17 +147,21 @@ class SearchCompoundState extends State<SearchCompound>{
                            compound:  compoundSearchList[index] as CompoundModal)));
                   },behavior: HitTestBehavior.translucent,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text((compoundSearchList[index] as CompoundModal).compoundname,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           style: TextStyle(fontSize: 16,
                               fontWeight: FontWeight.w700,color: ColorClass.lightTextColor),),
+                        SizedBox(height: 5,),
                         Text((compoundSearchList[index] as CompoundModal).address,
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           style: TextStyle(fontSize: 14,
                               fontWeight: FontWeight.w400,color: ColorClass.lightTextColor),),
+                        SizedBox(height: 5,),
+
 
                         Divider(color: ColorClass.greyColor,)
                       ],
@@ -175,6 +179,14 @@ class SearchCompoundState extends State<SearchCompound>{
         ),
       ),
     );
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    compoundSearchList.clear();
   }
 
 }

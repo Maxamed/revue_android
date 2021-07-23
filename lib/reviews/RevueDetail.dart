@@ -179,13 +179,13 @@ navigationBar: CupertinoNavigationBar(backgroundColor: Colors.grey.shade50,
                         lineWidth: 3.5,
                         percent: StringConstant.getpercentage(widget.reviewModal.location),
                         center: new Text(
-                            widget.reviewModal.location.toString(),
+                            widget.reviewModal.location.toStringAsFixed(1),
                           style:
                           new TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
                         ),
                         circularStrokeCap: CircularStrokeCap.butt,
                         backgroundColor: ColorClass.circularBgColor,
-                        progressColor: ColorClass.redColor,
+                        progressColor: Colors.green.shade600,
                         footer:  Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
@@ -456,31 +456,7 @@ navigationBar: CupertinoNavigationBar(backgroundColor: Colors.grey.shade50,
                       ],
                     ),
                   ),
-                  Row(
-                    children: [
-                   GestureDetector(
-                        onTap: (){
-                          Share.share("Check out this property https://revueapp.com/property");
-                        },
-                        child: Icon(
-                          Icons.share_outlined,
-                          color: Colors.blue,
-                          size: 20,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AutoSizeText("Share",
-                            style: const TextStyle(
-                                color: Colors.black,
 
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16.0),
-                            textAlign: TextAlign.left),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),

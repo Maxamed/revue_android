@@ -56,7 +56,6 @@ class CompoundListState extends State<CompoundList>{
   Widget build(BuildContext context) {
    return Container(width: double.infinity,
    child:  ListView.builder(
-
      controller: _scrollController,
      scrollDirection: Axis.vertical,
      itemCount:compoundList.length,

@@ -7,6 +7,7 @@ import 'package:revue_mobile/Modal/QuestionModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
+import 'package:revue_mobile/constant/custom_dialog.dart';
 import 'package:revue_mobile/messages/QuestionAnswerScreen.dart';
 import 'package:revue_mobile/messages/SearchQuestionWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,6 +48,7 @@ class MessagingScreenState extends State<MessagingScreen>{
   @override
   Widget build(BuildContext context) {
     return CupertinoScaffold(body:  Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: new Stack(
         children: <Widget>[
           Container(
@@ -143,7 +145,7 @@ class MessagingScreenState extends State<MessagingScreen>{
 
                 Container(
                   margin:
-                  EdgeInsets.only(top: 10, left: 10, right: 10),
+                  EdgeInsets.only(top: 6, left: 10, right: 10),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -192,7 +194,25 @@ class MessagingScreenState extends State<MessagingScreen>{
                 Container(
                   child:
                   questionsList.isEmpty?
-                  Text("No Questions Posted"):
+                  Container(
+                    width: double.maxFinite,
+                    // alignment: Alignment.center,
+
+                    height: MediaQuery.of(context).size.height,
+                    margin: EdgeInsets.only(top: 15,bottom: 10,left: 10,right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("No Questions Posted",
+                      style: TextStyle(color: ColorClass.darkTextColor,
+                          fontWeight: FontWeight.w500,fontSize: 17),),
+                        SizedBox(height: 6,),
+                        Image.asset("assets/images/animatedQues.jpg",fit: BoxFit.fill,height: 50,width: 50,)
+
+                      ],
+                    ),
+                  ):
 
                   ListView.builder(
                     shrinkWrap: true,
@@ -348,18 +368,28 @@ class MessagingScreenState extends State<MessagingScreen>{
                       ),
                       onPressed: () async{
 
-                        SharedPreferences pref = await SharedPreferences.getInstance();
-                        MessagingModal messaging = new MessagingModal();
-                        messaging.question = questionController.text;
-                        messaging.userName = pref.getString("name");
-                        messaging.userID = pref.getString("userID");
-                        messaging.compoundID = widget.compoundID;
-                        messaging.compoundName = widget.compoundName;
-                        messaging.timestamp = DateTime.now().millisecondsSinceEpoch;
+                        if(questionController.text.isNotEmpty||questionController.text!=""){
 
-                        Webservice.postQuestionRequest(context, messaging).then((value) => this.setState(() {
-                          questionController.text="";
-                        }));
+                          SharedPreferences pref = await SharedPreferences.getInstance();
+                          MessagingModal messaging = new MessagingModal();
+                          messaging.question = questionController.text;
+                          messaging.userName = pref.getString("name");
+                          messaging.userID = pref.getString("userID");
+                          messaging.compoundID = widget.compoundID;
+                          messaging.compoundName = widget.compoundName;
+                          messaging.timestamp = DateTime.now().millisecondsSinceEpoch;
+
+                          Webservice.postQuestionRequest(context, messaging).then((value) => this.setState(() {
+                            questionController.text="";
+                          }));
+                        }
+                        else{
+
+                          Navigator.pop(context);
+                          displayAlertDialog(context,title: "Post Question",
+                              content: "Empty Question Cannot Be Posted");
+                        }
+
 
                       },
                       child: Text(

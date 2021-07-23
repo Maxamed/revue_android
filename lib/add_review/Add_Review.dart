@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:progress_indicators/progress_indicators.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
@@ -39,6 +38,7 @@ class AddReviewState extends State<AddReview>{
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+      backgroundColor: Colors.white,
       navigationBar: CupertinoNavigationBar(
           middle: Text("Add Review",style: TextStyle(color: Colors.black87,fontSize: 14),),
           backgroundColor: Colors.grey.shade50,
@@ -65,11 +65,17 @@ class AddReviewState extends State<AddReview>{
             primary: ColorClass.blueColor,  padding: EdgeInsets.only(left:100,right: 100,top:10,bottom: 10),
           ),
           onPressed: () async{
+
+            GlobalKeys.addReviewFirstKey.currentState.validateRent();
+
+            GlobalKeys.addReviewFirstKey.currentState.validateDescription();
             if(GlobalKeys.addReviewSecondKey.currentState.pickedImages.isEmpty)
             {
               Fluttertoast.showToast(msg: "Please select at least a Image");
             }
-          if(GlobalKeys.addReviewFirstKey.currentState.validate()
+
+          if(
+          GlobalKeys.addReviewFirstKey.currentState.validate()
               &&GlobalKeys.addReviewSecondKey.currentState.validate()
           &&GlobalKeys.addReviewThirdKey.currentState.validate() && !load){
 

@@ -82,6 +82,7 @@ class ConsTextFieldsState extends State<ConsTextFields> {
 
     return TextFormField(
       controller: _consController,
+      autofocus: false,
       onChanged: (v) => GlobalKeys.addReviewSecondKey.currentState.consList[widget.index] = v,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15),

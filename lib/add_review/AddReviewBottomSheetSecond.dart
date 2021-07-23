@@ -10,6 +10,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:revue_mobile/Modal/ReviewModal.dart';
 import 'package:revue_mobile/add_review/AddReviewBottomSheetThird.dart';
+import 'package:revue_mobile/add_review/widgets/FormField.dart';
 import 'package:revue_mobile/add_review/widgets/cons_widget.dart';
 import 'package:revue_mobile/add_review/widgets/pros_widget.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
@@ -177,206 +178,196 @@ class AddReviewBottomSheetSecondState extends State<AddReviewBottomSheetSecond>{
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Container(
-        child: ListView(physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          children: [
-          Container(
-            margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // First Name
-                Text(
-                    "Pros",
-                    style: TextStyle(
-                        color:Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    ),
-                    textAlign: TextAlign.left
-                ),
-                ..._getProsWidget(),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
 
-              ],
-            ),
+
+        Container(
+          width: MediaQuery.of(context).size.width,
+          margin:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+          decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              border: Border.all(color: Colors.black12)
           ),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextField(label: "Pros", withAsterisk: true),
+                    ..._getProsWidget(),
 
-          Container(
-            margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // First Name
-                Text(
-                    "Cons",
-                    style:  TextStyle(
-                        color:Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    ),
-                    textAlign: TextAlign.left
+                  ],
                 ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 20,right: 20,top: 20),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextField(label: "Cons", withAsterisk: true),
 
-                ..._getConsWidget()
+                    ..._getConsWidget()
 
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 20,right: 20,top: 20),
-            child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // First Name
-                Text(
-                    "Upload Images",
-                    style: const TextStyle(
-                        color:  Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontStyle:  FontStyle.normal,
-                        fontSize: 16.0
-                    ),
-                    textAlign: TextAlign.left
+                  ],
                 ),
-
-                Container(margin: EdgeInsets.only(left:30,right:30,top:30,bottom: 20),
-                    child:  pickedImages.isEmpty
-                        ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:// Rectangle 54
-                        Container(
-                          width:MediaQuery.of(context).size.width,
-                          height: 133,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(5)
-                              ),
-                              border: Border.all(
-                                  color: ColorClass.greyColor,
-                                  width: 1
-                              ),
-                              color: const Color(0x33dadada)
-                          ),
-                          child: GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: (){
-                                loadAssets();
-                              },
-                              child: Image.asset("assets/images/addCamera.png",
-                                width: 15,height: 15,)),
-                        )
-                    ) :buildGridView()),
-
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
 
-          // Align(alignment: Alignment.bottomRight,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       GestureDetector(
-          //         behavior: HitTestBehavior.translucent,
-          //         onTap: (){
-          //           Navigator.pop(context);
-          //           },
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(10.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.start,
-          //             children: [
-          //               Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
-          //               Text(
-          //                   "BACK",
-          //                   style:  TextStyle(
-          //                       color:  ColorClass.darkTextColor,
-          //                       fontWeight: FontWeight.w600,
-          //                       fontStyle:  FontStyle.normal,
-          //                       fontSize: 18.0
-          //                   ),
-          //                   textAlign: TextAlign.left
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //
-          //
-          //       GestureDetector(
-          //         behavior: HitTestBehavior.translucent,
-          //         onTap: prosList.isNotEmpty
-          //             &&consList.isNotEmpty
-          //             &&pickedImages.isNotEmpty ?() async{
-          //
-          //           List tempProList = [];
-          //           List tempConsList =[];
-          //
-          //           for(int i =0;i<prosList.length;i++){
-          //             tempProList.add(prosList[i]);
-          //           }
-          //
-          //           print(tempProList);
-          //
-          //           for(int i =0;i<consList.length;i++){
-          //             tempConsList.add(consList[i]);
-          //           }
-          //
-          //           List<MultipartFile> tempList =[];
-          //
-          //           for(Asset asset in pickedImages){
-          //             ByteData byteData = await asset.getByteData();
-          //             List<int> imageData = byteData.buffer.asInt8List();
-          //             MultipartFile multipartFile = new MultipartFile.fromBytes( "imageData",
-          //                 imageData,filename:asset.name,);
-          //           tempList.add(multipartFile);
-          //           }
 
-          //
-          //           widget.reviewModal.pros = tempProList;
-          //           widget.reviewModal.cons = tempConsList;
-          //           widget.reviewModal.images= tempList;
-          //
-          //           print(widget.reviewModal.pros);
-          //
-          //           showModalBottomSheet(context: context,
-          //               isScrollControlled: true,
-          //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
-          //                 topRight:Radius.circular(20), )),
-          //               builder:(context) => AddReviewBottomSheetThird(widget.reviewModal));
-          //
-          //         }:(){
-          //           Fluttertoast.showToast(msg: "All Fields must be Filled");
-          //         },
-          //         child: Padding(
-          //           padding: const EdgeInsets.all(10.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.end,
-          //             children: [
-          //               Text(
-          //                   "NEXT",
-          //                   style: TextStyle(
-          //                       color:  ColorClass.darkTextColor,
-          //                       fontWeight: FontWeight.w600,
-          //                       fontStyle:  FontStyle.normal,
-          //                       fontSize: 18.0
-          //                   ),
-          //                   textAlign: TextAlign.left
-          //               ),
-          //               Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),)
+        Container(
+          width: MediaQuery.of(context).size.width,
+          margin:EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 10),
+          decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              border: Border.all(color: Colors.black12)
+          ),
+          child:  Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
-        ],),
-      ),
+              Padding(
+                padding: EdgeInsets.only(left: 20,right: 20,top: 20),
+                child: CustomTextField(label: 'Upload Images', withAsterisk: true),
+              ),
+              Container(margin: EdgeInsets.only(left:30,right:30,top:10,bottom: 20),
+                  child:  pickedImages.isEmpty
+                      ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child:// Rectangle 54
+                      Container(
+                        width:MediaQuery.of(context).size.width,
+                        height: 133,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(5)
+                            ),
+                            border: Border.all(
+                                color: ColorClass.greyColor,
+                                width: 1
+                            ),
+                            color: Colors.white
+                        ),
+                        child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: (){
+                              loadAssets();
+                            },
+                            child: Image.asset("assets/images/addCamera.png",
+                              width: 15,height: 15,)),
+                      )
+                  ) :buildGridView()),
+
+            ],
+          ),
+        ),
+
+        // Align(alignment: Alignment.bottomRight,
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       GestureDetector(
+        //         behavior: HitTestBehavior.translucent,
+        //         onTap: (){
+        //           Navigator.pop(context);
+        //           },
+        //         child: Padding(
+        //           padding: const EdgeInsets.all(10.0),
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.start,
+        //             children: [
+        //               Icon(Icons.arrow_back_ios_outlined,color:Colors.black ,),
+        //               Text(
+        //                   "BACK",
+        //                   style:  TextStyle(
+        //                       color:  ColorClass.darkTextColor,
+        //                       fontWeight: FontWeight.w600,
+        //                       fontStyle:  FontStyle.normal,
+        //                       fontSize: 18.0
+        //                   ),
+        //                   textAlign: TextAlign.left
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //
+        //
+        //       GestureDetector(
+        //         behavior: HitTestBehavior.translucent,
+        //         onTap: prosList.isNotEmpty
+        //             &&consList.isNotEmpty
+        //             &&pickedImages.isNotEmpty ?() async{
+        //
+        //           List tempProList = [];
+        //           List tempConsList =[];
+        //
+        //           for(int i =0;i<prosList.length;i++){
+        //             tempProList.add(prosList[i]);
+        //           }
+        //
+        //           print(tempProList);
+        //
+        //           for(int i =0;i<consList.length;i++){
+        //             tempConsList.add(consList[i]);
+        //           }
+        //
+        //           List<MultipartFile> tempList =[];
+        //
+        //           for(Asset asset in pickedImages){
+        //             ByteData byteData = await asset.getByteData();
+        //             List<int> imageData = byteData.buffer.asInt8List();
+        //             MultipartFile multipartFile = new MultipartFile.fromBytes( "imageData",
+        //                 imageData,filename:asset.name,);
+        //           tempList.add(multipartFile);
+        //           }
+
+        //
+        //           widget.reviewModal.pros = tempProList;
+        //           widget.reviewModal.cons = tempConsList;
+        //           widget.reviewModal.images= tempList;
+        //
+        //           print(widget.reviewModal.pros);
+        //
+        //           showModalBottomSheet(context: context,
+        //               isScrollControlled: true,
+        //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),
+        //                 topRight:Radius.circular(20), )),
+        //               builder:(context) => AddReviewBottomSheetThird(widget.reviewModal));
+        //
+        //         }:(){
+        //           Fluttertoast.showToast(msg: "All Fields must be Filled");
+        //         },
+        //         child: Padding(
+        //           padding: const EdgeInsets.all(10.0),
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.end,
+        //             children: [
+        //               Text(
+        //                   "NEXT",
+        //                   style: TextStyle(
+        //                       color:  ColorClass.darkTextColor,
+        //                       fontWeight: FontWeight.w600,
+        //                       fontStyle:  FontStyle.normal,
+        //                       fontSize: 18.0
+        //                   ),
+        //                   textAlign: TextAlign.left
+        //               ),
+        //               Icon(Icons.arrow_forward_ios_outlined,color:Colors.black ,)
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),)
+
+      ],),
     );
 
   }

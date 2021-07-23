@@ -1,4 +1,5 @@
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -15,11 +16,13 @@ import 'package:revue_mobile/compound/CompoundRatings.dart';
 import 'package:revue_mobile/constant/ColorClass.dart';
 import 'package:revue_mobile/constant/GlobalKeys.dart';
 import 'package:revue_mobile/constant/StringConstant.dart';
+import 'package:revue_mobile/constant/custom_dialog.dart';
 import 'package:revue_mobile/map/mapScreen.dart';
 import 'package:revue_mobile/messages/MessagingScreen.dart';
 import 'package:revue_mobile/reviews/reviews_list.dart';
 import 'package:revue_mobile/bottom_tab_bar/FavouriteCom.dart';
 import 'package:revue_mobile/MainScreen.dart';
+import 'package:share/share.dart';
 
 
 class CompoundDetails extends StatefulWidget {
@@ -68,22 +71,26 @@ class CompoundDetailsState extends State<CompoundDetails> {
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
 
-    Webservice.getCompoundDetails(widget.compoundID).then((value){
-      this.setState(() {
-        compoundModal = value;
-        // print(compoundModal.position["coordinates"][0]);
-        // print(compoundModal.position["coordinates"][1]);
-      });
-    });
+    getCompoundDetails();
 
-
-   fetchReview();
 
     if(favouriteIDList.contains(widget.compound.id)){
       favourite = !favourite;
     }
 
   }
+
+
+  getCompoundDetails()async{
+  CompoundModal value = await Webservice.getCompoundDetails(widget.compoundID);
+   setState(() {
+     compoundModal = value;
+   });
+  fetchReview();
+  }
+
+
+
   fetchReview(){
     Webservice.fetchAllReviews(context,
         widget.compoundID,reviewList).then((value) => this.setState(() {
@@ -220,7 +227,8 @@ class CompoundDetailsState extends State<CompoundDetails> {
                                         builder: (context) =>
                                             MessagingScreen(key:GlobalKeys.addQuestionKey,
                                                 compoundID: compoundModal.id,
-                                                address: compoundModal.compoundname,compoundName:  compoundModal.address)));
+                                                address: compoundModal.address,
+                                                compoundName:  compoundModal.compoundname)));
                               },
                               label: Text(
                                 "Q and A",
@@ -276,16 +284,60 @@ class CompoundDetailsState extends State<CompoundDetails> {
                       background: Container(
                         width: MediaQuery.of(context).size.width,
                         height: 200,
-                        child: Swiper(
-                          itemBuilder: (BuildContext context, int index) {
-                            return new Image.network(
-                              compoundModal.images[index],
-                              fit: BoxFit.fill,
-                            );
-                          },
-                          autoplay: true,
-                          itemCount: compoundModal.images.length,
-                          pagination: new SwiperPagination(),
+                        child: Stack(
+                            clipBehavior: Clip.none,
+                          children: [
+
+                            Swiper(
+                              itemBuilder: (BuildContext context, int index) {
+                                return new Image.network(
+                                  compoundModal.images[index],
+                                  fit: BoxFit.fill,
+                                );
+                              },
+                              autoplay: false,
+                              itemCount: compoundModal.images.length,
+                              pagination: new SwiperPagination(),
+                            ),
+
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: GestureDetector(
+                                behavior: HitTestBehavior.deferToChild,
+                                onTap: (){
+                                  Share.share("Check out this property https://revueapp.com/property");
+                                },
+                                child: Container(
+                                  margin: EdgeInsets
+                                  .only(top: 10,bottom: 10,right: 20),
+                                  decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Icon(Icons.share_outlined,
+                                    color: Colors.blue,
+                                    size: 20,),
+                                  ),),
+                              ),
+                              // child: InkWell(
+                              //   onTap: (){
+                              //     Share.share("Check out this property https://revueapp.com/property");
+                              //   },
+                              //   child: Container(
+                              //     margin: EdgeInsets.only(top: 20,left: 8,right: 10),
+                              //     decoration: BoxDecoration(color: Colors.white,
+                              //     shape: BoxShape.circle),
+                              //     child: Padding(
+                              //       padding: const EdgeInsets.all(8.0),
+                              //       child: Icon(
+                              //         Icons.share_outlined,
+                              //         color: Colors.blue,
+                              //         size: 30,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                            ),
+                          ],
                         ),
                       ),
 
@@ -299,7 +351,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
                   child: Row(
                       children: [
                         Flexible(
-                          flex: 3,
+                          flex: 2,
                           fit: FlexFit.tight,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -330,51 +382,54 @@ class CompoundDetailsState extends State<CompoundDetails> {
 
                         Flexible(
                           flex: 1,
-                          fit: FlexFit.tight,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child:   CircularPercentIndicator(
-                                    radius: 40.0,
-                                    animation: true,
-                                    animationDuration: 1200,
-                                    lineWidth: 4.0,
-                                    percent: StringConstant.getpercentage(compoundModal.rating.toDouble()),
-                                    center: new Text(
-                                      (compoundModal.rating.toDouble()).toStringAsFixed(1),
-                                      style:
-                                      new TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
-                                    ),
-                                    circularStrokeCap: CircularStrokeCap.butt,
-                                    backgroundColor: ColorClass.circularBgColor,
-                                    progressColor: ColorClass.redColor,
-                                    // footer: Padding(
-                                    //   padding: const EdgeInsets.all(8.0),
-                                    //   child: Text(
-                                    //       "Overall Rating",
-                                    //       style:  TextStyle(
-                                    //           color:Colors.black87 ,
-                                    //           fontWeight: FontWeight.w500,
-                                    //
-                                    //           fontStyle:  FontStyle.normal,
-                                    //           fontSize: 12.0
-                                    //       ),
-                                    //       textAlign: TextAlign.left
-                                    //   ),
-                                    // ),
+                          fit: FlexFit.loose,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                // GestureDetector(
+                                //   onTap: (){
+                                //     Share.share("Check out this property https://revueapp.com/property");
+                                //   },
+                                //   child: Icon(
+                                //     Icons.share_outlined,
+                                //     color: Colors.blue,
+                                //     size: 40,
+                                //   ),
+                                // ),
+                                SizedBox(width: 5,),
+                                CircularPercentIndicator(
+                                  radius: 40.0,
+                                  animation: true,
+                                  animationDuration: 1200,
+                                  lineWidth: 4.0,
+                                  percent: StringConstant.getpercentage(compoundModal.rating.toDouble()),
+                                  center: new Text(
+                                    (compoundModal.rating.toDouble()).toStringAsFixed(1),
+                                    style:
+                                    new TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0),
                                   ),
-
+                                  circularStrokeCap: CircularStrokeCap.butt,
+                                  backgroundColor: ColorClass.circularBgColor,
+                                  progressColor: ColorClass.redColor,
+                                  // footer: Padding(
+                                  //   padding: const EdgeInsets.all(3.0),
+                                  //   child: Text(
+                                  //       "${reviewList.length} \nReviews",
+                                  //       style:  TextStyle(
+                                  //           color:Colors.black ,
+                                  //           fontWeight: FontWeight.w500,
+                                  //           fontStyle:  FontStyle.normal,
+                                  //           fontSize: 12.0
+                                  //       ),
+                                  //       textAlign: TextAlign.center
+                                  //   ),
+                                  // ),
                                 ),
-                              )
-                              // Text(compoundModal.rating.toInt().toString(),style:TextStyle(color: ColorClass.lightTextColor,
-                              //   fontSize: 18,fontWeight: FontWeight.w800,
-                              //   fontStyle: FontStyle.normal,),textAlign: TextAlign.start,)
-                            ],),
+                                ],),
+                          ),
                         )
 
                       ]),
@@ -495,13 +550,14 @@ class CompoundDetailsState extends State<CompoundDetails> {
                       ElevatedButton(
                           onPressed: ()
                           async {
-
                             bool exists= await Webservice.checkReview(compoundModal.id);
                             if(!exists){
                               GlobalKeys.reviewListKey.currentState.openAddReview();
                             }
                             else{
-                              Fluttertoast.showToast(msg: "Review Already Exists");
+                              displayAlertDialog(context,title: "Add Review",content: "Review Already Exists");
+
+                              // Fluttertoast.showToast(msg: "Review Already Exists");
                             }
 
                       }, child: Text("Add Review",style: TextStyle(fontSize: 12),)),
