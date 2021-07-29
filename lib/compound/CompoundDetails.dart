@@ -8,6 +8,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/FavoriteModal.dart';
+import 'package:revue_mobile/Service/ServerDetails.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/add_review/AddReviewBottomSheetFirst.dart';
 import 'package:revue_mobile/add_review/Add_Review.dart';
@@ -290,7 +291,7 @@ class CompoundDetailsState extends State<CompoundDetails> {
 
                             Swiper(
                               itemBuilder: (BuildContext context, int index) {
-                                return new Image.network(
+                                return new Image.network(ServerDetails.get_images+
                                   compoundModal.images[index],
                                   fit: BoxFit.fill,
                                 );

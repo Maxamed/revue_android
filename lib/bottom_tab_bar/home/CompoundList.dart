@@ -4,6 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:revue_mobile/MainScreen.dart';
 import 'package:revue_mobile/Modal/CompoundModal.dart';
 import 'package:revue_mobile/Modal/FavoriteModal.dart';
+import 'package:revue_mobile/Service/ServerDetails.dart';
 import 'package:revue_mobile/Service/Webservice.dart';
 import 'package:revue_mobile/bottom_tab_bar/FavouriteCom.dart';
 import 'package:revue_mobile/compound/CompoundDetails.dart';
@@ -102,7 +103,7 @@ class CompoundListState extends State<CompoundList>{
                         itemBuilder: (BuildContext context, int ind) {
                           return ClipRRect(
                               borderRadius: BorderRadius.circular(5.0),
-                            child: new Image.network(
+                            child: new Image.network(ServerDetails.get_images+
                               (compoundList[index] as CompoundModal).images[ind],
                               fit: BoxFit.fill,
                             ),
