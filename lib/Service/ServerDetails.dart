@@ -1,5 +1,5 @@
  class ServerDetails{
-  static String base_url ="http://94.237.48.11:8080/RevueBackend";
+  static String base_url ="http://94.237.48.11:9090";
 
   // static String base_url= "http://192.168.1.125:8080/Revue_Backend-1.0-SNAPSHOT";
  static String register_request = base_url+"/register";

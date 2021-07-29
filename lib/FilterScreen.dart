@@ -53,33 +53,10 @@ class FilterScreenState extends State<FilterScreen> {
     'Upto 25 KM',
     'More Than 25 KM'
   ];
-  // List minpriceRange = [
-  //   '5 Lac',
-  //   '10 Lac',
-  //   '15 Lac',
-  //   '20 Lac',
-  //   '25 Lac',
-  //   '30 Lac',
-  //   '35 Lac',
-  //   '40 Lac'
-  // ];
-  // List maxpriceRange = [
-  //   '5 Lac',
-  //   '10 Lac',
-  //   '15 Lac',
-  //   '20 Lac',
-  //   '25 Lac',
-  //   '30 Lac',
-  //   '35 Lac',
-  //   '40 Lac'
-  // ];
-  // List bedRooms = ['1', '2', '3', '4', '5', '6'];
+
 
   String radiusSelected;
- //  String minPrice;
- //  String maxPrice;
- //  String minSelectedRooms;
- // String maxSelectedRooms;
+
   List<AmenitiesModal> isSelected =[];
   List<String> categoryType =<String>['Any', 'Apartment', 'Compound'];
   bool selected = false;

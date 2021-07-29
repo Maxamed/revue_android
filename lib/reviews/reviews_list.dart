@@ -56,7 +56,14 @@ class ReviewListState extends State<ReviewList>{
               return ReviewCard((widget.reviewList[index] as ReviewModal), rating, widget.reviewList);
             },
           ),
-          exists?Container():Padding(
+          exists?Container():
+          widget.reviewList.length<3?
+          Padding(
+            padding: const EdgeInsets.only(top: 10,right: 10,left: 10,bottom: 20),
+            child: Text("Please add Review to view more Reviews",
+              style: TextStyle(color: ColorClass.redColor,fontWeight: FontWeight.w500,fontSize: 16),),
+          ):
+          Padding(
             padding: const EdgeInsets.only(top: 10,right: 10,left: 10,bottom: 20),
             child: Text("Please add Review to view more Reviews",
               style: TextStyle(color: ColorClass.redColor,fontWeight: FontWeight.w500,fontSize: 16),),
