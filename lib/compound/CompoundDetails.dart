@@ -304,9 +304,11 @@ class CompoundDetailsState extends State<CompoundDetails> {
                             Align(
                               alignment: Alignment.bottomRight,
                               child: GestureDetector(
-                                behavior: HitTestBehavior.deferToChild,
+                                behavior: HitTestBehavior.translucent,
                                 onTap: (){
-                                  Share.share("Check out this property https://revueapp.com/property");
+                                  print("on tapped click");
+                                  Share.share("Check out this property\n"
+                                      "https://revue-app.com/#/home/compoundDetail/${compoundModal.id}");
                                 },
                                 child: Container(
                                   margin: EdgeInsets
